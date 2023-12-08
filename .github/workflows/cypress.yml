@@ -6,8 +6,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Navigate
-        uses: cd electionReminders
+      - run: cd electionReminders
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
