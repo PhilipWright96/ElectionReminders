@@ -1,3 +1,0 @@
-# ElectionReminders
-
-Test
