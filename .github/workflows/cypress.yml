@@ -8,6 +8,8 @@ jobs:
         uses: actions/checkout@v2
       - run: cd electionReminders
       - run: ls
+      - run: cd electionReminders
+      - run: ls
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
