@@ -1,5 +1,5 @@
 {
-  "name": "electionReminders",
+  "name": "blank",
   "private": true,
   "version": "0.0.1",
   "type": "module",
@@ -9,14 +9,13 @@
     "preview": "vite preview",
     "test.e2e": "cypress run",
     "test.unit": "vitest",
-    "lint": "eslint",
-    "cypress": "cypress run"
+    "lint": "eslint"
   },
   "dependencies": {
     "@capacitor/app": "5.0.6",
-    "@capacitor/core": "5.5.1",
+    "@capacitor/core": "5.6.0",
     "@capacitor/haptics": "5.0.6",
-    "@capacitor/keyboard": "5.0.6",
+    "@capacitor/keyboard": "5.0.7",
     "@capacitor/status-bar": "5.0.6",
     "@ionic/react": "^7.0.0",
     "@ionic/react-router": "^7.0.0",
@@ -29,7 +28,7 @@
     "react-router-dom": "^5.3.4"
   },
   "devDependencies": {
-    "@capacitor/cli": "5.5.1",
+    "@capacitor/cli": "5.6.0",
     "@testing-library/dom": ">=7.21.4",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
@@ -44,7 +43,7 @@
     "jsdom": "^22.1.0",
     "terser": "^5.4.0",
     "typescript": "^5.1.6",
-    "vite": "5.0.7",
+    "vite": "^5.0.0",
     "vitest": "^0.34.6"
   },
   "description": "An Ionic project"
