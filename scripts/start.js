@@ -1,4 +1,4 @@
-const { execSync } = require('child_process')
+const { execSync } = import('child_process')
 
 const port = process.env.PORT || 8080
 let cmd = `serve --listen ${port} --no-request-logging`
