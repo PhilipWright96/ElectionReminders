@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "start": "node ./scripts/start.js",
     "preview": "vite preview",
     "test.e2e": "cypress run",
     "test.unit": "vitest",
