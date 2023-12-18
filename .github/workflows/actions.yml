@@ -15,7 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          # Make sure the actual branch is checked out when running on pull requests
+          # Ensure the actual branch is checked out when running on pull requests
           ref: ${{ github.head_ref }}
 
       - name: Prettify code
