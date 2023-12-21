@@ -1,5 +1,6 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonButton } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
+import TextCard from '../components/TextCard';
 import './Home.css';
 
 const Home: React.FC = () => {
@@ -20,6 +21,7 @@ const Home: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <ExploreContainer />
+        <TextCard />
       </IonContent>
     </IonPage>
   );
