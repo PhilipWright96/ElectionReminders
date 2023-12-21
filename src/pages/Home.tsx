@@ -20,8 +20,17 @@ const Home: React.FC = () => {
             <IonTitle size="large">Election Reminders</IonTitle>
           </IonToolbar>
         </IonHeader>
+        <div className='container'>
+          <div className='row'>
+            <div className="col">
+              <TextCard />
+            </div>
+            <div className="col">
+              <TextCard />
+            </div>
+          </div>
+        </div>
         <ExploreContainer />
-        <TextCard />
       </IonContent>
     </IonPage>
   );
