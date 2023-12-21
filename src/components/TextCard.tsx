@@ -7,11 +7,16 @@ const TextCard: React.FC<ContainerProps> = () => {
     return (
         <IonCard>
             <IonCardHeader>
-                <IonCardTitle>Card Title</IonCardTitle>
-                <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
+                <IonCardTitle>The App</IonCardTitle>
             </IonCardHeader>
 
-            <IonCardContent>Here's a small text description for the card content. Nothing more, nothing less.</IonCardContent>
+            <IonCardContent>
+                Welcome to Election Reminders - the app to help you remember
+                how and when to use your democratic rights. With this app, you can set up
+                countdowns and reminders for upcoming elections in various countries.
+                To add your first reminder, search a country in the right hand search
+                bar.
+            </IonCardContent>
         </IonCard>
     );
 };
