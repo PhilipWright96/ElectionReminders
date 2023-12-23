@@ -1,6 +1,7 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonButton, IonSearchbar } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import TextCard from '../components/IntroductionTextCard';
+import FavouritesCard from '../components/FavouritesCard';
 import './Home.css';
 
 const Home: React.FC = () => {
@@ -29,12 +30,10 @@ const Home: React.FC = () => {
               <IonSearchbar showClearButton="always" animated={true} placeholder="Enter country name here"></IonSearchbar>
             </div>
           </div>
-          <div className='row'>
-            <TextCard />
+          <div className='row text-center'>
+            <FavouritesCard />
           </div>
-          <div className='row'>
-            <ExploreContainer />
-          </div>
+          <ExploreContainer />
         </div>
       </IonContent>
     </IonPage>
