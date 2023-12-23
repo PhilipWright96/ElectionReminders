@@ -3,6 +3,7 @@ import ExploreContainer from '../components/ExploreContainer';
 import TextCard from '../components/IntroductionTextCard';
 import FavouritesCard from '../components/FavouritesCard';
 import './Home.css';
+import CountrySearchBar from '../components/CountrySearchBar';
 
 const Home: React.FC = () => {
   return (
@@ -27,16 +28,15 @@ const Home: React.FC = () => {
               <TextCard />
             </div>
             <div className="col">
-              <IonSearchbar showClearButton="always" animated={true} placeholder="Enter country name here"></IonSearchbar>
+              <CountrySearchBar></CountrySearchBar>
             </div>
           </div>
           <div className='row text-center'>
             <FavouritesCard />
           </div>
-          <ExploreContainer />
         </div>
       </IonContent>
-    </IonPage>
+    </IonPage >
   );
 };
 
