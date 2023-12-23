@@ -1,4 +1,4 @@
-import './TextCard.css';
+import './IntroductionTextCard.css';
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/react';
 
 interface ContainerProps { }
