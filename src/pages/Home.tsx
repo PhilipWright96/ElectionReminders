@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonButton } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonButton, IonSearchbar } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import TextCard from '../components/TextCard';
 import './Home.css';
@@ -26,7 +26,7 @@ const Home: React.FC = () => {
               <TextCard />
             </div>
             <div className="col">
-              <TextCard />
+              <IonSearchbar showClearButton="always" animated={true} placeholder="Enter country name here"></IonSearchbar>
             </div>
           </div>
         </div>
