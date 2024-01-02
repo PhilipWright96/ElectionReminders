@@ -22,6 +22,7 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import MyReminders from './pages/MyReminders';
+import CountryElections from './components/CountryElections';
 
 setupIonicReact();
 
@@ -34,6 +35,7 @@ const App: React.FC = () => (
           <Redirect to="/home" />
         </Route>
         <Route exact path="/myReminders" component={MyReminders} />
+        <Route exact path="/countryElections/:countryName" component={CountryElections} />
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
