@@ -12,7 +12,7 @@ const Home: React.FC = () => {
         <IonToolbar>
           <IonTitle>Election Reminders</IonTitle>
           <IonButtons slot="primary">
-            <IonButton>My Reminders</IonButton>
+            <IonButton href='myReminders'>My Reminders</IonButton>
           </IonButtons>
         </IonToolbar>
       </IonHeader>
