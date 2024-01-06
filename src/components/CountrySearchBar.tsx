@@ -1,34 +1,46 @@
 import './CountrySearchBar.css';
-import { IonSearchbar, IonList, IonItem } from '@ionic/react';
-import React, { useState } from 'react';
-
+import { IonSearchbar, IonList, IonItem, IonLabel, IonIcon } from '@ionic/react';
+import React, { useState, useEffect } from 'react';
+import { useDummyApi, SearchResult } from '../hooks/useDummyApi';
+import { checkboxOutline } from "ionicons/icons"
 interface ContainerProps { }
 
 const CountrySearchBar: React.FC<ContainerProps> = () => {
-    const data = [
-        'Germany',
-        'EU'
-    ], [results, setResults] = useState([...data]);
 
+    const initialData: SearchResult[] = [],
+        debounceTimeInMilliseconds = 300,
+        searchBarPlaceholder = "Enter country name here",
+        [searchTerm, setSearchTerm] = useState(""),
+        [results, setResults] = useState(initialData);
 
-    const handleInput = (ev: Event) => {
-        let query = '';
-        const target = ev.target as HTMLIonSearchbarElement;
-        if (target) query = target.value!.toLowerCase();
-
-        setResults(data.filter((d) => d.toLowerCase().indexOf(query) > -1));
-    };
+    useEffect(() => {
+        if (searchTerm === "") {
+            setResults([]);
+            return;
+        }
+        const data: SearchResult[] = useDummyApi();
+        setResults(data);
+    }, [searchTerm]);
 
     return (
         <>
-            <IonSearchbar showClearButton="always" animated={true} placeholder="Enter country name here" onIonInput={(ev) => handleInput(ev)}
-            ></IonSearchbar>
+            <IonSearchbar
+                value={searchTerm}
+                onIonChange={(e) => setSearchTerm(e.detail.value!)}
+                showClearButton="always"
+                animated={true}
+                placeholder={searchBarPlaceholder}
+                debounce={debounceTimeInMilliseconds}
+            ></IonSearchbar >
 
             <IonList>
-                {results.map((result) => (
-                    <IonItem>{result}</IonItem>
+                {results.map((result: SearchResult) => (
+                    <IonItem key={result.Name} routerLink={`/countryElections/${result.Name}`}>
+                        <IonLabel> {result.Name}</IonLabel>
+                        <IonIcon slot="end" icon={checkboxOutline} />
+                    </IonItem>
                 ))}
-            </IonList>
+            </IonList >
         </>
     );
 };
