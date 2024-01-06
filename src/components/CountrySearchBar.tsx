@@ -8,6 +8,8 @@ interface ContainerProps { }
 const CountrySearchBar: React.FC<ContainerProps> = () => {
 
     const initialData: SearchResult[] = [],
+        debounceTimeInMilliseconds = 300,
+        searchBarPlaceholder = "Enter country name here",
         [searchTerm, setSearchTerm] = useState(""),
         [results, setResults] = useState(initialData);
 
@@ -27,8 +29,8 @@ const CountrySearchBar: React.FC<ContainerProps> = () => {
                 onIonChange={(e) => setSearchTerm(e.detail.value!)}
                 showClearButton="always"
                 animated={true}
-                placeholder="Enter country name here"
-                debounce={300}
+                placeholder={searchBarPlaceholder}
+                debounce={debounceTimeInMilliseconds}
             ></IonSearchbar >
 
             <IonList>
