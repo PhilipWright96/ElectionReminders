@@ -1,12 +1,14 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, useIonViewWillEnter } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, useIonViewWillEnter } from '@ionic/react';
 import React, { useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { CountryInformation } from '../hooks/useDummyApi';
+import ElectionCard from './ElectionCard';
 
 interface CountryElectionPageProperties extends RouteComponentProps<{ countryName: string }> { }
 
 const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) => {
-    const [countryInformation, setCountryInformation] = useState<CountryInformation | null>(null);
+    const [countryInformation, setCountryInformation] = useState<CountryInformation | null>(null),
+        test = ["a", "b", "c"];
 
     useIonViewWillEnter(() => {
         const name = match.params.countryName
@@ -17,14 +19,19 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
         <IonPage>
             <IonHeader>
                 <IonToolbar>
-                    <IonTitle>{countryInformation?.Name} Elections</IonTitle>
+                    <div className='row text-center'>
+                        <IonTitle>{countryInformation?.Name} Elections</IonTitle>
+                    </div>
                 </IonToolbar>
             </IonHeader>
             <IonContent className="ion-padding">
-                {countryInformation?.Name} Elections
+                <IonList>
+                    {test.map((item) => (
+                        <ElectionCard />
+                    ))}
+                </IonList>
             </IonContent>
         </IonPage>
     );
 };
-
 export default CountryElections;
