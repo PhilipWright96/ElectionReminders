@@ -11,9 +11,9 @@ const ElectionCard: React.FC<ContainerProps> = () => {
             </IonCardHeader>
 
             <IonCardContent>
-                Election Date: 15/01/2024
-                Election Summary: Election for President of the World
-                Repeating every : 4 years
+                <b>Election Date: </b> 15/01/2024 <br></br>
+                <b>Election Summary: </b> Election for President of the World <br></br>
+                <b>Repeating every: </b> 4 years <br></br>
             </IonCardContent>
             <div className="row">
                 <div className="col">
