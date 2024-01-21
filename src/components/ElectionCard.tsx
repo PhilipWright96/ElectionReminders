@@ -15,6 +15,14 @@ const ElectionCard: React.FC<ContainerProps> = () => {
                 Election Summary: Election for President of the World
                 Repeating every : 4 years
             </IonCardContent>
+            <div className="row">
+                <div className="col">
+                    <button type="button" className="btn">More Details</button>
+                </div>
+                <div className="col">
+                    <button type="button" className="btn">Setup Reminder</button>
+                </div>
+            </div>
         </IonCard>
     );
 };
