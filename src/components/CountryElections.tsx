@@ -1,5 +1,5 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, useIonViewWillEnter } from '@ionic/react';
-import React, { useState } from 'react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, useIonViewWillEnter, IonSearchbar } from '@ionic/react';
+import React, { useState, useEffect } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { CountryInformation } from '../hooks/useDummyApi';
 import ElectionCard from './ElectionCard';
@@ -8,7 +8,12 @@ interface CountryElectionPageProperties extends RouteComponentProps<{ countryNam
 
 const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) => {
     const [countryInformation, setCountryInformation] = useState<CountryInformation | null>(null),
+        [filterTerm, setFilterTerm] = useState(""),
         test = ["a", "b", "c"];
+
+    useEffect(() => {
+        console.log("FILTER " + filterTerm)
+    }, [filterTerm])
 
     useIonViewWillEnter(() => {
         const name = match.params.countryName
@@ -24,6 +29,13 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
                     </div>
                 </IonToolbar>
             </IonHeader>
+            <IonSearchbar
+                value={filterTerm}
+                debounce={300}
+                onIonChange={(e) => setFilterTerm(e.detail.value!)}
+                placeholder='Filter results'>
+
+            </IonSearchbar>
             <IonContent className="ion-padding">
                 <IonList>
                     {test.map((item) => (
