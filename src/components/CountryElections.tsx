@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, useIonViewWillEnter, IonSearchbar } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, useIonViewWillEnter, IonSearchbar, IonItem, IonLabel, IonSelect, IonSelectOption } from '@ionic/react';
 import React, { useState, useEffect } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { CountryInformation } from '../hooks/useDummyApi';
@@ -9,6 +9,7 @@ interface CountryElectionPageProperties extends RouteComponentProps<{ countryNam
 const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) => {
     const [countryInformation, setCountryInformation] = useState<CountryInformation | null>(null),
         [filterTerm, setFilterTerm] = useState(""),
+        [filterTypeTerm, setFilterTypeTerm] = useState(""),
         test = ["a", "b", "c"];
 
     useEffect(() => {
@@ -29,12 +30,21 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
                     </div>
                 </IonToolbar>
             </IonHeader>
+            <IonItem>
+                <IonLabel>Filter By</IonLabel>
+                <IonSelect
+                    value={filterTypeTerm}
+                    onIonChange={(e) => setFilterTypeTerm(e.detail.value!)}
+                >
+                    <IonSelectOption value="name">Name</IonSelectOption>
+                    <IonSelectOption value="date">Date</IonSelectOption>
+                </IonSelect>
+            </IonItem>
             <IonSearchbar
                 value={filterTerm}
                 debounce={300}
                 onIonChange={(e) => setFilterTerm(e.detail.value!)}
                 placeholder='Filter results'>
-
             </IonSearchbar>
             <IonContent className="ion-padding">
                 <IonList>
