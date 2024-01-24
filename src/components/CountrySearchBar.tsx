@@ -18,8 +18,12 @@ const CountrySearchBar: React.FC<ContainerProps> = () => {
             setResults([]);
             return;
         }
-        const data: SearchResult[] = useDummyApi();
-        setResults(data);
+        const data: SearchResult[] = useDummyApi(),
+            dataMatchingUserSearchTerm =
+                data.filter(({ Name }) =>
+                    Name.startsWith(searchTerm)
+                );
+        setResults(dataMatchingUserSearchTerm);
     }, [searchTerm]);
 
     return (
