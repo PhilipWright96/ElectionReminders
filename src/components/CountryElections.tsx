@@ -12,10 +12,6 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
         [filterTypeTerm, setFilterTypeTerm] = useState(""),
         test = ["a", "b", "c"];
 
-    useEffect(() => {
-        console.log("FILTER " + filterTerm)
-    }, [filterTerm])
-
     useIonViewWillEnter(() => {
         const name = match.params.countryName
         setCountryInformation({ Name: name });
