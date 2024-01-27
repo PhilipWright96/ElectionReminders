@@ -44,8 +44,8 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
                 value={filterTerm}
                 debounce={debounceWaitTimeInMilliseconds}
                 onIonChange={(e) => {
-                    console.log("Looking with " + filterTypeTerm)
-                    setFilterTerm(e.detail.value!)
+                    console.log("Looking with " + filterTypeTerm);
+                    setFilterTerm(e.detail.value!);
                     if (filterTypeTerm === "name") {
                         const resultsFilteredByName = dummyElectionDataResults.filter((result) => result.electionName === e.detail.value);
                         setDummyElectionDataResults(resultsFilteredByName);
