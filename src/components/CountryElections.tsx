@@ -13,6 +13,7 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
         dummyElectionData = [{ electionName: "a", electionDate: "2023", electionSummary: "Summary for A", isRepeating: true, repeatingEvery: "2 Years" },
         { electionName: "b", electionDate: "2024", electionSummary: "Summary for B", isRepeating: false, repeatingEvery: "3 Years" },
         { electionName: "c", electionDate: "2022", electionSummary: "Summary for C", isRepeating: true, repeatingEvery: "1 Year" }],
+        [dummyElectionDataResults, setDummyElectionDataResults] = useState(dummyElectionData),
         debounceWaitTimeInMilliseconds = 300;
 
     useIonViewWillEnter(() => {
@@ -45,14 +46,18 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
                 onIonChange={(e) => {
                     console.log("Looking with " + filterTypeTerm)
                     setFilterTerm(e.detail.value!)
+                    if (filterTypeTerm === "name") {
+                        const resultsFilteredByName = dummyElectionDataResults.filter((result) => result.electionName === e.detail.value);
+                        setDummyElectionDataResults(resultsFilteredByName);
+                    }
                 }
                 }
                 placeholder='Filter results'>
             </IonSearchbar>
             <IonContent className="ion-padding">
                 <IonList>
-                    {dummyElectionData.map((dummyElection) => (
-                        <ElectionCard electionProperties={dummyElection} />
+                    {dummyElectionDataResults.map((dummyElection) => (
+                        <ElectionCard key={dummyElection.electionName} electionProperties={dummyElection} />
                     ))}
                 </IonList>
             </IonContent>
