@@ -9,8 +9,8 @@ interface CountryElectionPageProperties extends RouteComponentProps<{ countryNam
 const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) => {
     const [countryInformation, setCountryInformation] = useState<CountryInformation | null>(null),
         [filterTerm, setFilterTerm] = useState(""),
-        [filterTypeTerm, setFilterTypeTerm] = useState(""),
-        test = ["a", "b", "c"];
+        [filterTypeTerm, setFilterTypeTerm] = useState("name"),
+        dummyElectionData = [{ electionName: "a", electionDate: "2023", electionSummary: "Summary for A" }, { electionName: "b", electionDate: "2024", electionSummary: "Summary for B" }, { electionName: "c", electionDate: "2022", electionSummary: "Summary for C" }];
 
     useIonViewWillEnter(() => {
         const name = match.params.countryName
@@ -39,13 +39,17 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
             <IonSearchbar
                 value={filterTerm}
                 debounce={300}
-                onIonChange={(e) => setFilterTerm(e.detail.value!)}
+                onIonChange={(e) => {
+                    console.log("Looking with " + filterTypeTerm)
+                    setFilterTerm(e.detail.value!)
+                }
+                }
                 placeholder='Filter results'>
             </IonSearchbar>
             <IonContent className="ion-padding">
                 <IonList>
-                    {test.map((item) => (
-                        <ElectionCard />
+                    {dummyElectionData.map((dummyElection) => (
+                        <ElectionCard electionName={dummyElection.electionName} electionDate={dummyElection.electionDate} />
                     ))}
                 </IonList>
             </IonContent>
