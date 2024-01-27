@@ -10,9 +10,9 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
     const [countryInformation, setCountryInformation] = useState<CountryInformation | null>(null),
         [filterTerm, setFilterTerm] = useState(""),
         [filterTypeTerm, setFilterTypeTerm] = useState("name"),
-        dummyElectionData = [{ electionName: "a", electionDate: "2023", electionSummary: "Summary for A", repeatingEvery: "2 Years" },
-        { electionName: "b", electionDate: "2024", electionSummary: "Summary for B", repeatingEvery: "3 Years" },
-        { electionName: "c", electionDate: "2022", electionSummary: "Summary for C", repeatingEvery: "1 Year" }];
+        dummyElectionData = [{ electionName: "a", electionDate: "2023", electionSummary: "Summary for A", isRepeating: true, repeatingEvery: "2 Years" },
+        { electionName: "b", electionDate: "2024", electionSummary: "Summary for B", isRepeating: false, repeatingEvery: "3 Years" },
+        { electionName: "c", electionDate: "2022", electionSummary: "Summary for C", isRepeating: true, repeatingEvery: "1 Year" }];
 
     useIonViewWillEnter(() => {
         const name = match.params.countryName
