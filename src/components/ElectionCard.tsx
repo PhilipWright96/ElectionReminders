@@ -9,17 +9,17 @@ interface ElectionCard {
     repeatingEvery: string
 }
 
-const ElectionCard: React.FC<ElectionCard> = (electionProperties) => {
+const ElectionCard: React.FC<ElectionCard> = (props) => {
     return (
         <IonCard>
             <IonCardHeader>
-                <IonCardTitle>{electionProperties.electionName}</IonCardTitle>
+                <IonCardTitle>{props.electionProperties.electionName}</IonCardTitle>
             </IonCardHeader>
 
             <IonCardContent>
-                <b>Election Date: </b> {electionProperties.electionDate} <br></br>
-                <b>Election Summary: </b> {electionProperties.electionSummary} <br></br>
-                <b>Repeating every: </b> {electionProperties.repeatingEvery} <br></br>
+                <b>Election Date: </b> {props.electionProperties.electionDate} <br></br>
+                <b>Election Summary: </b> {props.electionProperties.electionSummary} <br></br>
+                <b>Repeating every: </b> {props.electionProperties.repeatingEvery} <br></br>
             </IonCardContent>
             <div className="row">
                 <div className="col">
