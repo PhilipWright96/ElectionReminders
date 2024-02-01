@@ -1,9 +1,9 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, useIonViewWillEnter, IonSearchbar, IonItem, IonLabel, IonSelect, IonSelectOption } from '@ionic/react';
 import React, { useState, useEffect } from 'react';
 import { RouteComponentProps } from 'react-router';
-import { CountryInformation } from '../hooks/useDummyApi';
-import ElectionCard from './ElectionCard';
-import dummyElectionData from "../dummyData/dummyElectionData.json"
+import { CountryInformation } from '../../hooks/useDummyApi';
+import ElectionCard from '../ElectionCard/ElectionCard';
+import dummyElectionData from "../../dummyData/dummyElectionData.json"
 
 interface CountryElectionPageProperties extends RouteComponentProps<{ countryName: string }> { }
 
@@ -47,6 +47,7 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
                 debounce={debounceWaitTimeInMilliseconds}
                 onIonClear={() => setDummyElectionDataResults(dummyElectionData)}
                 onIonChange={({ detail: { value: userEnteredValue } }) => {
+                    //onIonChange(userEnteredValue, setFilterTerm, setDummyElectionDataResults, filterFields);
                     setFilterTerm(userEnteredValue!);
                     if (userEnteredValue! === '') {
                         setDummyElectionDataResults(dummyElectionData);

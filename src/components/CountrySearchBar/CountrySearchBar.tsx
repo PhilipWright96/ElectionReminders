@@ -1,7 +1,7 @@
 import './CountrySearchBar.css';
 import { IonSearchbar, IonList, IonItem, IonLabel, IonIcon } from '@ionic/react';
 import React, { useState, useEffect } from 'react';
-import { useDummyApi, SearchResult } from '../hooks/useDummyApi';
+import { useDummyApi, SearchResult } from '../../hooks/useDummyApi';
 import { checkboxOutline } from "ionicons/icons"
 interface ContainerProps { }
 
