@@ -12,7 +12,11 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
         [filterTerm, setFilterTerm] = useState(""),
         [filterTypeTerm, setFilterTypeTerm] = useState("name"),
         [dummyElectionDataResults, setDummyElectionDataResults] = useState(dummyElectionData),
-        debounceWaitTimeInMilliseconds = 300;
+        debounceWaitTimeInMilliseconds = 300,
+        filterFields = {
+            NAME: "name",
+            DATE: "date"
+        }
 
     useIonViewWillEnter(() => {
         const name = match.params.countryName
@@ -34,8 +38,8 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
                     value={filterTypeTerm}
                     onIonChange={(e) => setFilterTypeTerm(e.detail.value!)}
                 >
-                    <IonSelectOption value="name">Name</IonSelectOption>
-                    <IonSelectOption value="date">Date</IonSelectOption>
+                    <IonSelectOption value={filterFields.NAME}>Name</IonSelectOption>
+                    <IonSelectOption value={filterFields.DATE}>Date</IonSelectOption>
                 </IonSelect>
             </IonItem>
             <IonSearchbar
@@ -44,8 +48,8 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
                 onIonChange={(e) => {
                     console.log("Looking with " + filterTypeTerm);
                     setFilterTerm(e.detail.value!);
-                    if (filterTypeTerm === "name") {
-                        const resultsFilteredByName = dummyElectionDataResults.filter((result) => result.electionName === e.detail.value);
+                    if (filterTypeTerm === filterFields.NAME) {
+                        const resultsFilteredByName = dummyElectionDataResults.filter(({ electionName }) => electionName === e.detail.value);
                         setDummyElectionDataResults(resultsFilteredByName);
                     }
                 }
