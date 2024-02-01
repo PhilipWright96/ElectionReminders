@@ -45,14 +45,15 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
             <IonSearchbar
                 value={filterTerm}
                 debounce={debounceWaitTimeInMilliseconds}
-                onIonChange={({ detail: { value } }) => {
-                    setFilterTerm(value!);
-                    if (value! === '') {
+                onIonClear={() => setDummyElectionDataResults(dummyElectionData)}
+                onIonChange={({ detail: { value: userEnteredValue } }) => {
+                    setFilterTerm(userEnteredValue!);
+                    if (userEnteredValue! === '') {
                         setDummyElectionDataResults(dummyElectionData);
                         return;
                     }
                     if (filterTypeTerm === filterFields.NAME) {
-                        const resultsFilteredByName = dummyElectionDataResults.filter(({ electionName }) => electionName === value);
+                        const resultsFilteredByName = dummyElectionDataResults.filter(({ electionName }) => electionName === userEnteredValue);
                         setDummyElectionDataResults(resultsFilteredByName);
                     }
                 }
@@ -66,7 +67,7 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
                     ))}
                 </IonList>
             </IonContent>
-        </IonPage>
+        </IonPage >
     );
 };
 export default CountryElections;
