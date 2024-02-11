@@ -1,19 +1,27 @@
 import './ElectionCard.css';
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/react';
 
-interface ContainerProps { }
+interface ElectionCard {
+    electionProperties: {
+        electionName: string,
+        electionDate: string,
+        electionSummary: string,
+        isRepeating: boolean,
+        repeatingEvery: string
+    }
+}
 
-const ElectionCard: React.FC<ContainerProps> = () => {
+const ElectionCard: React.FC<ElectionCard> = ({ electionProperties }) => {
     return (
         <IonCard>
             <IonCardHeader>
-                <IonCardTitle>Election 1</IonCardTitle>
+                <IonCardTitle>{electionProperties.electionName}</IonCardTitle>
             </IonCardHeader>
 
             <IonCardContent>
-                <b>Election Date: </b> 15/01/2024 <br></br>
-                <b>Election Summary: </b> Election for President of the World <br></br>
-                <b>Repeating every: </b> 4 years <br></br>
+                <b>Election Date: </b> {electionProperties.electionDate} <br></br>
+                <b>Election Summary: </b> {electionProperties.electionSummary} <br></br>
+                <b>Repeating every: </b> {electionProperties.repeatingEvery} <br></br>
             </IonCardContent>
             <div className="row">
                 <div className="col">

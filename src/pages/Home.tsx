@@ -1,9 +1,9 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonButton, IonSearchbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
-import TextCard from '../components/IntroductionTextCard';
-import FavouritesCard from '../components/FavouritesCard';
+import ExploreContainer from '../components/ExploreContainer/ExploreContainer';
+import TextCard from '../components/IntroductionTextCard/IntroductionTextCard';
+import FavouritesCard from '../components/FavouritesCard/FavouritesCard';
 import './Home.css';
-import CountrySearchBar from '../components/CountrySearchBar';
+import CountrySearchBar from '../components/CountrySearchBar/CountrySearchBar';
 
 const Home: React.FC = () => {
   return (
