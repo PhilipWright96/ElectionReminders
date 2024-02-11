@@ -3,7 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { CountryInformation } from '../../hooks/useDummyApi';
 import ElectionCard from '../ElectionCard/ElectionCard';
-import dummyElectionData from "../../dummyData/dummyElectionData.json"
+import startingDummyElectionData from "../../dummyData/dummyElectionData.json"
+import { FilterFields } from './types';
+import { onIonChange } from './onIonChange';
 
 interface CountryElectionPageProperties extends RouteComponentProps<{ countryName: string }> { }
 
@@ -11,9 +13,9 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
     const [countryInformation, setCountryInformation] = useState<CountryInformation | null>(null),
         [filterTerm, setFilterTerm] = useState(""),
         [filterTypeTerm, setFilterTypeTerm] = useState("name"),
-        [dummyElectionDataResults, setDummyElectionDataResults] = useState(dummyElectionData),
+        [dummyElectionDataResults, setDummyElectionDataResults] = useState(startingDummyElectionData),
         debounceWaitTimeInMilliseconds = 300,
-        filterFields = {
+        filterFields: FilterFields = {
             NAME: "name",
             DATE: "date"
         }
@@ -45,12 +47,11 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
             <IonSearchbar
                 value={filterTerm}
                 debounce={debounceWaitTimeInMilliseconds}
-                onIonClear={() => setDummyElectionDataResults(dummyElectionData)}
+                onIonClear={() => setDummyElectionDataResults(startingDummyElectionData)}
                 onIonChange={({ detail: { value: userEnteredValue } }) => {
-                    //onIonChange(userEnteredValue, setFilterTerm, setDummyElectionDataResults, filterFields);
                     setFilterTerm(userEnteredValue!);
                     if (userEnteredValue! === '') {
-                        setDummyElectionDataResults(dummyElectionData);
+                        setDummyElectionDataResults(startingDummyElectionData);
                         return;
                     }
                     if (filterTypeTerm === filterFields.NAME) {
