@@ -21,7 +21,7 @@ const CountrySearchBar: React.FC<ContainerProps> = () => {
         const data: SearchResult[] = useDummyApi(),
             dataMatchingUserSearchTerm =
                 data.filter(({ Name }) =>
-                    Name.startsWith(searchTerm)
+                    Name.startsWith(searchTerm.toLowerCase()) || Name.startsWith(searchTerm.toUpperCase())
                 );
         setResults(dataMatchingUserSearchTerm);
     }, [searchTerm]);
