@@ -1,5 +1,5 @@
 import './ElectionCard.css';
-import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/react';
+import { IonCard, IonCardContent, IonCardHeader, IonCardTitle } from '@ionic/react';
 
 interface ElectionCard {
     electionProperties: {
