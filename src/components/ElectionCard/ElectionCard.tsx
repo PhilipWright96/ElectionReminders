@@ -28,7 +28,7 @@ const ElectionCard: React.FC<ElectionCard> = ({ electionProperties }) => {
                     <button type="button" className="btn">More Details</button>
                 </div>
                 <div className="col">
-                    <button type="button" className="btn">Setup Reminder</button>
+                    <a href={`/setupReminder/${electionProperties.electionName}`} className="btn">Setup Reminder</a>
                 </div>
             </div>
         </IonCard>
