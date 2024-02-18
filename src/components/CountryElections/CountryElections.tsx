@@ -5,7 +5,6 @@ import { CountryInformation } from '../../hooks/useDummyApi';
 import ElectionCard from '../ElectionCard/ElectionCard';
 import startingDummyElectionData from "../../dummyData/dummyElectionData.json"
 import { FilterFields } from './types';
-import { onIonChange } from './onIonChange';
 
 interface CountryElectionPageProperties extends RouteComponentProps<{ countryName: string }> { }
 
