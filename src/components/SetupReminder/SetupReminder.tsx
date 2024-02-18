@@ -1,4 +1,4 @@
-import { IonHeader, IonPage, IonTitle, IonToolbar, } from '@ionic/react';
+import { IonHeader, IonPage, IonTitle, IonToolbar, IonCardContent, IonCard, IonContent } from '@ionic/react';
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
 
@@ -15,6 +15,13 @@ const SetupReminder: React.FC<SetupReminderPageProperties> = ({ match }) => {
                     </div>
                 </IonToolbar>
             </IonHeader>
+            <IonContent>
+                <IonCard>
+                    <IonCardContent>
+                        Add Countdown Card here!!
+                    </IonCardContent>
+                </IonCard>
+            </IonContent>
         </IonPage >
     );
 };
