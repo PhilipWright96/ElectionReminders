@@ -1,5 +1,5 @@
 import '../CountdownCard/CountdownCard.css';
-import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/react';
+import { IonCard, IonCardContent, IonCardHeader, IonCardTitle } from '@ionic/react';
 import React, { useState, useEffect } from 'react';
 
 interface CountdownCard {
@@ -9,11 +9,30 @@ interface CountdownCard {
 }
 
 const CountdownCard: React.FC<CountdownCard> = ({ countdownCardProperties }) => {
-    const [valueToUpdate, setValueToUpdate] = useState(0);
+    const [dayValue, setDayValueToUpdate] = useState(0),
+        [hourValue, setHourValueToUpdate] = useState(0),
+        [minuteValue, setMinuteValueToUpdate] = useState(0),
+        [secondValue, setSecondValueToUpdate] = useState(0),
+        targetDate: any = new Date(2024, 2, 1),
+        targetTime: any = targetDate.getTime();
+
+    let date = new Date(), now = date.getTime(),
+        difference: any = null;
 
     useEffect(() => {
         const intervalId = setInterval(() => {
-            setValueToUpdate(prevValue => prevValue + 1);
+            date = new Date();
+            now = date.getTime();
+            if (difference) {
+                setDayValueToUpdate(Math.floor(difference));
+            }
+            setHourValueToUpdate(23 - date.getHours());
+            setMinuteValueToUpdate(60 - date.getMinutes());
+            setSecondValueToUpdate(60 - date.getSeconds());
+            setDayValueToUpdate(prevValue => prevValue + 1);
+
+            difference = targetTime - now;
+            difference = difference / (1000 * 60 * 60 * 24);
         }, 1000);
 
 
@@ -38,10 +57,10 @@ const CountdownCard: React.FC<CountdownCard> = ({ countdownCardProperties }) => 
                             <p>Seconds</p>
                         </div>
                         <div className="times">
-                            <p>{valueToUpdate}</p>
-                            <p>2</p>
-                            <p>3</p>
-                            <p>4</p>
+                            <p>{dayValue}</p>
+                            <p>{hourValue}</p>
+                            <p>{minuteValue}</p>
+                            <p>{secondValue}</p>
                         </div>
                     </div>
                 </div>
