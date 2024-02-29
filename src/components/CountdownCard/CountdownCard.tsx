@@ -41,13 +41,9 @@ const CountdownCard: React.FC<CountdownCard> = ({ countdownCardProperties }) => 
 
     return (
         <IonCard>
-            <IonCardHeader>
-                <IonCardTitle>CountdownCard Title {countdownCardProperties?.electionDate}</IonCardTitle>
-            </IonCardHeader>
-
             <IonCardContent>
                 <div className="count-down-timer">
-                    <p>Countdown to election on</p>
+                    <p>Countdown to election on {countdownCardProperties?.electionDate}</p>
                     <div className="wrapper">
                         <div className="description">
                             <p>Days</p>
