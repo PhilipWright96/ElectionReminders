@@ -12,7 +12,7 @@ const SetupReminder: React.FC<SetupReminderPageProperties> = ({ match }) => {
             <IonHeader>
                 <IonToolbar>
                     <div className='row text-center'>
-                        <IonTitle>Setup Reminder</IonTitle>
+                        <IonTitle>Setup Reminder for Election {match.params.electionName}</IonTitle>
                     </div>
                 </IonToolbar>
             </IonHeader>
