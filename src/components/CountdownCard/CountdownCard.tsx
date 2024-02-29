@@ -15,7 +15,8 @@ const CountdownCard: React.FC<CountdownCard> = ({ countdownCardProperties }) => 
         [secondValue, setSecondValueToUpdate] = useState(0),
         targetDate: any = new Date(2024, 2, 1),
         targetTime: any = targetDate.getTime(),
-        numberOfMillisecondsInDay = 1000 * 60 * 60 * 24;
+        numberOfMillisecondsInDay = 1000 * 60 * 60 * 24,
+        timeToResetTimeValuesInMilliseconds = 1000;
 
     let date = new Date(), now = date.getTime(),
         differenceBetweenGoalTimeAndNow: any = null;
@@ -33,7 +34,7 @@ const CountdownCard: React.FC<CountdownCard> = ({ countdownCardProperties }) => 
 
             differenceBetweenGoalTimeAndNow = targetTime - now;
             differenceBetweenGoalTimeAndNow = differenceBetweenGoalTimeAndNow / numberOfMillisecondsInDay;
-        }, 1000);
+        }, timeToResetTimeValuesInMilliseconds);
 
 
         return () => clearInterval(intervalId);
