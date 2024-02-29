@@ -1,13 +1,23 @@
 import './ReminderSetup.css';
-import { IonCard, IonCardContent, IonCardHeader, IonCardTitle } from '@ionic/react';
+import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonItem, IonLabel, IonSelect, IonSelectOption } from '@ionic/react';
 interface ContainerProps { }
 
 const ReminderSetup: React.FC<ContainerProps> = () => {
     return (
         <IonCard>
             <IonCardHeader>
-                <IonCardTitle>Test Title</IonCardTitle>
+                <div className='row text-center'>
+                    <IonCardTitle>Setup Reminder</IonCardTitle>
+                </div>
             </IonCardHeader>
+            <IonItem>
+                <IonLabel>Reminder Type</IonLabel>
+                <IonSelect
+                >
+                    <IonSelectOption>Relative Date</IonSelectOption>
+                    <IonSelectOption>Absolute Date</IonSelectOption>
+                </IonSelect>
+            </IonItem>
 
             <IonCardContent>
                 <b>Test: </b>
