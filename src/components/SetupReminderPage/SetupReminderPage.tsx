@@ -5,7 +5,7 @@ import CountdownCard from '../CountdownCard/CountdownCard';
 
 interface SetupReminderPageProperties extends RouteComponentProps<{ electionName: string }> { }
 
-const SetupReminder: React.FC<SetupReminderPageProperties> = ({ match }) => {
+const SetupReminderPage: React.FC<SetupReminderPageProperties> = ({ match }) => {
 
     return (
         <IonPage>
@@ -22,4 +22,4 @@ const SetupReminder: React.FC<SetupReminderPageProperties> = ({ match }) => {
         </IonPage >
     );
 };
-export default SetupReminder;
+export default SetupReminderPage;
