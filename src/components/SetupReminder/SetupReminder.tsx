@@ -17,7 +17,7 @@ const SetupReminder: React.FC<SetupReminderPageProperties> = ({ match }) => {
                 </IonToolbar>
             </IonHeader>
             <IonContent>
-                <CountdownCard countdownCardProperties={{ electionDate: "1st Jan" }}></CountdownCard>
+                <CountdownCard countdownCardProperties={{ electionDate: new Date(2024, 2, 1) }}></CountdownCard>
             </IonContent>
         </IonPage >
     );
