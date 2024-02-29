@@ -2,6 +2,7 @@ import { IonHeader, IonPage, IonTitle, IonToolbar, IonCardContent, IonCard, IonC
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
 import CountdownCard from '../CountdownCard/CountdownCard';
+import ReminderSetup from '../ReminderSetup/ReminderSetup';
 
 interface SetupReminderPageProperties extends RouteComponentProps<{ electionName: string }> { }
 
@@ -18,6 +19,7 @@ const SetupReminderPage: React.FC<SetupReminderPageProperties> = ({ match }) => 
             </IonHeader>
             <IonContent>
                 <CountdownCard countdownCardProperties={{ electionDate: new Date(2024, 2, 1) }}></CountdownCard>
+                <ReminderSetup></ReminderSetup>
             </IonContent>
         </IonPage >
     );
