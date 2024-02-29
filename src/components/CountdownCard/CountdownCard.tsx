@@ -14,31 +14,30 @@ const CountdownCard: React.FC<CountdownCard> = ({ countdownCardProperties }) => 
         [minuteValue, setMinuteValueToUpdate] = useState(0),
         [secondValue, setSecondValueToUpdate] = useState(0),
         targetDate: any = new Date(2024, 2, 1),
-        targetTime: any = targetDate.getTime();
+        targetTime: any = targetDate.getTime(),
+        numberOfMillisecondsInDay = 1000 * 60 * 60 * 24;
 
     let date = new Date(), now = date.getTime(),
-        difference: any = null;
+        differenceBetweenGoalTimeAndNow: any = null;
 
     useEffect(() => {
         const intervalId = setInterval(() => {
             date = new Date();
             now = date.getTime();
-            if (difference) {
-                setDayValueToUpdate(Math.floor(difference));
+            if (differenceBetweenGoalTimeAndNow) {
+                setDayValueToUpdate(Math.floor(differenceBetweenGoalTimeAndNow));
             }
             setHourValueToUpdate(23 - date.getHours());
             setMinuteValueToUpdate(60 - date.getMinutes());
             setSecondValueToUpdate(60 - date.getSeconds());
-            setDayValueToUpdate(prevValue => prevValue + 1);
 
-            difference = targetTime - now;
-            difference = difference / (1000 * 60 * 60 * 24);
+            differenceBetweenGoalTimeAndNow = targetTime - now;
+            differenceBetweenGoalTimeAndNow = differenceBetweenGoalTimeAndNow / numberOfMillisecondsInDay;
         }, 1000);
 
 
         return () => clearInterval(intervalId);
     }, []); // The empty dependency array ensures that this effect runs only once on component mount
-
 
     return (
         <IonCard>
