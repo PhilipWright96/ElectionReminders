@@ -1,24 +1,36 @@
 import './RelativeDatePicker.css';
-import { IonCard, IonCardContent, IonCardHeader, IonCardTitle } from '@ionic/react';
+import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonItem, IonInput } from '@ionic/react';
 interface ContainerProps { }
 
 const RelativeDatePicker: React.FC<ContainerProps> = () => {
     return (
         <IonCard>
-            <IonCardHeader>
-                <div className='row text-center'>
-                    <IonCardTitle>RelativeDatePicker</IonCardTitle>
-                </div>
-            </IonCardHeader>
-
             <IonCardContent>
-                <b>Test: </b>
-            </IonCardContent>
-            <div className="row">
-                <div className="col">
-                    <button type="button" className="btn">More Details</button>
+                <div className="row">
+                    <div className="col">
+                        <IonItem>
+                            <IonInput label="Minutes before Election" type="number" placeholder="0"></IonInput>
+                        </IonItem>
+                        <IonItem>
+                            <IonInput label="Days before Election" type="number" placeholder="0"></IonInput>
+                        </IonItem>
+                        <IonItem>
+                            <IonInput label="Months before Election" type="number" placeholder="0"></IonInput>
+                        </IonItem>
+                    </div>
+                    <div className="col">
+                        <IonItem>
+                            <IonInput label="Hours before Election" type="number" placeholder="0"></IonInput>
+                        </IonItem>
+                        <IonItem>
+                            <IonInput label="Weeks before Election" type="number" placeholder="0"></IonInput>
+                        </IonItem>
+                        <IonItem>
+                            <IonInput label="Years before Election" type="number" placeholder="0"></IonInput>
+                        </IonItem>
+                    </div>
                 </div>
-            </div>
+            </IonCardContent>
         </IonCard>
     );
 };
