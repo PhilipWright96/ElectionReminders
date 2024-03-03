@@ -1,3 +1,4 @@
+import RelativeDatePicker from '../RelativeDatePicker/RelativeDatePicker';
 import './ReminderSetup.css';
 import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonItem, IonLabel, IonSelect, IonSelectOption } from '@ionic/react';
 interface ContainerProps { }
@@ -20,13 +21,8 @@ const ReminderSetup: React.FC<ContainerProps> = () => {
             </IonItem>
 
             <IonCardContent>
-                <b>Test: </b>
+                <RelativeDatePicker></RelativeDatePicker>
             </IonCardContent>
-            <div className="row">
-                <div className="col">
-                    <button type="button" className="btn">More Details</button>
-                </div>
-            </div>
         </IonCard>
     );
 };
