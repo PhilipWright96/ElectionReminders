@@ -1,24 +1,17 @@
 import './AbsoluteDatePicker.css';
-import { IonCard, IonCardContent, IonCardHeader, IonCardTitle } from '@ionic/react';
+import { IonCard, IonCardContent } from '@ionic/react';
+import { IonDatetime } from '@ionic/react';
+
 interface ContainerProps { }
 
 const AbsoluteDatePicker: React.FC<ContainerProps> = () => {
     return (
         <IonCard>
-            <IonCardHeader>
-                <div className='row text-center'>
-                    <IonCardTitle>AbsoluteDatePicker</IonCardTitle>
-                </div>
-            </IonCardHeader>
-
             <IonCardContent>
-                <b>Test: </b>
-            </IonCardContent>
-            <div className="row">
-                <div className="col">
-                    <button type="button" className="btn">More Details</button>
+                <div className='row text-center'>
+                    <IonDatetime></IonDatetime>
                 </div>
-            </div>
+            </IonCardContent>
         </IonCard>
     );
 };
