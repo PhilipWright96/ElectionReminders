@@ -15,7 +15,11 @@ const CountdownCard: React.FC<CountdownCard> = ({ countdownCardProperties }) => 
         [secondValue, setSecondValueToUpdate] = useState(0),
         targetTime: number = countdownCardProperties.electionDate.getTime(),
         numberOfMillisecondsInDay = 1000 * 60 * 60 * 24,
-        timeToResetTimeValuesInMilliseconds = 1000;
+        timeToResetTimeValuesInMilliseconds = 1000,
+        days = "Days",
+        hours = "Hours",
+        minutes = "Minutes",
+        seconds = "Seconds";
 
     let date: Date = new Date(), now = date.getTime(),
         differenceBetweenGoalTimeAndNow: number | null = null;
@@ -48,10 +52,10 @@ const CountdownCard: React.FC<CountdownCard> = ({ countdownCardProperties }) => 
                     <p>Countdown to election on {countdownCardProperties?.electionDate.toDateString()}</p>
                     <div className="wrapper">
                         <div className="description">
-                            <p>Days</p>
-                            <p>Hours</p>
-                            <p>Minutes</p>
-                            <p>Seconds</p>
+                            <p>{days}</p>
+                            <p>{hours}</p>
+                            <p>{minutes}</p>
+                            <p>{seconds}</p>
                         </div>
                         <div className="times">
                             <p>{dayValue}</p>
