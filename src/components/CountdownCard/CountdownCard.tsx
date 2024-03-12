@@ -13,12 +13,12 @@ const CountdownCard: React.FC<CountdownCard> = ({ countdownCardProperties }) => 
         [hourValue, setHourValueToUpdate] = useState(0),
         [minuteValue, setMinuteValueToUpdate] = useState(0),
         [secondValue, setSecondValueToUpdate] = useState(0),
-        targetTime: any = countdownCardProperties.electionDate.getTime(),
+        targetTime: number = countdownCardProperties.electionDate.getTime(),
         numberOfMillisecondsInDay = 1000 * 60 * 60 * 24,
         timeToResetTimeValuesInMilliseconds = 1000;
 
-    let date = new Date(), now = date.getTime(),
-        differenceBetweenGoalTimeAndNow: any = null;
+    let date: Date = new Date(), now = date.getTime(),
+        differenceBetweenGoalTimeAndNow: number | null = null;
 
     useEffect(() => {
         const intervalId = setInterval(() => {
