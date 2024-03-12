@@ -1,11 +1,10 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, useIonViewWillEnter, IonSearchbar, IonItem, IonLabel, IonSelect, IonSelectOption } from '@ionic/react';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { CountryInformation } from '../../hooks/useDummyApi';
 import ElectionCard from '../ElectionCard/ElectionCard';
 import startingDummyElectionData from "../../dummyData/dummyElectionData.json"
 import { FilterFields } from './types';
-import { onIonChange } from './onIonChange';
 
 interface CountryElectionPageProperties extends RouteComponentProps<{ countryName: string }> { }
 
