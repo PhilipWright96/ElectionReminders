@@ -1,12 +1,16 @@
 import RelativeDatePicker from '../RelativeDatePicker/RelativeDatePicker';
 import './ReminderSetup.css';
 import React, { useState } from 'react';
-import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonItem, IonLabel, IonSelect, IonSelectOption, IonCheckbox, IonButtons, IonButton } from '@ionic/react';
+import { IonAlert, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonItem, IonLabel, IonSelect, IonSelectOption, IonCheckbox, IonButtons, IonButton } from '@ionic/react';
 import AbsoluteDatePicker from '../AbsoluteDatePicker/AbsoluteDatePicker';
 interface ContainerProps { }
 
 const ReminderSetup: React.FC<ContainerProps> = () => {
-    const [dateTypeTerm, setDateTypeTerm] = useState("Relative Date");
+    const [dateTypeTerm, setDateTypeTerm] = useState("Relative Date"),
+        [createReminderConfirmationOpen, setCreateReminderConfirmationOpen] = useState(false),
+        alertHeaderText = "Reminder created!",
+        alertMessage = "Message will be sent on 10/03/2024 20:00."
+
     return (
         <IonCard>
             <IonCardHeader>
@@ -33,7 +37,15 @@ const ReminderSetup: React.FC<ContainerProps> = () => {
                         <IonCheckbox>Use Phone Alarm</IonCheckbox>;
                     </div>
                     <div className="text-end">
-                        <IonButton >Create Reminder</IonButton>
+                        <IonButton onClick={() => setCreateReminderConfirmationOpen(true)}>Create Reminder</IonButton>
+                        <IonAlert
+                            isOpen={createReminderConfirmationOpen}
+                            header={alertHeaderText}
+                            message={alertMessage}
+                            buttons={['Close']}
+                            onDidDismiss={() => setCreateReminderConfirmationOpen(false)}
+                        ></IonAlert>
+
                     </div>
                 </div>
             </IonCardContent>
