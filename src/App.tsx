@@ -23,6 +23,8 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 
 import MyReminders from './pages/MyReminders';
+import Example from './pages/Example/Example';
+import Example2 from './pages/Example2/Example2';
 import CountryElections from './components/CountryElections/CountryElections';
 import SetupReminderPage from './components/SetupReminderPage/SetupReminderPage';
 

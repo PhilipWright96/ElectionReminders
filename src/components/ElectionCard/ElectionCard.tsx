@@ -1,5 +1,5 @@
 import './ElectionCard.css';
-import { IonCard, IonCardContent, IonCardHeader, IonCardTitle } from '@ionic/react';
+import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle } from '@ionic/react';
 
 interface ElectionCard {
     electionProperties: {
@@ -25,10 +25,10 @@ const ElectionCard: React.FC<ElectionCard> = ({ electionProperties }) => {
             </IonCardContent>
             <div className="row">
                 <div className="col">
-                    <button type="button" className="btn">More Details</button>
+                    <IonButton fill="outline" size="small" color="dark">More Details</IonButton>
                 </div>
                 <div className="col">
-                    <a href={`/setupReminder/${electionProperties.electionName}`} className="btn">Setup Reminder</a>
+                    <IonButton fill="outline" size="small" color="dark" routerLink={`/setupReminder/${electionProperties.electionName}`}>Setup Reminder</IonButton>
                 </div>
             </div>
         </IonCard>
