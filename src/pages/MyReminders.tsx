@@ -1,6 +1,7 @@
 import { IonContent, IonHeader, IonItem, IonLabel, IonPage, IonTitle, IonToolbar, IonSelect, IonSelectOption, IonSearchbar, IonList } from '@ionic/react';
 import React, { useState } from 'react';
 import { FilterFields } from '../components/CountryElections/types';
+import ReminderCard from '../components/ReminderCard/ReminderCard';
 
 const MyReminders: React.FC = () => {
     const filterFields: FilterFields = {
@@ -34,6 +35,7 @@ const MyReminders: React.FC = () => {
             </IonSearchbar>
             <IonContent className="ion-padding">
                 <IonList>
+                    <ReminderCard />
                 </IonList>
             </IonContent>
         </IonPage >
