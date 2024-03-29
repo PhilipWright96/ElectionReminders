@@ -23,10 +23,8 @@ const Home: React.FC = () => {
         </IonHeader>
         <div className='container'>
           <div className='row'>
-            <div className="col">
-              <IntroductionTextCard />
-            </div>
-            <div className="col">
+            <IntroductionTextCard />
+            <div className="row">
               <CountrySearchBar></CountrySearchBar>
             </div>
           </div>
