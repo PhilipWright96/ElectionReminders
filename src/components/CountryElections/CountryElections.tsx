@@ -62,7 +62,7 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
                     }
                 }
                 }
-                placeholder='Filter results'>
+                placeholder='Filter elections'>
             </IonSearchbar>
             <IonContent className="ion-padding">
                 <IonList>
