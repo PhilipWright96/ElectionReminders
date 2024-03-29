@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, useIonViewWillEnter, IonSearchbar, IonItem, IonLabel, IonSelect, IonSelectOption } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, useIonViewWillEnter, IonSearchbar, IonItem, IonLabel, IonSelect, IonSelectOption, IonBackButton, IonButtons } from '@ionic/react';
 import React, { useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { CountryInformation } from '../../hooks/useDummyApi';
@@ -28,6 +28,9 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
         <IonPage>
             <IonHeader>
                 <IonToolbar>
+                    <IonButtons slot="start">
+                        <IonBackButton defaultHref="/home" />
+                    </IonButtons>
                     <div className='row text-center'>
                         <IonTitle>{countryInformation?.Name} Elections</IonTitle>
                     </div>
