@@ -41,8 +41,6 @@ const App: React.FC = () => (
         <Route exact path="/myReminders" component={MyReminders} />
         <Route exact path="/countryElections/:countryName" component={CountryElections} />
         <Route exact path="/setupReminder/:electionName" component={SetupReminderPage} />
-        <Route exact path="/test" component={Example} />
-        <Route exact path="/test2" component={Example2} />
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
