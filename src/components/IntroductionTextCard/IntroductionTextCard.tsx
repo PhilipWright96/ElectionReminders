@@ -1,9 +1,9 @@
 import './IntroductionTextCard.css';
-import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/react';
+import { IonCard, IonCardContent, IonCardHeader, IonCardTitle } from '@ionic/react';
 
 interface ContainerProps { }
 
-const TextCard: React.FC<ContainerProps> = () => {
+const IntroductionTextCard: React.FC<ContainerProps> = () => {
     return (
         <IonCard>
             <IonCardHeader>
@@ -21,4 +21,4 @@ const TextCard: React.FC<ContainerProps> = () => {
     );
 };
 
-export default TextCard;
+export default IntroductionTextCard;
