@@ -1,3 +1,4 @@
+import CountdownCard from '../CountdownCard/CountdownCard';
 import './ReminderCard.css';
 import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle } from '@ionic/react';
 
@@ -12,6 +13,7 @@ const ReminderCard: React.FC<ReminderCard> = ({ }) => {
             </IonCardHeader>
 
             <IonCardContent>
+                <CountdownCard countdownCardProperties={{ countdownText: "Countdown to reminder which triggers on", countdownDate: new Date(2024, 2, 1) }}></CountdownCard>
                 <b>Election Date: </b> <br></br>
                 <b>Election Summary: </b> <br></br>
                 <b>Repeating every: </b> <br></br>
