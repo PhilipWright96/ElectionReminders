@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonItem, IonLabel, IonPage, IonTitle, IonToolbar, IonSelect, IonSelectOption, IonSearchbar, IonList } from '@ionic/react';
+import { IonContent, IonHeader, IonItem, IonLabel, IonPage, IonTitle, IonToolbar, IonSelect, IonSelectOption, IonSearchbar, IonList, IonBackButton, IonButtons } from '@ionic/react';
 import React, { useState } from 'react';
 import { FilterFields } from '../components/CountryElections/types';
 import ReminderCard from '../components/ReminderCard/ReminderCard';
@@ -16,6 +16,9 @@ const MyReminders: React.FC = () => {
         <IonPage>
             <IonHeader>
                 <IonToolbar>
+                    <IonButtons slot="start">
+                        <IonBackButton defaultHref="/home" />
+                    </IonButtons>
                     <IonTitle>My Reminders</IonTitle>
                 </IonToolbar>
             </IonHeader>
