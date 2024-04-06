@@ -2,6 +2,7 @@ import { IonContent, IonHeader, IonItem, IonLabel, IonPage, IonTitle, IonToolbar
 import React, { useState } from 'react';
 import { FilterFields } from '../components/CountryElections/types';
 import ReminderCard from '../components/ReminderCard/ReminderCard';
+import dummyReminderData from "../dummyData/dummyReminderData.json";
 
 const MyReminders: React.FC = () => {
     const filterFields: FilterFields = {
@@ -9,7 +10,8 @@ const MyReminders: React.FC = () => {
         DATE: "date"
     },
         [filterTerm, setFilterTerm] = useState(""),
-        [filterTypeTerm, setFilterTypeTerm] = useState("name");
+        [filterTypeTerm, setFilterTypeTerm] = useState("name"),
+        [dummyReminderDataResults, setDummyReminderDataResults] = useState(dummyReminderData);
 
 
     return (
@@ -38,7 +40,9 @@ const MyReminders: React.FC = () => {
             </IonSearchbar>
             <IonContent className="ion-padding">
                 <IonList>
-                    <ReminderCard />
+                    {dummyReminderDataResults.map((dummyReminder) => (
+                        <ReminderCard key={dummyReminder.reminderName} reminderProperties={dummyReminder} />
+                    ))}
                 </IonList>
             </IonContent>
         </IonPage >
