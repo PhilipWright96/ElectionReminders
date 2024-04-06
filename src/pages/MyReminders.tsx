@@ -2,7 +2,7 @@ import { IonContent, IonHeader, IonItem, IonLabel, IonPage, IonTitle, IonToolbar
 import React, { useState } from 'react';
 import { FilterFields } from '../components/CountryElections/types';
 import ReminderCard from '../components/ReminderCard/ReminderCard';
-import dummyReminderData from "../dummyData/dummyReminderData.json";
+import startingDummyReminderData from "../dummyData/dummyReminderData.json";
 
 const MyReminders: React.FC = () => {
     const filterFields: FilterFields = {
@@ -11,7 +11,8 @@ const MyReminders: React.FC = () => {
     },
         [filterTerm, setFilterTerm] = useState(""),
         [filterTypeTerm, setFilterTypeTerm] = useState("name"),
-        [dummyReminderDataResults, setDummyReminderDataResults] = useState(dummyReminderData);
+        [dummyReminderDataResults, setDummyReminderDataResults] = useState(startingDummyReminderData),
+        debounceWaitTimeInMilliseconds = 300;
 
 
     return (
@@ -36,7 +37,23 @@ const MyReminders: React.FC = () => {
             </IonItem>
             <IonSearchbar
                 value={filterTerm}
-                placeholder='Filter reminders'>
+                debounce={debounceWaitTimeInMilliseconds}
+                placeholder='Filter reminders'
+                onIonClear={() => setDummyReminderDataResults(startingDummyReminderData)}
+                onIonChange={({ detail: { value: userEnteredValue } }) => {
+                    debugger;
+                    setFilterTerm(userEnteredValue!);
+                    if (userEnteredValue! === '') {
+                        setDummyReminderDataResults(startingDummyReminderData);
+                        return;
+                    }
+                    if (filterTypeTerm === filterFields.NAME) {
+                        const resultsFilteredByName = startingDummyReminderData.filter(({ reminderName }) => reminderName === userEnteredValue);
+                        setDummyReminderDataResults(resultsFilteredByName);
+                    }
+                }
+                }
+            >
             </IonSearchbar>
             <IonContent className="ion-padding">
                 <IonList>

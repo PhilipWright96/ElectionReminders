@@ -57,7 +57,7 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
                         return;
                     }
                     if (filterTypeTerm === filterFields.NAME) {
-                        const resultsFilteredByName = dummyElectionDataResults.filter(({ electionName }) => electionName === userEnteredValue);
+                        const resultsFilteredByName = startingDummyElectionData.filter(({ electionName }) => electionName === userEnteredValue);
                         setDummyElectionDataResults(resultsFilteredByName);
                     }
                 }
