@@ -26,7 +26,16 @@ const ReminderCard: React.FC<ReminderCard> = ({ reminderProperties }) => {
             </IonCardContent>
             <div className="row">
                 <div className="col">
-                    <IonButton fill="outline" size="small" color="dark">More Details</IonButton>
+                    <IonButton fill="outline" size="small" color="dark">Set as Favourite</IonButton>
+                </div>
+                <div className="col">
+                    <IonButton fill="outline" size="small" color="dark">Election Details</IonButton>
+                </div>
+                <div className="col">
+                    <IonButton fill="outline" size="small" color="dark">Edit</IonButton>
+                </div>
+                <div className="col">
+                    <IonButton fill="outline" size="small" color="dark">Delete</IonButton>
                 </div>
             </div>
         </IonCard>
