@@ -23,7 +23,7 @@
         .description {
             >p {
                 margin: 0;
-                font: normal 14px sans-serif;
+                font: normal 9px sans-serif;
             }
         }
 
@@ -32,7 +32,7 @@
                 letter-spacing: -5px;
                 position: relative;
                 margin: 0;
-                font: normal 40px courier, sans-serif;
+                font: normal 25px courier, sans-serif;
             }
         }
     }
