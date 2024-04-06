@@ -1,0 +1,20 @@
+[
+    {
+        "reminderName": "Reminder for a",
+        "reminderDate": "2023",
+        "createdOn": "31/03/2024",
+        "reminderDetails": "Important for me, dont forget!"
+    },
+    {
+        "reminderName": "Reminder for b",
+        "reminderDate": "2023",
+        "createdOn": "31/03/2024",
+        "reminderDetails": "Important for me, dont forget!"
+    },
+    {
+        "reminderName": "Reminder for c",
+        "reminderDate": "2023",
+        "createdOn": "31/03/2024",
+        "reminderDetails": "Important for me, dont forget!"
+    }
+]
