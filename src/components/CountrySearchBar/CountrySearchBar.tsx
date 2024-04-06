@@ -20,8 +20,12 @@ const CountrySearchBar: React.FC<ContainerProps> = () => {
         }
         const data: SearchResult[] = useDummyApi(),
             dataMatchingUserSearchTerm =
+                // TODO - write tests here
                 data.filter(({ Name }) =>
-                    Name.startsWith(searchTerm.toLowerCase()) || Name.startsWith(searchTerm.toUpperCase())
+                    Name.startsWith(searchTerm.toLowerCase())
+                    || Name.startsWith(searchTerm.toUpperCase())
+                    // Includes only works with primitive strings - thats why we have "toString" below
+                    || Name.includes(searchTerm)
                 );
         setResults(dataMatchingUserSearchTerm);
     }, [searchTerm]);
