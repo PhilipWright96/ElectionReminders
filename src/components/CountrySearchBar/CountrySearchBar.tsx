@@ -3,6 +3,7 @@ import { IonSearchbar, IonList, IonItem, IonLabel, IonIcon } from '@ionic/react'
 import React, { useState, useEffect } from 'react';
 import { useDummyApi, SearchResult } from '../../hooks/useDummyApi';
 import { checkboxOutline } from "ionicons/icons"
+import { countryMatchesSearchTerm } from './utils';
 interface ContainerProps { }
 
 const CountrySearchBar: React.FC<ContainerProps> = () => {
@@ -18,14 +19,11 @@ const CountrySearchBar: React.FC<ContainerProps> = () => {
             setResults([]);
             return;
         }
-        const data: SearchResult[] = useDummyApi(),
+        const dummyCountryResults: SearchResult[] = useDummyApi(),
             dataMatchingUserSearchTerm =
                 // TODO - write tests here
-                data.filter(({ Name }) =>
-                    Name.startsWith(searchTerm.toLowerCase())
-                    || Name.startsWith(searchTerm.toUpperCase())
-                    // Includes only works with primitive strings - thats why we have "toString" below
-                    || Name.includes(searchTerm)
+                dummyCountryResults.filter(({ Name }) =>
+                    countryMatchesSearchTerm(searchTerm, Name)
                 );
         setResults(dataMatchingUserSearchTerm);
     }, [searchTerm]);
