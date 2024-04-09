@@ -21,7 +21,6 @@ const CountrySearchBar: React.FC<ContainerProps> = () => {
         }
         const dummyCountryResults: SearchResult[] = useDummyApi(),
             dataMatchingUserSearchTerm =
-                // TODO - write tests here
                 dummyCountryResults.filter(({ Name }) =>
                     countryMatchesSearchTerm(searchTerm, Name)
                 );
