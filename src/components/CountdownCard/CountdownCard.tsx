@@ -4,7 +4,8 @@ import React, { useState, useEffect } from 'react';
 
 interface CountdownCard {
     countdownCardProperties: {
-        electionDate: Date,
+        countdownDate: Date,
+        countdownText: String,
     }
 }
 
@@ -13,7 +14,7 @@ const CountdownCard: React.FC<CountdownCard> = ({ countdownCardProperties }) => 
         [hourValue, setHourValueToUpdate] = useState(0),
         [minuteValue, setMinuteValueToUpdate] = useState(0),
         [secondValue, setSecondValueToUpdate] = useState(0),
-        targetTime: number = countdownCardProperties.electionDate.getTime(),
+        targetTime: number = countdownCardProperties.countdownDate.getTime(),
         numberOfMillisecondsInDay = 1000 * 60 * 60 * 24,
         timeToResetTimeValuesInMilliseconds = 1000,
         days = "Days",
@@ -49,7 +50,7 @@ const CountdownCard: React.FC<CountdownCard> = ({ countdownCardProperties }) => 
         <IonCard>
             <IonCardContent>
                 <div className="count-down-timer">
-                    <p>Countdown to election on {countdownCardProperties?.electionDate.toDateString()}</p>
+                    <p>{countdownCardProperties?.countdownText} {countdownCardProperties?.countdownDate.toDateString()}</p>
                     <div className="wrapper">
                         <div className="description">
                             <p>{days}</p>
