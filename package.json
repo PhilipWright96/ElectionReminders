@@ -7,8 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
+    "test": "cd tests && npm run test",
     "test.e2e": "cypress run",
-    "test.unit": "vitest",
     "lint": "eslint"
   },
   "dependencies": {
@@ -45,8 +45,7 @@
     "jsdom": "^22.1.0",
     "terser": "^5.4.0",
     "typescript": "^5.1.6",
-    "vite": "^5.0.0",
-    "vitest": "^0.34.6"
+    "vite": "^5.0.0"
   },
   "description": "Election Reminders App. ",
   "config": {
