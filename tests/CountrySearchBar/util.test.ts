@@ -1,4 +1,4 @@
-import { countryMatchesSearchTerm } from '../utils';
+import { countryMatchesSearchTerm } from '../../src/components/CountrySearchBar/utils';
 
 test('Search term Ger true for country Germany', () => {
     // Given

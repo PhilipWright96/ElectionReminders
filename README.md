@@ -32,5 +32,4 @@ This project has eslint installed which should run on save. You can also alterna
 Tests:
 This project has two testing frameworks included. 
 1. Cypress for end to end testing. You can run these tests by first running "ionic serve" and then "npm run test.e2e"
-2. Vitest for unit testing. You can run these tests by running "npm run test.unit"
-
+2. Jest for unit tests. Just run npm test. 
