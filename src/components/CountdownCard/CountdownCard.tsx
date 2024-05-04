@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 interface CountdownCard {
     countdownCardProperties: {
         countdownDate: Date,
-        countdownText: String,
+        countdownText: string,
     }
 }
 
