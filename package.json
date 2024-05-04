@@ -9,6 +9,8 @@
     "preview": "vite preview",
     "test": "cd tests && npm run test",
     "test.e2e": "cypress run",
+    "lint-source": "eslint src/**/*.ts*",
+    "lint-tests": "eslint tests/**/*.ts*",
     "lint": "npm run lint-source & npm run lint-tests"
   },
   "dependencies": {
