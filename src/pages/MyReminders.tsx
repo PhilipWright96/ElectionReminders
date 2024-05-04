@@ -41,7 +41,6 @@ const MyReminders: React.FC = () => {
                 placeholder='Filter reminders'
                 onIonClear={() => setDummyReminderDataResults(startingDummyReminderData)}
                 onIonChange={({ detail: { value: userEnteredValue } }) => {
-                    debugger;
                     setFilterTerm(userEnteredValue!);
                     if (userEnteredValue! === '') {
                         setDummyReminderDataResults(startingDummyReminderData);
