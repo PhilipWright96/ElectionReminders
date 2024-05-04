@@ -1,4 +1,4 @@
-import { IonHeader, IonPage, IonTitle, IonToolbar, IonCardContent, IonCard, IonContent, IonBackButton, IonButtons } from '@ionic/react';
+import { IonHeader, IonPage, IonTitle, IonToolbar, IonContent, IonBackButton, IonButtons } from '@ionic/react';
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
 import CountdownCard from '../CountdownCard/CountdownCard';

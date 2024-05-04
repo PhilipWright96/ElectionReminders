@@ -1,5 +1,5 @@
 import '../CountdownCard/CountdownCard.css';
-import { IonCard, IonCardContent, IonCardHeader, IonCardTitle } from '@ionic/react';
+import { IonCard, IonCardContent } from '@ionic/react';
 import React, { useState, useEffect } from 'react';
 
 interface CountdownCard {
