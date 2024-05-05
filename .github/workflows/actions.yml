@@ -35,7 +35,7 @@ jobs:
         run: |
           npm install
           npm run lint
-          echo "Last command run was ["!:0"] with arguments ["!:*"]"
+          echo "ESLint exit code: $?"
 
 
 
