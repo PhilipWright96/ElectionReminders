@@ -30,12 +30,11 @@ jobs:
         with:
           # Ensure the actual branch is checked out when running on pull requests
           ref: ${{ github.head_ref }}
-
       - name: Eslint
         run: |
           npm install
           ls
-          npx eslint src/**/*.ts*
+          npx --verbose --no-fix eslint src/**/*.ts*
           echo "ESLint exit code: $?"
 
 
