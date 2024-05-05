@@ -32,8 +32,9 @@ jobs:
           ref: ${{ github.head_ref }}
 
       - name: Eslint
-        run: npm run lint
-  
+        run: |
+          npm install   
+          npm run lint  
 
 
 
