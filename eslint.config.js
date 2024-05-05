@@ -19,9 +19,9 @@ export default [
   {
     rules: {
       // Rule disabled because we have typescript which essentially does the same thing
-      "react/prop-types": 0,
+      "react/prop-types": "off",
       // Rule disabled because the React variable must be in scope already - otherwise the app wouldn't start
-      "react/react-in-jsx-scope": 0
+      "react/react-in-jsx-scope": "off"
     }
   }
 ];
