@@ -33,9 +33,9 @@ jobs:
 
       - name: Eslint
         run: |
-          npm install   
-          npm run lint  
-        if: ${{ failure() }}
+          npm install
+          npm run lint
+          echo "Last command run was ["!:0"] with arguments ["!:*"]"
 
 
 
