@@ -27,7 +27,7 @@ Aside from these, there may also exist the dist folder (the source code) or the 
 
 Linting:
 This project has eslint installed which should run on save. You can also alternatively run 
-"npm run lint". 
+npm run lint - which will lint the tests and the source code 
 
 Tests:
 This project has two testing frameworks included. 

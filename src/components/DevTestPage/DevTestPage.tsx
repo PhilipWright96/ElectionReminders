@@ -3,7 +3,7 @@ import React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { getDataFromBackend, postDataToBackend } from '../../backendConnectors/backendConnector';
 
-interface DevTestPageProperties extends RouteComponentProps<{}> { }
+interface DevTestPageProperties extends RouteComponentProps<object> { }
 
 const DevTestPage: React.FC<DevTestPageProperties> = () => {
     return (

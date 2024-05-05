@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonButton, IonSearchbar } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonButton } from '@ionic/react';
 import IntroductionTextCard from '../components/IntroductionTextCard/IntroductionTextCard';
 import FavouritesCard from '../components/FavouritesCard/FavouritesCard';
 import './Home.css';

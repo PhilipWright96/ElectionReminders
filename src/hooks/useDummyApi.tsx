@@ -1,9 +1,9 @@
 export interface SearchResult {
-    Name: String
+    Name: string
 }
 
 export interface CountryInformation {
-    Name: String
+    Name: string
 }
 
 export const useDummyApi = () => {
