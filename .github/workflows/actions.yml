@@ -21,8 +21,19 @@ jobs:
       - name: Prettify code
         uses: creyD/prettier_action@v4.3
   
+  eslint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          # Ensure the actual branch is checked out when running on pull requests
+          ref: ${{ github.head_ref }}
+
       - name: Eslint
-        run: |
-          npm install     
-          npm run lint 
+        run: lint
+  
+
+
 
