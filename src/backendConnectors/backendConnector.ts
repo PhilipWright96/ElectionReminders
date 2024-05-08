@@ -1,3 +1,5 @@
+import { test } from "quatsch";
+
 export async function getDataFromBackend() {
     const rest = await fetch("http://localhost:8080/test", {
         method: "GET",
