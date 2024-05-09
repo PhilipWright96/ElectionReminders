@@ -34,7 +34,7 @@ jobs:
         run: |
           npm install
           ls
-          npx --verbose eslint src tests
+          npm run lint
           echo "ESLint exit code: $?"
 
 
