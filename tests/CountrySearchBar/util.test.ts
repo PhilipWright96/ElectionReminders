@@ -1,4 +1,5 @@
 import { countryMatchesSearchTerm } from '../../src/components/CountrySearchBar/utils';
+import { test } from "quatsch";
 
 test('Search term Ger true for country Germany', () => {
     // Given
