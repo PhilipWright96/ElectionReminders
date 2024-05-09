@@ -1,5 +1,4 @@
 import { countryMatchesSearchTerm } from '../../src/components/CountrySearchBar/utils';
-import { test } from "quatsch";
 
 test('Search term Ger true for country Germany', () => {
     // Given
@@ -14,6 +13,7 @@ test('Search term Ger true for country Germany', () => {
 test('Search term G true for country Germany', () => {
     // Given
     const searchTerm = "G", countryName = "Germany";
+    const unusedVariable = "I am never used"
 
     // When
     const result = countryMatchesSearchTerm(searchTerm, countryName);
