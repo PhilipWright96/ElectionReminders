@@ -33,7 +33,6 @@ jobs:
       - name: Eslint
         run: |
           npm install
-          ls
           npm run lint
           echo "ESLint exit code: $?"
 
