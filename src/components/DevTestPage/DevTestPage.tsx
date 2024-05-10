@@ -1,4 +1,4 @@
-import { IonHeader, IonPage, IonTitle, IonAccordion, IonToolbar, IonContent, IonBackButton, IonButtons, IonButton } from '@ionic/react';
+import { IonHeader, IonPage, IonTitle, IonToolbar, IonContent, IonBackButton, IonButtons, IonButton } from '@ionic/react';
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { getDataFromBackend, postDataToBackend } from '../../backendConnectors/backendConnector';

@@ -13,7 +13,6 @@ test('Search term Ger true for country Germany', () => {
 test('Search term G true for country Germany', () => {
     // Given
     const searchTerm = "G", countryName = "Germany";
-    const unusedVariable = "I am never used"
 
     // When
     const result = countryMatchesSearchTerm(searchTerm, countryName);
