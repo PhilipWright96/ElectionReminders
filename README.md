@@ -1,7 +1,8 @@
 # ElectionReminders
 
 Goal: 
-To create a mobile app which offers the user the ability to set up reminders for important elections (local and national). 
+To create a mobile app which offers the user the ability to set up reminders for important elections 
+(local and national). 
 
 Technology: 
 Ionic and Capacitor with React
