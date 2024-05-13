@@ -25,7 +25,7 @@ const ElectionCard: React.FC<ElectionCard> = ({ electionProperties }) => {
             </IonCardContent>
             <div className="row">
                 <div className="col">
-                    <IonButton fill="outline" size="small" color="dark">More Details</IonButton>
+                    <IonButton fill="outline" size="small" color="dark" routerLink={`/electionDetails/${electionProperties.electionName}`}>More Details</IonButton>
                 </div>
                 <div className="col">
                     <IonButton fill="outline" size="small" color="dark" routerLink={`/setupReminder/${electionProperties.electionName}`}>Setup Reminder</IonButton>

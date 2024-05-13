@@ -25,6 +25,7 @@ import './theme/variables.css';
 import MyReminders from './pages/MyReminders';
 import CountryElections from './components/CountryElections/CountryElections';
 import SetupReminderPage from './components/SetupReminderPage/SetupReminderPage';
+import ElectionDetailsPage from './components/ElectionDetailsPage/ElectionDetailsPage';
 import DevTestPage from './components/DevTestPage/DevTestPage';
 
 setupIonicReact();
@@ -40,6 +41,7 @@ const App: React.FC = () => (
         <Route exact path="/myReminders" component={MyReminders} />
         <Route exact path="/countryElections/:countryName" component={CountryElections} />
         <Route exact path="/setupReminder/:electionName" component={SetupReminderPage} />
+        <Route exact path="/electionDetails/:electionName" component={ElectionDetailsPage} />
         <Route exact path="/devTestPage" component={DevTestPage} />
       </IonRouterOutlet>
     </IonReactRouter>
