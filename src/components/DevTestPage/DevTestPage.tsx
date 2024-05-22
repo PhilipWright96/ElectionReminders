@@ -1,7 +1,7 @@
 import { IonHeader, IonPage, IonTitle, IonToolbar, IonContent, IonBackButton, IonButtons, IonButton } from '@ionic/react';
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
-import { getDataFromBackend, postDataToBackend } from '../../backendConnectors/backendConnector';
+import { getDataFromBackend, getElectionDataFromBackend, postDataToBackend } from '../../backendConnectors/backendConnector';
 
 interface DevTestPageProperties extends RouteComponentProps<object> { }
 
@@ -21,6 +21,7 @@ const DevTestPage: React.FC<DevTestPageProperties> = () => {
             <IonContent>
                 <IonButton onClick={getDataFromBackend}>Fire get request</IonButton>
                 <IonButton onClick={postDataToBackend}>Fire post request</IonButton>
+                <IonButton onClick={getElectionDataFromBackend}>Fire election get request</IonButton>
             </IonContent>
         </IonPage >
 
