@@ -1,7 +1,9 @@
 import { ElectionData } from "../components/CountryElections/types";
 
+const backendUrl = "http://localhost:8080";
+
 export async function getDataFromBackend() {
-    const rest = await fetch("http://localhost:8080/test", {
+    const rest = await fetch(`${backendUrl}/test`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -13,7 +15,7 @@ export async function getDataFromBackend() {
 export async function getElectionDataFromBackend(): Promise<ElectionData[]> {
     const testCountryName = "Germany",
         urlSearchParams = new URLSearchParams({ countryName: testCountryName }),
-        url = `http://localhost:8080/electionsForCountry?${urlSearchParams.toString()}`;
+        url = `${backendUrl}/electionsForCountry?${urlSearchParams.toString()}`;
 
     const electionResultsFromBackend = await fetch(url, {
         method: "GET",
@@ -25,7 +27,7 @@ export async function getElectionDataFromBackend(): Promise<ElectionData[]> {
 }
 
 export async function postDataToBackend() {
-    const rest = await fetch("http://localhost:8080/testPOST", {
+    const rest = await fetch(`${backendUrl}/testPOST`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
