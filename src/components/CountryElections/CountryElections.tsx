@@ -32,9 +32,9 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
         try {
             const backendElectionData = await getElectionDataFromBackend();
             setDummyElectionDataResults(backendElectionData);
-            // Any is evil but I don't know yet what kind of errors we can expect. 
-        } catch (err: any) {
-            setError(err.message);
+            // Not sure what kind of error can come out here so we will just stringify and show it
+        } catch (err: unknown) {
+            setError(String(err));
         } finally {
             setLoading(false);
         }
