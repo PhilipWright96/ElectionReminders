@@ -1,10 +1,11 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, useIonViewWillEnter, IonSearchbar, IonItem, IonLabel, IonSelect, IonSelectOption, IonBackButton, IonButtons } from '@ionic/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { CountryInformation } from '../../hooks/useDummyApi';
 import ElectionCard from '../ElectionCard/ElectionCard';
 import startingDummyElectionData from "../../dummyData/dummyElectionData.json"
-import { FilterFields } from './types';
+import { getElectionDataFromBackend } from '../../backendConnectors/backendConnector';
+import { ElectionData, FilterFields } from './types';
 
 interface CountryElectionPageProperties extends RouteComponentProps<{ countryName: string }> { }
 
@@ -12,7 +13,10 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
     const [countryInformation, setCountryInformation] = useState<CountryInformation | null>(null),
         [filterTerm, setFilterTerm] = useState(""),
         [filterTypeTerm, setFilterTypeTerm] = useState("name"),
-        [dummyElectionDataResults, setDummyElectionDataResults] = useState(startingDummyElectionData),
+        [loading, setLoading] = useState<boolean>(true),
+        [error, setError] = useState<string | null>(null),
+        emptyElectionDataArray: ElectionData[] = [],
+        [dummyElectionDataResults, setDummyElectionDataResults] = useState(emptyElectionDataArray),
         debounceWaitTimeInMilliseconds = 300,
         filterFields: FilterFields = {
             NAME: "name",
@@ -24,6 +28,38 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
         setCountryInformation({ Name: name });
     })
 
+    async function fetchData(): Promise<void> {
+        try {
+            const backendElectionData = await getElectionDataFromBackend();
+            setDummyElectionDataResults(backendElectionData);
+            // Not sure what kind of error can come out here so we will just stringify and show it
+        } catch (err: unknown) {
+            setError(String(err));
+        } finally {
+            setLoading(false);
+        }
+    };
+
+
+    useEffect(() => {
+        fetchData();
+    });
+
+    if (loading) {
+        return (
+            <IonPage>
+                Loading...
+            </IonPage>
+        )
+    }
+
+    if (error) {
+        return (
+            <IonPage>
+                Component error with error {error}
+            </IonPage>
+        )
+    }
     return (
         <IonPage>
             <IonHeader>
@@ -66,7 +102,7 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
             </IonSearchbar>
             <IonContent className="ion-padding">
                 <IonList>
-                    {dummyElectionDataResults.map((dummyElection) => (
+                    {dummyElectionDataResults.map((dummyElection: ElectionData) => (
                         <ElectionCard key={dummyElection.electionName} electionProperties={dummyElection} />
                     ))}
                 </IonList>

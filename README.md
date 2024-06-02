@@ -10,6 +10,7 @@ Ionic and Capacitor with React
 How to get started: 
 1. Start by just running the command "ionic serve" - which will run the app on localhost 8100. From here, you can see changes. 
 You can also make changes and what you see on localhost will be automatically updated. 
+2. This frontend will automatically try to connect to a spring app to pull down data. You can find this spring app in ElectionRemindersBackend repository. You can checkout the backend repository and start the associated spring app. Alternatively, there is a dummy data folder in this repo which json files which you can use instead (but then you will have to change the code in relevant areas)
 
 How to use capacitor with this project: 
 1. If you want to create a build - just run "ionic build" which will create a dist folder.
@@ -30,7 +31,7 @@ Linting:
 This project has eslint installed which should run on save. You can also alternatively run 
 npm run lint - which will lint the tests and the source code 
 
-Tests:
+Automatic Tests:
 This project has two testing frameworks included. 
 1. Cypress for end to end testing. You can run these tests by first running "ionic serve" and then "npm run test.e2e"
 2. Jest for unit tests. Just run npm test. 
