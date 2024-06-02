@@ -66,7 +66,7 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
             </IonSearchbar>
             <IonContent className="ion-padding">
                 <IonList>
-                    {dummyElectionDataResults.map((dummyElection) => (
+                    {dummyElectionDataResults.map((dummyElection: ElectionData) => (
                         <ElectionCard key={dummyElection.electionName} electionProperties={dummyElection} />
                     ))}
                 </IonList>
