@@ -1,8 +1,10 @@
 import { IonContent, IonHeader, IonItem, IonLabel, IonPage, IonTitle, IonToolbar, IonSelect, IonSelectOption, IonSearchbar, IonList, IonBackButton, IonButtons } from '@ionic/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FilterFields } from '../components/CountryElections/types';
 import ReminderCard from '../components/ReminderCard/ReminderCard';
 import startingDummyReminderData from "../dummyData/dummyReminderData.json";
+import { ReminderData } from '../components/ReminderCard/types';
+import { getReminderDataFromBackend } from '../backendConnectors/backendConnector';
 
 const MyReminders: React.FC = () => {
     const filterFields: FilterFields = {
@@ -11,7 +13,10 @@ const MyReminders: React.FC = () => {
     },
         [filterTerm, setFilterTerm] = useState(""),
         [filterTypeTerm, setFilterTypeTerm] = useState("name"),
-        [dummyReminderDataResults, setDummyReminderDataResults] = useState(startingDummyReminderData),
+        emptyReminderDataArray: ReminderData[] = [],
+        [dummyReminderDataResults, setDummyReminderDataResults] = useState(emptyReminderDataArray),
+        [loading, setLoading] = useState<boolean>(true),
+        [error, setError] = useState<string | null>(null),
         debounceWaitTimeInMilliseconds = 300;
 
     async function fetchData(): Promise<void> {
@@ -25,6 +30,16 @@ const MyReminders: React.FC = () => {
             setLoading(false);
         }
     };
+
+
+    /*
+    Use effect is a React hook triggered in various scenarios - initial render, dependency change, component
+    unmount. The empty array below shows that no dependencies are considered here and that we will only 
+    trigger this hook once on initial render
+    */
+    useEffect(() => {
+        fetchData();
+    }, []);
 
 
 
