@@ -14,6 +14,19 @@ const MyReminders: React.FC = () => {
         [dummyReminderDataResults, setDummyReminderDataResults] = useState(startingDummyReminderData),
         debounceWaitTimeInMilliseconds = 300;
 
+    async function fetchData(): Promise<void> {
+        try {
+            const backendReminderData = await getReminderDataFromBackend();
+            setDummyReminderDataResults(backendReminderData);
+            // Not sure what kind of error can come out here so we will just stringify and show it
+        } catch (err: unknown) {
+            setError(String(err));
+        } finally {
+            setLoading(false);
+        }
+    };
+
+
 
     return (
         <IonPage>
