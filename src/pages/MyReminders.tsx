@@ -41,6 +41,21 @@ const MyReminders: React.FC = () => {
         fetchData();
     }, []);
 
+    if (loading) {
+        return (
+            <IonPage>
+                Loading...
+            </IonPage>
+        )
+    }
+
+    if (error) {
+        return (
+            <IonPage>
+                Component error with error {error}
+            </IonPage>
+        )
+    }
 
 
     return (
