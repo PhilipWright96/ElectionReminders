@@ -41,9 +41,14 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
     };
 
 
+    /*
+    Use effect is a React hook triggered in various scenarios - initial render, dependency change, component
+    unmount. The empty array below shows that no dependencies are considered here and that we will only 
+    trigger this hook once on initial render
+    */
     useEffect(() => {
         fetchData();
-    });
+    }, []);
 
     if (loading) {
         return (
