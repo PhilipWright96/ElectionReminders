@@ -2,7 +2,6 @@ import { IonContent, IonHeader, IonItem, IonLabel, IonPage, IonTitle, IonToolbar
 import React, { useEffect, useState } from 'react';
 import { FilterFields } from '../components/CountryElections/types';
 import ReminderCard from '../components/ReminderCard/ReminderCard';
-import startingDummyReminderData from "../dummyData/dummyReminderData.json";
 import { ReminderData } from '../components/ReminderCard/types';
 import { getReminderDataFromBackend } from '../backendConnectors/backendConnector';
 
