@@ -1,8 +1,9 @@
 import { IonContent, IonHeader, IonItem, IonLabel, IonPage, IonTitle, IonToolbar, IonSelect, IonSelectOption, IonSearchbar, IonList, IonBackButton, IonButtons } from '@ionic/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FilterFields } from '../components/CountryElections/types';
 import ReminderCard from '../components/ReminderCard/ReminderCard';
-import startingDummyReminderData from "../dummyData/dummyReminderData.json";
+import { ReminderData } from '../components/ReminderCard/types';
+import { getReminderDataFromBackend } from '../backendConnectors/backendConnector';
 
 const MyReminders: React.FC = () => {
     const filterFields: FilterFields = {
@@ -11,8 +12,51 @@ const MyReminders: React.FC = () => {
     },
         [filterTerm, setFilterTerm] = useState(""),
         [filterTypeTerm, setFilterTypeTerm] = useState("name"),
-        [dummyReminderDataResults, setDummyReminderDataResults] = useState(startingDummyReminderData),
+        emptyReminderDataArray: ReminderData[] = [],
+        [dummyReminderDataResults, setDummyReminderDataResults] = useState(emptyReminderDataArray),
+        [initialReminderDataResults, setInitialReminderDataResults] = useState(emptyReminderDataArray),
+        [loading, setLoading] = useState<boolean>(true),
+        [error, setError] = useState<string | null>(null),
         debounceWaitTimeInMilliseconds = 300;
+
+    async function fetchData(): Promise<void> {
+        try {
+            const backendReminderData = await getReminderDataFromBackend();
+            setDummyReminderDataResults(backendReminderData);
+            setInitialReminderDataResults(backendReminderData);
+            // Not sure what kind of error can come out here so we will just stringify and show it
+        } catch (err: unknown) {
+            setError(String(err));
+        } finally {
+            setLoading(false);
+        }
+    };
+
+
+    /*
+    Use effect is a React hook triggered in various scenarios - initial render, dependency change, component
+    unmount. The empty array below shows that no dependencies are considered here and that we will only 
+    trigger this hook once on initial render
+    */
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    if (loading) {
+        return (
+            <IonPage>
+                Loading...
+            </IonPage>
+        )
+    }
+
+    if (error) {
+        return (
+            <IonPage>
+                Component error with error {error}
+            </IonPage>
+        )
+    }
 
 
     return (
@@ -39,15 +83,15 @@ const MyReminders: React.FC = () => {
                 value={filterTerm}
                 debounce={debounceWaitTimeInMilliseconds}
                 placeholder='Filter reminders'
-                onIonClear={() => setDummyReminderDataResults(startingDummyReminderData)}
+                onIonClear={() => setDummyReminderDataResults(initialReminderDataResults)}
                 onIonChange={({ detail: { value: userEnteredValue } }) => {
                     setFilterTerm(userEnteredValue!);
                     if (userEnteredValue! === '') {
-                        setDummyReminderDataResults(startingDummyReminderData);
+                        setDummyReminderDataResults(initialReminderDataResults);
                         return;
                     }
                     if (filterTypeTerm === filterFields.NAME) {
-                        const resultsFilteredByName = startingDummyReminderData.filter(({ reminderName }) => reminderName === userEnteredValue);
+                        const resultsFilteredByName = dummyReminderDataResults.filter(({ reminderName }) => reminderName === userEnteredValue);
                         setDummyReminderDataResults(resultsFilteredByName);
                     }
                 }
