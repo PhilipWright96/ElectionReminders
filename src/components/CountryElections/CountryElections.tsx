@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { CountryInformation } from '../../hooks/useDummyApi';
 import ElectionCard from '../ElectionCard/ElectionCard';
-import startingDummyElectionData from "../../dummyData/dummyElectionData.json"
 import { getElectionDataFromBackend } from '../../backendConnectors/backendConnector';
 import { ElectionData, FilterFields } from './types';
 
@@ -17,6 +16,7 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
         [error, setError] = useState<string | null>(null),
         emptyElectionDataArray: ElectionData[] = [],
         [dummyElectionDataResults, setDummyElectionDataResults] = useState(emptyElectionDataArray),
+        [initialElectionDataResults, setInitialElectionDataResults] = useState(emptyElectionDataArray),
         debounceWaitTimeInMilliseconds = 300,
         filterFields: FilterFields = {
             NAME: "name",
@@ -32,6 +32,7 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
         try {
             const backendElectionData = await getElectionDataFromBackend();
             setDummyElectionDataResults(backendElectionData);
+            setInitialElectionDataResults(backendElectionData)
             // Not sure what kind of error can come out here so we will just stringify and show it
         } catch (err: unknown) {
             setError(String(err));
@@ -90,15 +91,15 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
             <IonSearchbar
                 value={filterTerm}
                 debounce={debounceWaitTimeInMilliseconds}
-                onIonClear={() => setDummyElectionDataResults(startingDummyElectionData)}
+                onIonClear={() => setDummyElectionDataResults(dummyElectionDataResults)}
                 onIonChange={({ detail: { value: userEnteredValue } }) => {
                     setFilterTerm(userEnteredValue!);
                     if (userEnteredValue! === '') {
-                        setDummyElectionDataResults(startingDummyElectionData);
+                        setDummyElectionDataResults(initialElectionDataResults);
                         return;
                     }
                     if (filterTypeTerm === filterFields.NAME) {
-                        const resultsFilteredByName = startingDummyElectionData.filter(({ electionName }) => electionName === userEnteredValue);
+                        const resultsFilteredByName = initialElectionDataResults.filter(({ electionName }) => electionName === userEnteredValue);
                         setDummyElectionDataResults(resultsFilteredByName);
                     }
                 }
