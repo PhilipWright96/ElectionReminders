@@ -15,6 +15,7 @@ const MyReminders: React.FC = () => {
         [filterTypeTerm, setFilterTypeTerm] = useState("name"),
         emptyReminderDataArray: ReminderData[] = [],
         [dummyReminderDataResults, setDummyReminderDataResults] = useState(emptyReminderDataArray),
+        [initialReminderDataResults, setInitialReminderDataResults] = useState(emptyReminderDataArray),
         [loading, setLoading] = useState<boolean>(true),
         [error, setError] = useState<string | null>(null),
         debounceWaitTimeInMilliseconds = 300;
@@ -23,6 +24,7 @@ const MyReminders: React.FC = () => {
         try {
             const backendReminderData = await getReminderDataFromBackend();
             setDummyReminderDataResults(backendReminderData);
+            setInitialReminderDataResults(backendReminderData);
             // Not sure what kind of error can come out here so we will just stringify and show it
         } catch (err: unknown) {
             setError(String(err));
@@ -82,15 +84,15 @@ const MyReminders: React.FC = () => {
                 value={filterTerm}
                 debounce={debounceWaitTimeInMilliseconds}
                 placeholder='Filter reminders'
-                onIonClear={() => setDummyReminderDataResults(startingDummyReminderData)}
+                onIonClear={() => setDummyReminderDataResults(initialReminderDataResults)}
                 onIonChange={({ detail: { value: userEnteredValue } }) => {
                     setFilterTerm(userEnteredValue!);
                     if (userEnteredValue! === '') {
-                        setDummyReminderDataResults(startingDummyReminderData);
+                        setDummyReminderDataResults(initialReminderDataResults);
                         return;
                     }
                     if (filterTypeTerm === filterFields.NAME) {
-                        const resultsFilteredByName = startingDummyReminderData.filter(({ reminderName }) => reminderName === userEnteredValue);
+                        const resultsFilteredByName = dummyReminderDataResults.filter(({ reminderName }) => reminderName === userEnteredValue);
                         setDummyReminderDataResults(resultsFilteredByName);
                     }
                 }
