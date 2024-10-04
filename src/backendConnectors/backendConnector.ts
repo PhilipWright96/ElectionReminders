@@ -1,7 +1,9 @@
 import { ElectionData } from "../components/CountryElections/types";
 import { ReminderData } from "../components/ReminderCard/types";
 
-const backendUrl = "http://localhost:8080";
+const laptopIpAddress = "192.168.178.35",
+    springAppPort = "8080",
+    backendUrl = `http://${laptopIpAddress}:${springAppPort}`;
 
 export async function getDataFromBackend() {
     const rest = await fetch(`${backendUrl}/test`, {
