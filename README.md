@@ -35,3 +35,6 @@ Automatic Tests:
 This project has two testing frameworks included. 
 1. Cypress for end to end testing. You can run these tests by first running "ionic serve" and then "npm run test.e2e"
 2. Jest for unit tests. Just run npm test. 
+
+Tips:
+1. If you are debugging with the mobile app running on your phone and in Android Studio, you can go to chrome://inspect/#devices on your laptop and there get important logs about things like Network calls.  
