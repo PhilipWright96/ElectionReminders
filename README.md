@@ -15,8 +15,8 @@ You can also make changes and what you see on localhost will be automatically up
 How to use capacitor with this project: 
 1. If you want to create a build - just run "ionic build" which will create a dist folder.
 2. From there you can run commands like "ionic cap add android" and "ionic cap add ios" to create the native folders for these platforms. 
-3. From there - you can run ionic cap open android (for example) which will open the native project on the right platform (ie Android Studio). You will need to have the right tools installed beforehand (for example Android Studio).
-4. Then you can run "ionic cap sync" to sync the dist folder to the relevant android/ios folder.
+3. From there - you can run ionic cap open android (for example) which will open the native project on the right platform (ie Android Studio - which you need to have already installed)
+4. Then you can run "ionic cap sync" to sync the dist folder to the relevant android/ios folder. If you make a change in the source code, running this command will update the android/ios environment as well. 
 5. From there - you can now run the app on the relevant app (for example Android Studio).
 
 Project Structure
