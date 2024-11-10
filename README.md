@@ -19,6 +19,9 @@ How to use capacitor with this project:
 4. Then you can run "ionic cap sync" to sync the dist folder to the relevant android/ios folder. If you make a change in the source code, running this command will update the android/ios environment as well. 
 5. From there - you can now run the app on the relevant app (for example Android Studio).
 
+Tip: if something goes wrong with the android build, you can simply delete the local android folder and rerun 
+"ionic cap add android". 
+
 Project Structure
 Most of what exists was automatically generated as a template ionic/react project. As a short summary
 1. public - a React folder for assets which don't exist in JS files. See https://create-react-app.dev/docs/using-the-public-folder/
