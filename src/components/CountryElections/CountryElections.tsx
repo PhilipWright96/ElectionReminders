@@ -30,9 +30,14 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
 
     async function fetchData(): Promise<void> {
         try {
-            const backendElectionData = await getElectionDataFromBackend();
+            // Data comes from the backend as a string and we expect a JSON object. 
+            let backendElectionData = await getElectionDataFromBackend();
+
+            if (typeof backendElectionData == "string") {
+                backendElectionData = JSON.parse(backendElectionData);
+            }
             setDummyElectionDataResults(backendElectionData);
-            setInitialElectionDataResults(backendElectionData)
+            setInitialElectionDataResults(backendElectionData);
             // Not sure what kind of error can come out here so we will just stringify and show it
         } catch (err: unknown) {
             setError(String(err));
