@@ -16,11 +16,13 @@ How to use capacitor with this project:
 1. If you want to create a build - just run "ionic build" which will create a dist folder.
 2. From there you can run commands like "ionic cap add android" and "ionic cap add ios" to create the native folders for these platforms. 
 3. From there - you can run ionic cap open android (for example) which will open the native project on the right platform (ie Android Studio - which you need to have already installed)
-4. Then you can run "ionic cap sync" to sync the dist folder to the relevant android/ios folder. If you make a change in the source code, running this command will update the android/ios environment as well. 
-5. From there - you can now run the app on the relevant app (for example Android Studio).
+4. From there - you can now run the app on the relevant app (for example Android Studio).
+5. If you make further changes in the ionic code and want to test in android/ios, you can just run ionic build and ionic cap copy. Then restart the app
 
-Tip: if something goes wrong with the android build, you can simply delete the local android folder and rerun 
-"ionic cap add android". 
+Tips: if something goes wrong with the android build, you can simply delete the local android folder and rerun 
+"ionic cap add android". And to aid debugging, you can connect your phone to a computer, and go to the url
+chrome://inspect/#devices to view your apps logs via the google dev console. Debugging via the google console and the 
+debugger keyword also works. 
 
 Project Structure
 Most of what exists was automatically generated as a template ionic/react project. As a short summary
