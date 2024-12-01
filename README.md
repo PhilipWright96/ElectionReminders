@@ -8,6 +8,8 @@ Technology:
 Ionic and Capacitor with React
 
 How to get started: 
+WARNING: Ionic serve no longer works since we started using cordova - which we had to use to switch off ssl validation. 
+For now, all testing has to be done on a real device or emulator. We will try and refactor in the future to be able to test in browser. 
 1. Start by just running the command "ionic serve" - which will run the app on localhost 8100. From here, you can see changes. 
 You can also make changes and what you see on localhost will be automatically updated. 
 2. This frontend will automatically try to connect to a spring app to pull down data. You can find this spring app in ElectionRemindersBackend repository. You can checkout the backend repository and start the associated spring app. Alternatively, there is a dummy data folder in this repo which json files which you can use instead (but then you will have to change the code in relevant areas)
@@ -15,9 +17,14 @@ You can also make changes and what you see on localhost will be automatically up
 How to use capacitor with this project: 
 1. If you want to create a build - just run "ionic build" which will create a dist folder.
 2. From there you can run commands like "ionic cap add android" and "ionic cap add ios" to create the native folders for these platforms. 
-3. From there - you can run ionic cap open android (for example) which will open the native project on the right platform (ie Android Studio). You will need to have the right tools installed beforehand (for example Android Studio).
-4. Then you can run "ionic cap sync" to sync the dist folder to the relevant android/ios folder.
-5. From there - you can now run the app on the relevant app (for example Android Studio).
+3. From there - you can run ionic cap open android (for example) which will open the native project on the right platform (ie Android Studio - which you need to have already installed)
+4. From there - you can now run the app on the relevant app (for example Android Studio).
+5. If you make further changes in the ionic code and want to test in android/ios, you can just run ionic build and ionic cap copy. Then restart the app
+
+Tips: if something goes wrong with the android build, you can simply delete the local android folder and rerun 
+"ionic cap add android". And to aid debugging, you can connect your phone to a computer, and go to the url
+chrome://inspect/#devices to view your apps logs via the google dev console. Debugging via the google console and the 
+debugger keyword also works. 
 
 Project Structure
 Most of what exists was automatically generated as a template ionic/react project. As a short summary
@@ -35,3 +42,6 @@ Automatic Tests:
 This project has two testing frameworks included. 
 1. Cypress for end to end testing. You can run these tests by first running "ionic serve" and then "npm run test.e2e"
 2. Jest for unit tests. Just run npm test. 
+
+Tips:
+1. If you are debugging with the mobile app running on your phone and in Android Studio, you can go to chrome://inspect/#devices on your laptop and there get important logs about things like Network calls.  

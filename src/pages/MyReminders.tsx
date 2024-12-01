@@ -21,7 +21,11 @@ const MyReminders: React.FC = () => {
 
     async function fetchData(): Promise<void> {
         try {
-            const backendReminderData = await getReminderDataFromBackend();
+            // Data comes from the backend as a string and we expect a JSON object. 
+            let backendReminderData = await getReminderDataFromBackend();
+            if (typeof backendReminderData == "string") {
+                backendReminderData = JSON.parse(backendReminderData);
+            }
             setDummyReminderDataResults(backendReminderData);
             setInitialReminderDataResults(backendReminderData);
             // Not sure what kind of error can come out here so we will just stringify and show it
