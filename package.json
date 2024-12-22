@@ -9,7 +9,9 @@
     "preview": "vite preview",
     "test": "cd tests && npm run test",
     "test.e2e": "cypress run",
-    "lint": "eslint src tests"
+    "lint": "eslint src tests",
+    "start-android": "ionic build && ionic cap add android && ionic cap open android",
+    "refresh-android": "ionic build && ionic cap copy"
   },
   "dependencies": {
     "@awesome-cordova-plugins/core": "^6.9.0",
