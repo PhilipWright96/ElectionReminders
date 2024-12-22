@@ -21,7 +21,11 @@ How to use capacitor with this project:
 4. From there - you can now run the app on the relevant app (for example Android Studio).
 5. If you make further changes in the ionic code and want to test in android/ios, you can just run ionic build and ionic cap copy. Then restart the app
 
-Tips: if something goes wrong with the android build, you can simply delete the local android folder and rerun 
+We have various helper commands in our package.json. For example...
+1. "npm run start-android" will create a dist folder, a android folder, and start the android app if you have installed it.
+2. "npm run refresh-android" will rebuild the dist folder and ensure the android folder is synced to the android environment. Useful if you have made a small change to the app and want direct feedback. 
+
+Tips: if something goes wrong with the android build, you should first simply try "./gradlew clean" on the android platform. Failing that, here you can simply delete the local android folder and rerun 
 "ionic cap add android". And to aid debugging, you can connect your phone to a computer, and go to the url
 chrome://inspect/#devices to view your apps logs via the google dev console. Debugging via the google console and the 
 debugger keyword also works. 
