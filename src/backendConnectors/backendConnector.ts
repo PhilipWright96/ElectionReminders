@@ -1,6 +1,9 @@
 import { ElectionData } from "../components/CountryElections/types";
 import { ReminderData } from "../components/ReminderCard/types";
 import { HTTP } from '@awesome-cordova-plugins/http';
+import dummyElectionData from "../dummyData/dummyElectionData.json";
+import dummyReminderData from "../dummyData/dummyReminderData.json";
+import { enableBackendTesting } from "../assets/config.json";
 
 const laptopIpAddress = "192.168.178.35",
     springAppPort = "8443",
@@ -18,6 +21,10 @@ export async function getDataFromBackend() {
 
 export async function getElectionDataFromBackend(): Promise<ElectionData[]> {
     console.log("Retrieving election data");
+    if (!enableBackendTesting) {
+        console.log("Backend testing switched off - returning front end dummy data");
+        return dummyElectionData;
+    }
     // Below code is just for testing until we have SSL properly set up
     await HTTP.setServerTrustMode("nocheck");
     const testCountryName = "Germany",
@@ -41,6 +48,10 @@ export async function getElectionDataFromBackend(): Promise<ElectionData[]> {
 
 export async function getReminderDataFromBackend(): Promise<ReminderData[]> {
     console.log("Retrieving reminder data");
+    if (!enableBackendTesting) {
+        console.log("Backend testing switched off - returning front end dummy data");
+        return dummyReminderData;
+    }
     // Below code is just for testing until we have SSL properly set up
     await HTTP.setServerTrustMode("nocheck");
     const testUserId = "123",
