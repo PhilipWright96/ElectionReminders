@@ -8,8 +8,10 @@ Technology:
 Ionic and Capacitor with React
 
 How to get started: 
-WARNING: Ionic serve no longer works since we started using cordova - which we had to use to switch off ssl validation. 
-For now, all testing has to be done on a real device or emulator. We will try and refactor in the future to be able to test in browser. 
+WARNING: We use the cordova library to make backend requests - but this library doesn't work when you simply make requests
+from localhost to this laptop (it doesn't like our ssl setup). We want to refactor this in the future anyway - but for now, 
+if you want to test things locally in the frontend, just set the "enableBackendTesting" property to false. Then you will receive local dummy data. 
+
 1. Start by just running the command "ionic serve" - which will run the app on localhost 8100. From here, you can see changes. 
 You can also make changes and what you see on localhost will be automatically updated. 
 2. This frontend will automatically try to connect to a spring app to pull down data. You can find this spring app in ElectionRemindersBackend repository. You can checkout the backend repository and start the associated spring app. Alternatively, there is a dummy data folder in this repo which json files which you can use instead (but then you will have to change the code in relevant areas)
