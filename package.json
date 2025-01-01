@@ -10,13 +10,15 @@
     "test": "cd tests && npm run test",
     "test.e2e": "cypress run",
     "lint": "eslint src tests",
+    "remove-android-files": "rmdir /s /q dist && rmdir /s /q android",
     "start-android": "ionic build && ionic cap add android && ionic cap open android",
-    "refresh-android": "ionic build && ionic cap copy"
+    "refresh-ionic": "ionic build && ionic cap copy"
   },
   "dependencies": {
     "@awesome-cordova-plugins/core": "^6.9.0",
     "@awesome-cordova-plugins/http": "^6.9.0",
     "@capacitor-community/http": "^1.4.1",
+    "@capacitor-community/sqlite": "^6.0.2",
     "@capacitor/android": "6.2.0",
     "@capacitor/app": "6.0.2",
     "@capacitor/core": "^6.2.0",
