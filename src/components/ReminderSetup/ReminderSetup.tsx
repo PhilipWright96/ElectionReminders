@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import { IonAlert, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonItem, IonLabel, IonSelect, IonSelectOption, IonCheckbox, IonButton } from '@ionic/react';
 import AbsoluteDatePicker from '../AbsoluteDatePicker/AbsoluteDatePicker';
 import { DateSelectionTypes } from './types';
+import { createReminderInDatabase } from '../../databaseConnectors/databaseConnector';
+
 interface ContainerProps { }
 
 const ReminderSetup: React.FC<ContainerProps> = () => {
@@ -46,7 +48,11 @@ const ReminderSetup: React.FC<ContainerProps> = () => {
                         <IonCheckbox>{usePhoneAlarm}</IonCheckbox>;
                     </div>
                     <div className="text-end">
-                        <IonButton onClick={() => setCreateReminderConfirmationOpen(true)}>{createReminder}</IonButton>
+                        <IonButton onClick={() => {
+                            console.log("Creating reminder");
+                            createReminderInDatabase();
+                            setCreateReminderConfirmationOpen(true)
+                        }}>{createReminder}</IonButton>
                         <IonAlert
                             isOpen={createReminderConfirmationOpen}
                             header={alertHeaderText}
