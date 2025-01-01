@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
+  appId: 'com.election.reminders',
   appName: 'electionReminders',
   webDir: 'dist',
   server: {
