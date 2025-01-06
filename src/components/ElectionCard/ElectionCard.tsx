@@ -3,6 +3,7 @@ import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle } from 
 
 interface ElectionCard {
     electionProperties: {
+        electionId: string,
         electionName: string,
         electionDate: string,
         electionSummary: string,
@@ -28,7 +29,7 @@ const ElectionCard: React.FC<ElectionCard> = ({ electionProperties }) => {
                     <IonButton fill="outline" size="small" color="dark" routerLink={`/electionDetails/${electionProperties.electionName}`}>More Details</IonButton>
                 </div>
                 <div className="col">
-                    <IonButton fill="outline" size="small" color="dark" routerLink={`/setupReminder/${electionProperties.electionName}`}>Setup Reminder</IonButton>
+                    <IonButton fill="outline" size="small" color="dark" routerLink={`/setupReminder?electionName=${electionProperties.electionName}&electionDate=${electionProperties.electionDate}&electionId=${electionProperties.electionId}`}>Setup Reminder</IonButton>
                 </div>
             </div>
         </IonCard>
