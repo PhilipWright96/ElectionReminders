@@ -3,11 +3,19 @@ import React from 'react';
 import { RouteComponentProps } from 'react-router';
 import CountdownCard from '../CountdownCard/CountdownCard';
 import ReminderSetup from '../ReminderSetup/ReminderSetup';
+import { useLocation } from 'react-router-dom';
 
 interface SetupReminderPageProperties extends RouteComponentProps<{ electionName: string }> { }
 
 const SetupReminderPage: React.FC<SetupReminderPageProperties> = ({ match }) => {
+    const location = useLocation();
 
+    const queryParams = new URLSearchParams(location.search),
+        electionName = queryParams.get('electionName'),
+        electionDate = queryParams.get('electionDate'),
+        electionId = queryParams.get('electionId');
+
+    debugger;
     return (
         <IonPage>
             <IonHeader>
@@ -16,13 +24,13 @@ const SetupReminderPage: React.FC<SetupReminderPageProperties> = ({ match }) => 
                         <IonBackButton defaultHref="/home" />
                     </IonButtons>
                     <div className='row text-center'>
-                        <IonTitle>Setup Reminder for Election {match.params.electionName}</IonTitle>
+                        <IonTitle>Setup Reminder for Election {electionName}</IonTitle>
                     </div>
                 </IonToolbar>
             </IonHeader>
             <IonContent>
                 <CountdownCard countdownCardProperties={{ countdownText: "Countdown for election on", countdownDate: new Date(2024, 2, 1) }}></CountdownCard>
-                <ReminderSetup></ReminderSetup>
+                <ReminderSetup reminderSetupProperties={{ electionName, electionId }}></ReminderSetup>
             </IonContent>
         </IonPage >
     );
