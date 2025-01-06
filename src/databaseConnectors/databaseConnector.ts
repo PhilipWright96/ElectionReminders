@@ -1,6 +1,7 @@
 import { CapacitorSQLite } from '@capacitor-community/sqlite';
 
 const databaseName = "testDatabase.db",
+    remindersTableName = "reminders",
     databaseProperties = {
         database: databaseName,
         version: 1,
@@ -8,14 +9,14 @@ const databaseName = "testDatabase.db",
         readonly: false,
     },
     createTableQuery = `
-          CREATE TABLE IF NOT EXISTS reminders (
+          CREATE TABLE IF NOT EXISTS ${remindersTableName} (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT NOT NULL,
-            email TEXT NOT NULL
+            election_id TEXT NOT NULL,
+            reminder_date TIMESTAMP NOT NULL
           );
         `,
     insertQuery = `
-            INSERT INTO reminders (name, email)
+            INSERT INTO ${remindersTableName} (election_id, reminder_date)
             VALUES (?, ?);
             `;
 
