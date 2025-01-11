@@ -37,7 +37,7 @@ export class SQLiteDatabaseConnector implements DatabaseConnectorInterface {
         });
     }
 
-    async addReminder(databaseName: string, selectedReminderDateTime: Date, electionId: String): Promise<void> {
+    async addReminder(databaseName: string, selectedReminderDateTime: Date, electionId: string): Promise<void> {
         console.log(`Adding reminder`);
         const remindersTableName = "reminders", insertQuery = `
             INSERT INTO ${remindersTableName} (election_id, reminder_date)
