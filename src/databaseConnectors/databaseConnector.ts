@@ -22,12 +22,12 @@ const databaseName = "testDatabase.db",
 
 
 
-export async function createReminderInDatabase(): Promise<void> {
+export async function createReminderInDatabase(selectedReminderDateTime: Date, electionId: String): Promise<void> {
     console.log("Creating reminder!");
     try {
         await openDatabase();
         await createOrUpdateReminderTable();
-        await addReminder();
+        await addReminder(selectedReminderDateTime, electionId);
         await closeDatabase();
     }
     catch (error) {
@@ -55,12 +55,12 @@ async function createOrUpdateReminderTable(): Promise<void> {
     });
 }
 
-async function addReminder(): Promise<void> {
-    console.log(`Adding user`);
+async function addReminder(selectedReminderDateTime: Date, electionId: String): Promise<void> {
+    console.log(`Adding reminder`);
     const result = await CapacitorSQLite.run({
         database: databaseName,
         statement: insertQuery,
-        values: ["phil6", "philemail6"],
+        values: [electionId, selectedReminderDateTime],
     });
 
     if (result.changes && result.changes.changes != undefined && result.changes.changes > 0) {
