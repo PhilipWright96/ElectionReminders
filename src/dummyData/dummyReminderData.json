@@ -4,20 +4,23 @@
         "reminderDate": "2023",
         "createdOn": "31/03/2024",
         "reminderDetails": "Important for me, dont forget!",
-        "electionName": "a"
+        "electionName": "a",
+        "electionId": "a8e30f6d-788c-4c5a-b941-8d2e7eb248ed"
     },
     {
         "reminderName": "Reminder for b",
         "reminderDate": "2023",
         "createdOn": "31/03/2024",
         "reminderDetails": "Important for me, dont forget!",
-        "electionName": "b"
+        "electionName": "b",
+        "electionId": "42753a79-7834-4529-849f-f10009abf0f0"
     },
     {
         "reminderName": "Reminder for c",
         "reminderDate": "2023",
         "createdOn": "31/03/2024",
         "reminderDetails": "Important for me, dont forget!",
-        "electionName": "c"
+        "electionName": "c",
+        "electionId": "4ccb06db-8a64-4664-b69f-1b47a49373b2"
     }
 ]

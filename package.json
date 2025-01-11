@@ -9,18 +9,22 @@
     "preview": "vite preview",
     "test": "cd tests && npm run test",
     "test.e2e": "cypress run",
-    "lint": "eslint src tests"
+    "lint": "eslint src tests",
+    "remove-android-files": "rmdir /s /q dist && rmdir /s /q android",
+    "start-android": "ionic build && ionic cap add android && ionic cap open android",
+    "refresh-ionic": "ionic build && ionic cap copy"
   },
   "dependencies": {
     "@awesome-cordova-plugins/core": "^6.9.0",
     "@awesome-cordova-plugins/http": "^6.9.0",
     "@capacitor-community/http": "^1.4.1",
-    "@capacitor/android": "5.6.0",
-    "@capacitor/app": "5.0.6",
-    "@capacitor/core": "5.6.0",
-    "@capacitor/haptics": "5.0.6",
-    "@capacitor/keyboard": "5.0.7",
-    "@capacitor/status-bar": "5.0.6",
+    "@capacitor-community/sqlite": "^6.0.2",
+    "@capacitor/android": "6.2.0",
+    "@capacitor/app": "6.0.2",
+    "@capacitor/core": "^6.2.0",
+    "@capacitor/haptics": "6.0.2",
+    "@capacitor/keyboard": "6.0.3",
+    "@capacitor/status-bar": "6.0.2",
     "@ionic/react": "^7.0.0",
     "@ionic/react-router": "^7.0.0",
     "@types/react-router": "^5.1.20",
@@ -38,7 +42,7 @@
     "react-router-dom": "^5.3.4"
   },
   "devDependencies": {
-    "@capacitor/cli": "5.6.0",
+    "@capacitor/cli": "^6.2.0",
     "@eslint/js": "^9.1.1",
     "@testing-library/dom": ">=7.21.4",
     "@testing-library/jest-dom": "^5.16.5",

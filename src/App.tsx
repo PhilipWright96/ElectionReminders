@@ -40,7 +40,7 @@ const App: React.FC = () => (
         </Route>
         <Route exact path="/myReminders" component={MyReminders} />
         <Route exact path="/countryElections/:countryName" component={CountryElections} />
-        <Route exact path="/setupReminder/:electionName" component={SetupReminderPage} />
+        <Route exact path="/setupReminder" component={SetupReminderPage} />
         <Route exact path="/electionDetails/:electionName" component={ElectionDetailsPage} />
         <Route exact path="/devTestPage" component={DevTestPage} />
       </IonRouterOutlet>
