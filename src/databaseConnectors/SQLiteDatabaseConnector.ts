@@ -1,5 +1,5 @@
 import { CapacitorSQLite } from '@capacitor-community/sqlite';
-
+import { DatabaseConnectorInterface } from './DatabaseConnectorInterface';
 
 export class SQLiteDatabaseConnector implements DatabaseConnectorInterface {
     async openDatabase(databaseName: string): Promise<void> {

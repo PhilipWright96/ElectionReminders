@@ -1,3 +1,4 @@
+import { DatabaseConnectorInterface } from './DatabaseConnectorInterface';
 import { SQLiteDatabaseConnector } from './SQLiteDatabaseConnector';
 
 const databaseName = "testDatabase1234s.db";
