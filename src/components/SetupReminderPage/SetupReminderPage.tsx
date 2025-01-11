@@ -12,10 +12,8 @@ const SetupReminderPage: React.FC<SetupReminderPageProperties> = ({ match }) => 
 
     const queryParams = new URLSearchParams(location.search),
         electionName = queryParams.get('electionName'),
-        electionDate = queryParams.get('electionDate'),
         electionId = queryParams.get('electionId');
 
-    debugger;
     return (
         <IonPage>
             <IonHeader>
