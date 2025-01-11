@@ -2,7 +2,7 @@ import { SQLiteDatabaseConnector } from './SQLiteDatabaseConnector';
 
 const databaseName = "testDatabase1234s.db";
 
-export async function createReminderInDatabase(selectedReminderDateTime: Date, electionId: String): Promise<void> {
+export async function createReminderInDatabase(selectedReminderDateTime: Date, electionId: string): Promise<void> {
     console.log("Creating reminder!");
     try {
         const databaseConnector: DatabaseConnectorInterface = new SQLiteDatabaseConnector();
