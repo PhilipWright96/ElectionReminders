@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 
 interface SetupReminderPageProperties extends RouteComponentProps<{ electionName: string }> { }
 
-const SetupReminderPage: React.FC<SetupReminderPageProperties> = ({ match }) => {
+const SetupReminderPage: React.FC<SetupReminderPageProperties> = () => {
     const location = useLocation();
 
     const queryParams = new URLSearchParams(location.search),
