@@ -25,7 +25,10 @@ export class SQLiteDatabaseConnector implements DatabaseConnectorInterface {
         CREATE TABLE IF NOT EXISTS ${remindersTableName} (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           election_id TEXT NOT NULL,
-          reminder_date TIMESTAMP NOT NULL
+          reminder_date TIMESTAMP NOT NULL,
+          reminder_name TEXT NOT NULL,
+          reminder_details TEXT,
+          created_on TIMESTAMP NOT NULL
         );
       `;
 
@@ -39,14 +42,15 @@ export class SQLiteDatabaseConnector implements DatabaseConnectorInterface {
 
     async addReminder(databaseName: string, selectedReminderDateTime: Date, electionId: string): Promise<void> {
         console.log(`Adding reminder with time${selectedReminderDateTime} for election ${electionId}`);
-        const remindersTableName = "reminders", insertQuery = `
-            INSERT INTO ${remindersTableName} (election_id, reminder_date)
-            VALUES (?, ?);
+        const exampleReminderName = "testReminderName", exampleReminderDetails = "Here are test reminder details",
+            remindersTableName = "reminders", insertQuery = `
+            INSERT INTO ${remindersTableName} (election_id, reminder_date, reminder_name, reminder_details, created_on)
+            VALUES (?, ?, ?, ?, ?);
             `;
         const result = await CapacitorSQLite.run({
             database: databaseName,
             statement: insertQuery,
-            values: [electionId, selectedReminderDateTime],
+            values: [electionId, selectedReminderDateTime, exampleReminderName, exampleReminderDetails, Date.now()],
         });
 
         if (result.changes && result.changes.changes != undefined && result.changes.changes > 0) {
