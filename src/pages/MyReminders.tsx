@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { FilterFields } from '../components/CountryElections/types';
 import ReminderCard from '../components/ReminderCard/ReminderCard';
 import { ReminderData } from '../components/ReminderCard/types';
-import { getReminderDataFromBackend } from '../backendConnectors/backendConnector';
+import { getRemindersFromPhoneDatabase } from '../databaseConnectors/databaseConnector';
 
 const MyReminders: React.FC = () => {
     const filterFields: FilterFields = {
@@ -22,12 +22,14 @@ const MyReminders: React.FC = () => {
     async function fetchData(): Promise<void> {
         try {
             // Data comes from the backend as a string and we expect a JSON object. 
-            let backendReminderData = await getReminderDataFromBackend();
-            if (typeof backendReminderData == "string") {
-                backendReminderData = JSON.parse(backendReminderData);
+            // Here we want to pull down results from the local database OR if thats not on, pull down test data.
+
+            let reminderData = await getRemindersFromPhoneDatabase();
+            if (typeof reminderData == "string") {
+                reminderData = JSON.parse(reminderData);
             }
-            setDummyReminderDataResults(backendReminderData);
-            setInitialReminderDataResults(backendReminderData);
+            setDummyReminderDataResults(reminderData);
+            setInitialReminderDataResults(reminderData);
             // Not sure what kind of error can come out here so we will just stringify and show it
         } catch (err: unknown) {
             setError(String(err));
