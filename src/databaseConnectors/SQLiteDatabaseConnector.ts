@@ -40,6 +40,33 @@ export class SQLiteDatabaseConnector implements DatabaseConnectorInterface {
         });
     }
 
+    async readReminderTable(databaseName: string): Promise<any[]> {
+        console.log(`Reading reminders from ${databaseName}`);
+
+        const remindersTableName = "reminders", readTableQuery = `
+        SELECT * FROM ${remindersTableName}
+        ;
+      `;
+
+        console.log(`Executing query ${readTableQuery}`);
+
+        const result = await CapacitorSQLite.query({
+            database: databaseName,
+            statement: readTableQuery,
+            values: []
+        });
+
+        if (!result || !result.values) {
+            console.error("Error - no results returned from database");
+            return [];
+        }
+        else {
+            console.log(`Returned ${result}`);
+        }
+
+        return result.values;
+    }
+
     async addReminder(databaseName: string, selectedReminderDateTime: Date, electionId: string): Promise<void> {
         console.log(`Adding reminder with time${selectedReminderDateTime} for election ${electionId}`);
         const exampleReminderName = "testReminderName", exampleReminderDetails = "Here are test reminder details",
