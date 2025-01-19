@@ -13,6 +13,7 @@ interface ReminderCard {
 }
 
 const ReminderCard: React.FC<ReminderCard> = ({ reminderProperties }) => {
+    console.log(`creating reminder ${JSON.stringify(reminderProperties)}`)
     return (
         <IonCard>
             <IonCardHeader>
