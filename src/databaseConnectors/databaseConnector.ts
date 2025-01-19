@@ -33,20 +33,9 @@ export async function getRemindersFromPhoneDatabase(): Promise<any> {
         await databaseConnector.closeDatabase(databaseName);
 
         console.log(`Returning reminders ${JSON.stringify(remindersFromDatabase)}`);
-        return mapDatabaseRemindersToFrontEndReminders(remindersFromDatabase);
+        return databaseConnector.mapDatabaseRemindersToFrontEndReminders(remindersFromDatabase);
     }
     catch (error) {
         console.log(`error in database operation ${error}`);
     }
-}
-
-// TODO - move this to the database connector implementation
-function mapDatabaseRemindersToFrontEndReminders(databaseReminders: any[]) {
-    return databaseReminders.map((databaseReminder) => ({
-        reminderName: databaseReminder.reminder_name,
-        electionName: databaseReminder.election_id,
-        reminderDetails: databaseReminder.reminder_details,
-        createdOn: databaseReminder.created_on,
-        reminderDate: databaseReminder.reminder_date,
-    }))
 }

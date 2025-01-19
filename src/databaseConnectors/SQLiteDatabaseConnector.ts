@@ -92,4 +92,14 @@ export class SQLiteDatabaseConnector implements DatabaseConnectorInterface {
         await CapacitorSQLite.closeConnection({ database: databaseName, readonly: false });
     }
 
+    mapDatabaseRemindersToFrontEndReminders(databaseReminders: any[]) {
+        return databaseReminders.map((databaseReminder) => ({
+            reminderName: databaseReminder.reminder_name,
+            electionName: databaseReminder.election_id,
+            reminderDetails: databaseReminder.reminder_details,
+            createdOn: databaseReminder.created_on,
+            reminderDate: databaseReminder.reminder_date,
+        }))
+    }
+
 }
