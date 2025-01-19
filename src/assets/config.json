@@ -1,3 +1,4 @@
 {
-    "enableBackendTesting": false
+    "enableBackendTesting": false,
+    "enablePhoneTesting": false
 }
