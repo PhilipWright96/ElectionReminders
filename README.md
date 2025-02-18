@@ -25,7 +25,7 @@ You can also make changes and what you see on localhost will be automatically up
 
 We have various helper commands in our package.json. For example...
 1. "npm run start-android" will create a dist folder, a android folder, and start the android app if you have installed it.
-2. "npm run refresh-ionic" will rebuild the dist folder and ensure the android folder is synced to the android environment. Useful if you have made a small change to the app and want direct feedback. 
+2. "npm run refresh-ionic" will rebuild the dist folder and ensure the android/ios folder is synced to the android environment. Useful if you have made a small change to the app and want direct feedback. 
 
 Tips: if something goes wrong with the android build, you should first simply try "./gradlew clean" on the android platform. Failing that, here you can simply delete the local android folder and rerun 
 "ionic cap add android". And to aid debugging, you can connect your phone to a computer, and go to the url
