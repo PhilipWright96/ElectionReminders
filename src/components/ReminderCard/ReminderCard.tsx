@@ -8,7 +8,6 @@ interface ReminderCard {
         reminderDate: string,
         createdOn: string,
         reminderDetails: string
-        electionName: string
     }
 }
 
