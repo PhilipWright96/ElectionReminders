@@ -2,6 +2,7 @@ import { DatabaseConnectorInterface } from './DatabaseConnectorInterface';
 import { SQLiteDatabaseConnector } from './SQLiteDatabaseConnector';
 import { enablePhoneTesting } from "../assets/config.json";
 import dummyReminderData from "../dummyData/dummyReminderData.json";
+import { BackEndReminder, FrontEndReminder } from './types';
 
 const databaseName = "testDatabase1234s.db";
 

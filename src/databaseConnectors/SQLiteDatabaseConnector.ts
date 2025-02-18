@@ -1,5 +1,6 @@
 import { CapacitorSQLite } from '@capacitor-community/sqlite';
 import { DatabaseConnectorInterface } from './DatabaseConnectorInterface';
+import { BackEndReminder, FrontEndReminder } from './types';
 
 export class SQLiteDatabaseConnector implements DatabaseConnectorInterface {
 

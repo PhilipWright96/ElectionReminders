@@ -1,3 +1,5 @@
+import { BackEndReminder, FrontEndReminder } from "./types";
+
 export interface DatabaseConnectorInterface {
     openDatabase(databaseName: string): Promise<void>,
     createOrUpdateReminderTable(databaseName: string): void,

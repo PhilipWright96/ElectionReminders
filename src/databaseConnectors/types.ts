@@ -1,4 +1,4 @@
-type FrontEndReminder = {
+export type FrontEndReminder = {
     reminderName: string;
     electionId: string;
     reminderDetails: string;
@@ -6,7 +6,7 @@ type FrontEndReminder = {
     reminderDate: string;
 };
 
-type BackEndReminder = {
+export type BackEndReminder = {
     reminder_name: string;
     election_id: string;
     reminder_details: string;
