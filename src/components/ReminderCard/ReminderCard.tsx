@@ -8,11 +8,11 @@ interface ReminderCard {
         reminderDate: string,
         createdOn: string,
         reminderDetails: string
-        electionName: string
     }
 }
 
 const ReminderCard: React.FC<ReminderCard> = ({ reminderProperties }) => {
+    console.log(`creating reminder ${JSON.stringify(reminderProperties)}`)
     return (
         <IonCard>
             <IonCardHeader>

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { FilterFields } from '../components/CountryElections/types';
 import ReminderCard from '../components/ReminderCard/ReminderCard';
 import { ReminderData } from '../components/ReminderCard/types';
-import { getReminderDataFromBackend } from '../backendConnectors/backendConnector';
+import { getRemindersFromPhoneDatabase } from '../databaseConnectors/databaseConnector';
 
 const MyReminders: React.FC = () => {
     const filterFields: FilterFields = {
@@ -13,7 +13,7 @@ const MyReminders: React.FC = () => {
         [filterTerm, setFilterTerm] = useState(""),
         [filterTypeTerm, setFilterTypeTerm] = useState("name"),
         emptyReminderDataArray: ReminderData[] = [],
-        [dummyReminderDataResults, setDummyReminderDataResults] = useState(emptyReminderDataArray),
+        [reminderDataResults, setReminderDataResults] = useState(emptyReminderDataArray),
         [initialReminderDataResults, setInitialReminderDataResults] = useState(emptyReminderDataArray),
         [loading, setLoading] = useState<boolean>(true),
         [error, setError] = useState<string | null>(null),
@@ -22,12 +22,18 @@ const MyReminders: React.FC = () => {
     async function fetchData(): Promise<void> {
         try {
             // Data comes from the backend as a string and we expect a JSON object. 
-            let backendReminderData = await getReminderDataFromBackend();
-            if (typeof backendReminderData == "string") {
-                backendReminderData = JSON.parse(backendReminderData);
+            // Here we want to pull down results from the local database OR if thats not on, pull down test data.
+
+            let reminderData: FrontEndReminder[] | undefined = await getRemindersFromPhoneDatabase();
+            if (typeof reminderData == "string") {
+                reminderData = JSON.parse(reminderData);
             }
-            setDummyReminderDataResults(backendReminderData);
-            setInitialReminderDataResults(backendReminderData);
+            if (!reminderData) {
+                console.error("No reminder data returned!");
+            }
+            // If reminder data is undefined, just add a empty list
+            setReminderDataResults(reminderData || []);
+            setInitialReminderDataResults(reminderData || []);
             // Not sure what kind of error can come out here so we will just stringify and show it
         } catch (err: unknown) {
             setError(String(err));
@@ -87,16 +93,16 @@ const MyReminders: React.FC = () => {
                 value={filterTerm}
                 debounce={debounceWaitTimeInMilliseconds}
                 placeholder='Filter reminders'
-                onIonClear={() => setDummyReminderDataResults(initialReminderDataResults)}
+                onIonClear={() => setReminderDataResults(initialReminderDataResults)}
                 onIonChange={({ detail: { value: userEnteredValue } }) => {
                     setFilterTerm(userEnteredValue!);
                     if (userEnteredValue! === '') {
-                        setDummyReminderDataResults(initialReminderDataResults);
+                        setReminderDataResults(initialReminderDataResults);
                         return;
                     }
                     if (filterTypeTerm === filterFields.NAME) {
-                        const resultsFilteredByName = dummyReminderDataResults.filter(({ reminderName }) => reminderName === userEnteredValue);
-                        setDummyReminderDataResults(resultsFilteredByName);
+                        const resultsFilteredByName = reminderDataResults.filter(({ reminderName }) => reminderName === userEnteredValue);
+                        setReminderDataResults(resultsFilteredByName);
                     }
                 }
                 }
@@ -104,8 +110,8 @@ const MyReminders: React.FC = () => {
             </IonSearchbar>
             <IonContent className="ion-padding">
                 <IonList>
-                    {dummyReminderDataResults.map((dummyReminder) => (
-                        <ReminderCard key={dummyReminder.reminderName} reminderProperties={dummyReminder} />
+                    {reminderDataResults.map((reminder) => (
+                        <ReminderCard key={reminder.reminderName} reminderProperties={reminder} />
                     ))}
                 </IonList>
             </IonContent>
