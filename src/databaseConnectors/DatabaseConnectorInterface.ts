@@ -3,6 +3,6 @@ export interface DatabaseConnectorInterface {
     createOrUpdateReminderTable(databaseName: string): void,
     addReminder(databaseName: string, selectedReminderDateTime: Date, electionId: string): void,
     readReminderTable(databaseName: string): Promise<any[]>,
-    mapDatabaseRemindersToFrontEndReminders(databaseReminders: any[]): any[],
+    mapDatabaseRemindersToFrontEndReminders(databaseReminders: any[]): FrontEndReminder[],
     closeDatabase(databaseName: string): Promise<void>
 }
