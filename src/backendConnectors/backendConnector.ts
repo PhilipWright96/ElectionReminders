@@ -46,27 +46,6 @@ export async function getElectionDataFromBackend(): Promise<ElectionData[]> {
     return await electionResultsFromBackend;
 }
 
-export async function getReminderDataFromBackend(): Promise<ReminderData[]> {
-    console.log("Retrieving reminder data");
-    if (!enableBackendTesting) {
-        console.log("Backend testing switched off - returning front end dummy data");
-        return dummyReminderData;
-    }
-    // Below code is just for testing until we have SSL properly set up
-    await HTTP.setServerTrustMode("nocheck");
-    const testUserId = "123",
-        urlSearchParams = new URLSearchParams({ userId: testUserId }),
-        headers = {
-            "Content-Type": "application/json",
-        },
-        url = `${backendUrl}/remindersForUser?${urlSearchParams.toString()}`;
-
-    const reminderResultsFromBackend = await HTTP.get(url, {}, headers).then((res) => res.data).catch((error) => {
-        console.error(`Error retrieving reminder results from backend ${+error}`);
-    });
-
-    return await reminderResultsFromBackend;
-}
 
 
 export async function postDataToBackend() {
