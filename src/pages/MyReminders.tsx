@@ -28,7 +28,6 @@ const MyReminders: React.FC = () => {
             if (typeof reminderData == "string") {
                 reminderData = JSON.parse(reminderData);
             }
-            // really dummy? Out of date method name
             setReminderDataResults(reminderData);
             setInitialReminderDataResults(reminderData);
             // Not sure what kind of error can come out here so we will just stringify and show it
