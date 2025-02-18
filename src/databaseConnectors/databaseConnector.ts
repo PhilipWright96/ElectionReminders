@@ -28,7 +28,7 @@ export async function getRemindersFromPhoneDatabase(): Promise<FrontEndReminder[
     try {
         const databaseConnector: DatabaseConnectorInterface = new SQLiteDatabaseConnector();
         await databaseConnector.openDatabase(databaseName);
-        const remindersFromDatabase = await databaseConnector.readReminderTable(databaseName);
+        const remindersFromDatabase: BackEndReminder[] = await databaseConnector.readReminderTable(databaseName);
         await databaseConnector.closeDatabase(databaseName);
 
         console.log(`Returning reminders ${JSON.stringify(remindersFromDatabase)}`);

@@ -41,7 +41,7 @@ export class SQLiteDatabaseConnector implements DatabaseConnectorInterface {
         });
     }
 
-    async readReminderTable(databaseName: string): Promise<any[]> {
+    async readReminderTable(databaseName: string): Promise<BackEndReminder[]> {
         console.log(`Reading reminders from ${databaseName}`);
 
         const remindersTableName = "reminders", readTableQuery = `
@@ -94,7 +94,7 @@ export class SQLiteDatabaseConnector implements DatabaseConnectorInterface {
     }
 
 
-    mapDatabaseRemindersToFrontEndReminders(databaseReminders: any[]): FrontEndReminder[] {
+    mapDatabaseRemindersToFrontEndReminders(databaseReminders: BackEndReminder[]): FrontEndReminder[] {
         return databaseReminders.map((databaseReminder) => ({
             reminderName: databaseReminder.reminder_name,
             electionId: databaseReminder.election_id,
