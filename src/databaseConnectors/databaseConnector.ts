@@ -19,8 +19,7 @@ export async function createReminderInDatabase(selectedReminderDateTime: Date, e
     }
 }
 
-// TODO - any is evil. Add a type here! 
-export async function getRemindersFromPhoneDatabase(): Promise<any> {
+export async function getRemindersFromPhoneDatabase(): Promise<FrontEndReminder[] | undefined> {
     console.log("Retrieving reminders from local database!");
     if (!enablePhoneTesting) {
         console.log("Phone testing switched off - returning front end dummy data")

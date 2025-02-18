@@ -97,7 +97,7 @@ export class SQLiteDatabaseConnector implements DatabaseConnectorInterface {
     mapDatabaseRemindersToFrontEndReminders(databaseReminders: any[]): FrontEndReminder[] {
         return databaseReminders.map((databaseReminder) => ({
             reminderName: databaseReminder.reminder_name,
-            electionName: databaseReminder.election_id,
+            electionId: databaseReminder.election_id,
             reminderDetails: databaseReminder.reminder_details,
             createdOn: new Date(databaseReminder.created_on).toLocaleString(),
             reminderDate: new Date(databaseReminder.reminder_date).toLocaleString(),

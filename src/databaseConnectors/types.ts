@@ -1,6 +1,6 @@
 type FrontEndReminder = {
     reminderName: string;
-    electionName: string;
+    electionId: string;
     reminderDetails: string;
     createdOn: string;
     reminderDate: string;
