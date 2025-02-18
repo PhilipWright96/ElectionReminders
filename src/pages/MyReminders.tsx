@@ -24,12 +24,16 @@ const MyReminders: React.FC = () => {
             // Data comes from the backend as a string and we expect a JSON object. 
             // Here we want to pull down results from the local database OR if thats not on, pull down test data.
 
-            let reminderData = await getRemindersFromPhoneDatabase();
+            let reminderData: FrontEndReminder[] | undefined = await getRemindersFromPhoneDatabase();
             if (typeof reminderData == "string") {
                 reminderData = JSON.parse(reminderData);
             }
-            setReminderDataResults(reminderData);
-            setInitialReminderDataResults(reminderData);
+            if (!reminderData) {
+                console.error("No reminder data returned!");
+            }
+            // If reminder data is undefined, just add a empty list
+            setReminderDataResults(reminderData || []);
+            setInitialReminderDataResults(reminderData || []);
             // Not sure what kind of error can come out here so we will just stringify and show it
         } catch (err: unknown) {
             setError(String(err));
