@@ -2,6 +2,7 @@ import { CapacitorSQLite } from '@capacitor-community/sqlite';
 import { DatabaseConnectorInterface } from './DatabaseConnectorInterface';
 
 export class SQLiteDatabaseConnector implements DatabaseConnectorInterface {
+
     async openDatabase(databaseName: string): Promise<void> {
         const databaseProperties = {
             database: databaseName,
@@ -92,13 +93,14 @@ export class SQLiteDatabaseConnector implements DatabaseConnectorInterface {
         await CapacitorSQLite.closeConnection({ database: databaseName, readonly: false });
     }
 
-    mapDatabaseRemindersToFrontEndReminders(databaseReminders: any[]) {
+
+    mapDatabaseRemindersToFrontEndReminders(databaseReminders: any[]): FrontEndReminder[] {
         return databaseReminders.map((databaseReminder) => ({
             reminderName: databaseReminder.reminder_name,
             electionName: databaseReminder.election_id,
             reminderDetails: databaseReminder.reminder_details,
-            createdOn: databaseReminder.created_on,
-            reminderDate: databaseReminder.reminder_date,
+            createdOn: new Date(databaseReminder.created_on).toLocaleString(),
+            reminderDate: new Date(databaseReminder.reminder_date).toLocaleString(),
         }))
     }
 
