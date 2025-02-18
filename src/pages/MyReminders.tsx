@@ -13,7 +13,7 @@ const MyReminders: React.FC = () => {
         [filterTerm, setFilterTerm] = useState(""),
         [filterTypeTerm, setFilterTypeTerm] = useState("name"),
         emptyReminderDataArray: ReminderData[] = [],
-        [dummyReminderDataResults, setDummyReminderDataResults] = useState(emptyReminderDataArray),
+        [reminderDataResults, setReminderDataResults] = useState(emptyReminderDataArray),
         [initialReminderDataResults, setInitialReminderDataResults] = useState(emptyReminderDataArray),
         [loading, setLoading] = useState<boolean>(true),
         [error, setError] = useState<string | null>(null),
@@ -28,7 +28,8 @@ const MyReminders: React.FC = () => {
             if (typeof reminderData == "string") {
                 reminderData = JSON.parse(reminderData);
             }
-            setDummyReminderDataResults(reminderData);
+            // really dummy? Out of date method name
+            setReminderDataResults(reminderData);
             setInitialReminderDataResults(reminderData);
             // Not sure what kind of error can come out here so we will just stringify and show it
         } catch (err: unknown) {
@@ -89,16 +90,16 @@ const MyReminders: React.FC = () => {
                 value={filterTerm}
                 debounce={debounceWaitTimeInMilliseconds}
                 placeholder='Filter reminders'
-                onIonClear={() => setDummyReminderDataResults(initialReminderDataResults)}
+                onIonClear={() => setReminderDataResults(initialReminderDataResults)}
                 onIonChange={({ detail: { value: userEnteredValue } }) => {
                     setFilterTerm(userEnteredValue!);
                     if (userEnteredValue! === '') {
-                        setDummyReminderDataResults(initialReminderDataResults);
+                        setReminderDataResults(initialReminderDataResults);
                         return;
                     }
                     if (filterTypeTerm === filterFields.NAME) {
-                        const resultsFilteredByName = dummyReminderDataResults.filter(({ reminderName }) => reminderName === userEnteredValue);
-                        setDummyReminderDataResults(resultsFilteredByName);
+                        const resultsFilteredByName = reminderDataResults.filter(({ reminderName }) => reminderName === userEnteredValue);
+                        setReminderDataResults(resultsFilteredByName);
                     }
                 }
                 }
@@ -106,8 +107,8 @@ const MyReminders: React.FC = () => {
             </IonSearchbar>
             <IonContent className="ion-padding">
                 <IonList>
-                    {dummyReminderDataResults.map((dummyReminder) => (
-                        <ReminderCard key={dummyReminder.reminderName} reminderProperties={dummyReminder} />
+                    {reminderDataResults.map((reminder) => (
+                        <ReminderCard key={reminder.reminderName} reminderProperties={reminder} />
                     ))}
                 </IonList>
             </IonContent>
