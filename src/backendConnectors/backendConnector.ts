@@ -1,8 +1,6 @@
 import { ElectionData } from "../components/CountryElections/types";
-import { ReminderData } from "../components/ReminderCard/types";
 import { HTTP } from '@awesome-cordova-plugins/http';
 import dummyElectionData from "../dummyData/dummyElectionData.json";
-import dummyReminderData from "../dummyData/dummyReminderData.json";
 import { enableBackendTesting } from "../assets/config.json";
 
 const laptopIpAddress = "192.168.178.35",
