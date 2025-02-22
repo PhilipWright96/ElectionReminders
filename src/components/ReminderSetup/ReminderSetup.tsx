@@ -5,6 +5,7 @@ import { IonAlert, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonItem
 import AbsoluteDatePicker from '../AbsoluteDatePicker/AbsoluteDatePicker';
 import { DateSelectionTypes } from './types';
 import { createReminderInDatabase } from '../../databaseConnectors/databaseConnector';
+import { setReminderAlertForPhone } from '../../notificationSetters/localNotificationSetter';
 
 
 interface ReminderSetup {
@@ -75,6 +76,7 @@ const ReminderSetup: React.FC<ReminderSetup> = ({ reminderSetupProperties }) => 
                                 }
                                 console.log(`Creating reminder for the time ${selectedReminderDateTime} for the election ${reminderSetupProperties.electionName} with the id ${reminderSetupProperties.electionId}`);
                                 createReminderInDatabase(selectedReminderDateTime, reminderSetupProperties.electionId);
+                                setReminderAlertForPhone(selectedReminderDateTime, reminderSetupProperties.electionName);
                                 setCreateReminderConfirmationOpen(true)
                             }}>{createReminder}</IonButton>
                             <IonAlert
