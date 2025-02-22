@@ -26,9 +26,10 @@ const ReminderSetup: React.FC<ReminderSetup> = ({ reminderSetupProperties }) => 
     const [dateTypeTerm, setDateTypeTerm] = useState("Relative Date"),
         [createReminderConfirmationOpen, setCreateReminderConfirmationOpen] = useState(false),
         [selectedReminderDateTime, setSelectedReminderDateTime] = useState<Date | null>(null),
+        [usePhoneAlarm, setUsePhoneAlarm] = useState(false),
         alertHeaderText = "Reminder created!",
         alertMessage = "Message will be sent on 10/03/2024 20:00.",
-        usePhoneAlarm = "Use Phone Alarm",
+        usePhoneAlarmMessage = "Use Phone Alarm",
         reminderType = "Reminder Type",
         createReminder = "Create Reminder",
         setupReminder = "Setup Reminder",
@@ -61,7 +62,10 @@ const ReminderSetup: React.FC<ReminderSetup> = ({ reminderSetupProperties }) => 
                     {dateTypeTerm === dateSelectionTypes.ABSOLUTE_DATE && <AbsoluteDatePicker></AbsoluteDatePicker>}
                     <div className="row">
                         <div className="text-start">
-                            <IonCheckbox>{usePhoneAlarm}</IonCheckbox>;
+                            <IonCheckbox
+                                checked={usePhoneAlarm}
+                                onIonChange={(e) => setUsePhoneAlarm(e.detail.checked)}
+                            >{usePhoneAlarmMessage}</IonCheckbox>;
                         </div>
                         <div className="text-end">
                             <IonButton onClick={() => {
@@ -76,7 +80,9 @@ const ReminderSetup: React.FC<ReminderSetup> = ({ reminderSetupProperties }) => 
                                 }
                                 console.log(`Creating reminder for the time ${selectedReminderDateTime} for the election ${reminderSetupProperties.electionName} with the id ${reminderSetupProperties.electionId}`);
                                 createReminderInDatabase(selectedReminderDateTime, reminderSetupProperties.electionId);
-                                setReminderAlertForPhone(selectedReminderDateTime, reminderSetupProperties.electionName);
+                                if (usePhoneAlarm) {
+                                    setReminderAlertForPhone(selectedReminderDateTime, reminderSetupProperties.electionName);
+                                }
                                 setCreateReminderConfirmationOpen(true)
                             }}>{createReminder}</IonButton>
                             <IonAlert
