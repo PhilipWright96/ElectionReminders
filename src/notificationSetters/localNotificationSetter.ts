@@ -13,8 +13,6 @@ export async function setReminderAlertForPhone(alertTime: Date, electionName: st
         console.log('Notification permission denied');
     }
 
-    console.log("Done!!");
-
     await LocalNotifications.schedule({
         notifications: [
             {
