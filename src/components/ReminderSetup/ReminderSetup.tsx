@@ -28,7 +28,7 @@ const ReminderSetup: React.FC<ReminderSetup> = ({ reminderSetupProperties }) => 
         [selectedReminderDateTime, setSelectedReminderDateTime] = useState<Date | null>(null),
         [usePhoneAlarm, setUsePhoneAlarm] = useState(false),
         alertHeaderText = "Reminder created!",
-        alertMessage = "Message will be sent on 10/03/2024 20:00.",
+        alertMessage = "Message will be sent on ",
         usePhoneAlarmMessage = "Use Phone Alarm",
         reminderType = "Reminder Type",
         createReminder = "Create Reminder",
@@ -88,7 +88,7 @@ const ReminderSetup: React.FC<ReminderSetup> = ({ reminderSetupProperties }) => 
                             <IonAlert
                                 isOpen={createReminderConfirmationOpen}
                                 header={alertHeaderText}
-                                message={alertMessage}
+                                message={selectedReminderDateTime != null ? alertMessage + selectedReminderDateTime.toLocaleString() : "No time selected"}
                                 buttons={['Close']}
                                 onDidDismiss={() => setCreateReminderConfirmationOpen(false)}
                             ></IonAlert>
