@@ -4,6 +4,7 @@ import { FilterFields } from '../components/CountryElections/types';
 import ReminderCard from '../components/ReminderCard/ReminderCard';
 import { ReminderData } from '../components/ReminderCard/types';
 import { getRemindersFromPhoneDatabase } from '../databaseConnectors/databaseConnector';
+import { FrontEndReminder } from '../databaseConnectors/types';
 
 const MyReminders: React.FC = () => {
     const filterFields: FilterFields = {
