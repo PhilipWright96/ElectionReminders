@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import './RelativeDatePicker.css';
 import { IonCard, IonCardContent, IonItem, IonInput } from '@ionic/react';
 import { SelectedReminderDateTimeContext } from '../ReminderSetup/ReminderSetup';
+import { RelativeDateData } from './types';
 
 interface RelativeDatePicker {
     electionDate: Date
@@ -10,12 +11,12 @@ interface RelativeDatePicker {
 const RelativeDatePicker: React.FC<RelativeDatePicker> = ({ electionDate }) => {
     const { setSelectedReminderDateTime } = useContext(SelectedReminderDateTimeContext),
         [relativeDateData, setRelativeDateData] = useState({
-            minutesBefore: "",
-            hoursBefore: "",
-            daysBefore: "",
-            weeksBefore: "",
-            monthsBefore: "",
-            yearsBefore: "",
+            minutesBefore: null,
+            hoursBefore: null,
+            daysBefore: null,
+            weeksBefore: null,
+            monthsBefore: null,
+            yearsBefore: null,
         }),
         handleInputChange = (key: string, value: string) => {
             setRelativeDateData((prevData) => ({
@@ -71,7 +72,7 @@ const RelativeDatePicker: React.FC<RelativeDatePicker> = ({ electionDate }) => {
     );
 };
 
-function calculateReminderDateTime(electionDate: Date, dateAdjustments: any) {
+function calculateReminderDateTime(electionDate: Date, dateAdjustments: RelativeDateData) {
     const newReminderDateTime = new Date(electionDate);
 
     if (dateAdjustments.minutesBefore) newReminderDateTime.setMinutes(newReminderDateTime.getMinutes() - dateAdjustments.minutesBefore);
