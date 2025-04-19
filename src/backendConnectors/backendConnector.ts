@@ -3,9 +3,11 @@ import { HTTP } from '@awesome-cordova-plugins/http';
 import dummyElectionData from "../dummyData/dummyElectionData.json";
 import { enableBackendTesting } from "../assets/config.json";
 
-const laptopIpAddress = "192.168.178.35",
-    springAppPort = "8443",
-    backendUrl = `https://${laptopIpAddress}:${springAppPort}`;
+const
+    domainName = "electionreminders.space",
+    springAppPort = "443",
+    backendUrl = `https://${domainName}:${springAppPort}`,
+    backendUrlWithoutPort = `https://${domainName}`;
 
 export async function getDataFromBackend() {
     const rest = await fetch(`${backendUrl}/test`, {
@@ -23,11 +25,11 @@ export async function getElectionDataFromBackend(): Promise<ElectionData[]> {
         console.log("Backend testing switched off - returning front end dummy data");
         return dummyElectionData;
     }
-    // Below code is just for testing until we have SSL properly set up
-    await HTTP.setServerTrustMode("nocheck");
+    // Below code is just for testing. If you are calling the domain name, you shouldn't need the below hack. 
+    // await HTTP.setServerTrustMode("nocheck");
     const testCountryName = "Germany",
         urlSearchParams = new URLSearchParams({ countryName: testCountryName }),
-        url = `${backendUrl}/electionsForCountry?${urlSearchParams.toString()}`,
+        url = `${backendUrlWithoutPort}/electionsForCountry?${urlSearchParams.toString()}`,
         headers = {
             "Content-Type": "application/json",
         };
@@ -40,6 +42,8 @@ export async function getElectionDataFromBackend(): Promise<ElectionData[]> {
     }).catch((error) => {
         console.error(`Error retrieving election results from backend ${error}`);
     });
+    console.log('retrieved data');
+    console.log(JSON.stringify(electionResultsFromBackend));
 
     return await electionResultsFromBackend;
 }
