@@ -8,9 +8,7 @@ Technology:
 Ionic and Capacitor with React
 
 # How to get started: 
-WARNING: We use the cordova library to make backend requests - but this library doesn't work when you simply make requests
-from localhost to this laptop (it doesn't like our ssl setup). We want to refactor this in the future anyway - but for now, 
-if you want to test things locally in the frontend, just set the "enableBackendTesting" property to false. Then you will receive local dummy data. 
+Tip:  you want to test things locally in the frontend with no backend connection, just set the "enableBackendTesting" property to false. Then you will receive local dummy data. 
 
 1. Start by just running the command "ionic serve" - which will run the app on localhost 8100. From here, you can see changes. 
 You can also make changes and what you see on localhost will be automatically updated. 
@@ -20,6 +18,8 @@ You can also make changes and what you see on localhost will be automatically up
 1. If you want to create a build - just run "ionic build" which will create a dist folder.
 2. From there you can run commands like "ionic cap add android" and "ionic cap add ios" to create the native folders for these platforms. 
 (Warning with android build - If you build android, you will have to go into the android folder and set the gradle version (com.android.tools.build:gradle:8.6.0 in android\build.gradle) to 8.6.0. Thats the version that android studio supports.)
+If you run into the invalid source release: 21 error message, you will have to go into the android folders and change all
+instances of JavaVersion.VERSION_21 to JavaVersion.VERSION_17
  
 3. From there - you can run ionic cap open android (for example) which will open the native project on the right platform (ie Android Studio - which you need to have already installed)
 4. From there - you can now run the app on the relevant app (for example Android Studio).
