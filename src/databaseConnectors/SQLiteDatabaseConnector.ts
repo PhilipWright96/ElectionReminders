@@ -89,6 +89,24 @@ export class SQLiteDatabaseConnector implements DatabaseConnectorInterface {
         }
     }
 
+    async deleteReminder(databaseName: string, reminderId: string): Promise<void> {
+        console.log(`Deleting reminder with id ${reminderId}`);
+        const remindersTableName = "reminders", deleteQuery = `
+            DELETE FROM ${remindersTableName} WHERE id = ?;
+            `;
+        const result = await CapacitorSQLite.run({
+            database: databaseName,
+            statement: deleteQuery,
+            values: [reminderId],
+        });
+
+        if (result.changes && result.changes.changes != undefined && result.changes.changes > 0) {
+            console.log(`Reminder deleted successfully`);
+        } else {
+            console.error("Failed to delete reminder.");
+        }
+    }
+
     async closeDatabase(databaseName: string): Promise<void> {
         console.log(`Closing connection`);
         await CapacitorSQLite.closeConnection({ database: databaseName, readonly: false });
@@ -97,6 +115,7 @@ export class SQLiteDatabaseConnector implements DatabaseConnectorInterface {
 
     mapDatabaseRemindersToFrontEndReminders(databaseReminders: BackEndReminder[]): FrontEndReminder[] {
         return databaseReminders.map((databaseReminder) => ({
+            reminderId: databaseReminder.id.toString(),
             reminderName: databaseReminder.reminder_name,
             electionId: databaseReminder.election_id,
             reminderDetails: databaseReminder.reminder_details,
