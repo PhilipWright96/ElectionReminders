@@ -4,6 +4,7 @@ import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle } from 
 
 interface ReminderCard {
     reminderProperties: {
+        reminderId: string,
         reminderName: string,
         reminderDate: string,
         createdOn: string,
