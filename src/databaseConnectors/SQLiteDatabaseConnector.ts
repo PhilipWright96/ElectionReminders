@@ -63,7 +63,7 @@ export class SQLiteDatabaseConnector implements DatabaseConnectorInterface {
             return [];
         }
         else {
-            console.log(`Returned ${result}`);
+            console.log(`Returned ${JSON.stringify(result)}`);
         }
 
         return result.values;
