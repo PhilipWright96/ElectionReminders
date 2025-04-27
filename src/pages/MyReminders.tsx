@@ -20,6 +20,13 @@ const MyReminders: React.FC = () => {
         [error, setError] = useState<string | null>(null),
         debounceWaitTimeInMilliseconds = 300;
 
+    const handleDeleteReminder = (reminderId: string) => {
+        console.log(`Deleting reminder on frontend with id ${reminderId}`);
+        setReminderDataResults(previousReminders =>
+            previousReminders.filter(reminder => reminder.reminderId !== reminderId)
+        );
+    };
+
     async function fetchData(): Promise<void> {
         try {
             // Data comes from the backend as a string and we expect a JSON object. 
@@ -112,7 +119,8 @@ const MyReminders: React.FC = () => {
             <IonContent className="ion-padding">
                 <IonList>
                     {reminderDataResults.map((reminder) => (
-                        <ReminderCard key={reminder.reminderName} reminderProperties={reminder} />
+                        <ReminderCard key={reminder.reminderName} reminderProperties={reminder} onDelete={handleDeleteReminder}
+                        />
                     ))}
                 </IonList>
             </IonContent>

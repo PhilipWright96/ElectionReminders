@@ -4,6 +4,7 @@ export interface DatabaseConnectorInterface {
     openDatabase(databaseName: string): Promise<void>,
     createOrUpdateReminderTable(databaseName: string): void,
     addReminder(databaseName: string, selectedReminderDateTime: Date, electionId: string): void,
+    deleteReminder(databaseName: string, reminderId: string): void,
     readReminderTable(databaseName: string): Promise<BackEndReminder[]>,
     mapDatabaseRemindersToFrontEndReminders(databaseReminders: BackEndReminder[]): FrontEndReminder[],
     closeDatabase(databaseName: string): Promise<void>

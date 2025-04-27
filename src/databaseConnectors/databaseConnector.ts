@@ -20,6 +20,19 @@ export async function createReminderInDatabase(selectedReminderDateTime: Date, e
     }
 }
 
+export async function deleteReminderFromDatabase(reminderId: string): Promise<void> {
+    console.log("Deleting reminder!");
+    try {
+        const databaseConnector: DatabaseConnectorInterface = new SQLiteDatabaseConnector();
+        await databaseConnector.openDatabase(databaseName);
+        await databaseConnector.deleteReminder(databaseName, reminderId);
+        await databaseConnector.closeDatabase(databaseName);
+    }
+    catch (error) {
+        console.log(`error in database operation ${error}`);
+    }
+}
+
 export async function getRemindersFromPhoneDatabase(): Promise<FrontEndReminder[] | undefined> {
     console.log("Retrieving reminders from local database!");
     if (!enablePhoneTesting) {
