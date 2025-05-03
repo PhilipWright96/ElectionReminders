@@ -1,7 +1,7 @@
 import { LocalNotifications } from '@capacitor/local-notifications';
 
 
-export async function setReminderAlertForPhone(alertTime: Date, electionName: string | null) {
+export async function setReminderAlertForPhone(alertTime: Date, electionName: string | null, reminderName: string | null | undefined) {
 
     console.log("Asking permissions!");
 
@@ -13,11 +13,13 @@ export async function setReminderAlertForPhone(alertTime: Date, electionName: st
         console.log('Notification permission denied');
     }
 
+    const notificationTitle = reminderName ? reminderName : "Election Reminder";
+
     await LocalNotifications.schedule({
         notifications: [
             {
                 id: 1,
-                title: "Election reminder!",
+                title: notificationTitle,
                 body: `Reminder for election ${electionName}`,
                 schedule: { at: alertTime }
                 // We can try specifying the icons and sound later. Right now android has defaults which are fine. 
