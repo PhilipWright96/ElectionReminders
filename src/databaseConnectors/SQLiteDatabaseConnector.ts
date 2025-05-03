@@ -69,9 +69,9 @@ export class SQLiteDatabaseConnector implements DatabaseConnectorInterface {
         return result.values;
     }
 
-    async addReminder(databaseName: string, selectedReminderDateTime: Date, electionId: string): Promise<void> {
+    async addReminder(databaseName: string, selectedReminderDateTime: Date, electionId: string, reminderName: string | undefined): Promise<void> {
         console.log(`Adding reminder with time${selectedReminderDateTime} for election ${electionId}`);
-        const exampleReminderName = "testReminderName", exampleReminderDetails = "Here are test reminder details",
+        const exampleReminderDetails = "Here are test reminder details",
             remindersTableName = "reminders", insertQuery = `
             INSERT INTO ${remindersTableName} (election_id, reminder_date, reminder_name, reminder_details, created_on)
             VALUES (?, ?, ?, ?, ?);
@@ -79,7 +79,7 @@ export class SQLiteDatabaseConnector implements DatabaseConnectorInterface {
         const result = await CapacitorSQLite.run({
             database: databaseName,
             statement: insertQuery,
-            values: [electionId, selectedReminderDateTime, exampleReminderName, exampleReminderDetails, Date.now()],
+            values: [electionId, selectedReminderDateTime, reminderName, exampleReminderDetails, Date.now()],
         });
 
         if (result.changes && result.changes.changes != undefined && result.changes.changes > 0) {
