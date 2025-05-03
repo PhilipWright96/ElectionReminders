@@ -6,13 +6,13 @@ import { BackEndReminder, FrontEndReminder } from './types';
 
 const databaseName = "testDatabase1234s.db";
 
-export async function createReminderInDatabase(selectedReminderDateTime: Date, electionId: string): Promise<void> {
+export async function createReminderInDatabase(selectedReminderDateTime: Date, electionId: string, reminderName: string | undefined | null): Promise<void> {
     console.log("Creating reminder!");
     try {
         const databaseConnector: DatabaseConnectorInterface = new SQLiteDatabaseConnector();
         await databaseConnector.openDatabase(databaseName);
         await databaseConnector.createOrUpdateReminderTable(databaseName);
-        await databaseConnector.addReminder(databaseName, selectedReminderDateTime, electionId);
+        await databaseConnector.addReminder(databaseName, selectedReminderDateTime, electionId, reminderName);
         await databaseConnector.closeDatabase(databaseName);
     }
     catch (error) {
