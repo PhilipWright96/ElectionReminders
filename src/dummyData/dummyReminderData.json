@@ -2,7 +2,7 @@
     {
         "reminderId": "1",
         "reminderName": "Reminder for a",
-        "reminderDate": "2023",
+        "reminderDate": "01/01/2023, 18:25:30",
         "createdOn": "31/03/2024",
         "reminderDetails": "Important for me, dont forget!",
         "electionId": "a8e30f6d-788c-4c5a-b941-8d2e7eb248ed"
@@ -11,14 +11,14 @@
         "reminderId": "2",
         "reminderName": "Reminder for b",
         "reminderDate": "2023",
-        "createdOn": "31/03/2024",
+        "createdOn": "01/01/2024, 18:25:30",
         "reminderDetails": "Important for me, dont forget!",
         "electionId": "42753a79-7834-4529-849f-f10009abf0f0"
     },
     {
         "reminderId": "3",
         "reminderName": "Reminder for c",
-        "reminderDate": "2023",
+        "reminderDate": "01/01/2024, 09:20:30",
         "createdOn": "31/03/2024",
         "reminderDetails": "Important for me, dont forget!",
         "electionId": "4ccb06db-8a64-4664-b69f-1b47a49373b2"
