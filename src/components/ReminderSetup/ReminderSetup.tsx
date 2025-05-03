@@ -1,6 +1,6 @@
 import RelativeDatePicker from '../RelativeDatePicker/RelativeDatePicker';
 import './ReminderSetup.css';
-import React, { createContext, useRef, useState } from 'react';
+import React, { createContext, useState } from 'react';
 import { IonAlert, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonItem, IonLabel, IonSelect, IonSelectOption, IonCheckbox, IonButton, IonInput } from '@ionic/react';
 import AbsoluteDatePicker from '../AbsoluteDatePicker/AbsoluteDatePicker';
 import { DateSelectionTypes } from './types';
