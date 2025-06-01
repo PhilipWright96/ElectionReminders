@@ -2,6 +2,9 @@ import CountdownCard from '../CountdownCard/CountdownCard';
 import './ReminderCard.css';
 import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle } from '@ionic/react';
 import { deleteReminderFromDatabase } from '../../databaseConnectors/databaseConnector';
+import { useState } from 'react';
+import EditReminderModal from '../EditReminderModal/EditReminderModal';
+import { EditReminderData } from './types';
 
 
 interface ReminderCard {
@@ -13,16 +16,27 @@ interface ReminderCard {
         reminderDetails: string
     },
     onDelete: (reminderId: string) => void
+    onChange: (changedReminderProperties: EditReminderData) => void
 }
 
-const ReminderCard: React.FC<ReminderCard> = ({ reminderProperties, onDelete }) => {
+const ReminderCard: React.FC<ReminderCard> = ({ reminderProperties, onDelete, onChange }) => {
+    const [showEditModal, setShowEditModal] = useState(false);
+
     console.log(`showing reminder ${JSON.stringify(reminderProperties)}`)
 
     const handleDeleteClick = () => {
         console.log(`Deleting reminder with id ${reminderProperties.reminderId}!`);
         deleteReminderFromDatabase(reminderProperties.reminderId);
         onDelete(reminderProperties.reminderId);
-    };
+    },
+        handleEditClick = () => {
+            console.log("showing modal");
+            console.log("reminder date is " + reminderProperties.reminderDate);
+            setShowEditModal(true);
+        },
+        setNewReminderProperties = (newReminderProperties: any) => {
+            onChange(newReminderProperties);
+        }
     return (
         <IonCard>
             <IonCardHeader>
@@ -43,13 +57,19 @@ const ReminderCard: React.FC<ReminderCard> = ({ reminderProperties, onDelete }) 
                     <IonButton fill="outline" size="small" color="dark">Election Details</IonButton>
                 </div>
                 <div className="col">
-                    <IonButton fill="outline" size="small" color="dark">Edit</IonButton>
+                    <IonButton fill="outline" size="small" color="dark" onClick={handleEditClick}>Edit</IonButton>
                 </div>
                 <div className="col">
                     <IonButton fill="outline" size="small" color="dark" onClick={handleDeleteClick}>Delete</IonButton>
                 </div>
             </div>
-        </IonCard>
+            <EditReminderModal
+                show={showEditModal}
+                onHide={() => setShowEditModal(false)}
+                reminderProperties={reminderProperties}
+                onSave={(editedReminderProperties) => setNewReminderProperties(editedReminderProperties)}
+            />
+        </IonCard >
     );
 };
 
