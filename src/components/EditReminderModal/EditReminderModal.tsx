@@ -60,7 +60,7 @@ const EditReminderModal: React.FC<EditReminderModalProps> = ({
                             onChange={(e) =>
                                 setLocalReminderProperties((prev) => ({
                                     ...prev,
-                                    [e.target.name]: e.target.value,
+                                    [e.target.name]: new Date(e.target.value).toLocaleString(),
                                 }))
                             }
                             placeholder="Edit Reminder Date"
