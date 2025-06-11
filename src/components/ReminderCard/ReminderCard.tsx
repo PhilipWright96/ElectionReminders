@@ -1,7 +1,7 @@
 import CountdownCard from '../CountdownCard/CountdownCard';
 import './ReminderCard.css';
 import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle } from '@ionic/react';
-import { deleteReminderFromDatabase } from '../../databaseConnectors/databaseConnector';
+import { deleteReminderFromDatabase, editReminderInDatabase } from '../../databaseConnectors/databaseConnector';
 import { useState } from 'react';
 import EditReminderModal from '../EditReminderModal/EditReminderModal';
 import { EditReminderData } from './types';
@@ -34,7 +34,9 @@ const ReminderCard: React.FC<ReminderCard> = ({ reminderProperties, onDelete, on
             console.log("reminder date is " + reminderProperties.reminderDate);
             setShowEditModal(true);
         },
-        setNewReminderProperties = (newReminderProperties: any) => {
+        setNewReminderProperties = (newReminderProperties: EditReminderData) => {
+            console.log(`Editing reminder ${newReminderProperties.reminderId}: ${newReminderProperties.reminderName}`);
+            editReminderInDatabase(newReminderProperties);
             onChange(newReminderProperties);
         }
     return (
