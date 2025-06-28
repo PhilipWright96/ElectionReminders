@@ -46,7 +46,7 @@ const ReminderCard: React.FC<ReminderCard> = ({ reminderProperties, onDelete, on
             </IonCardHeader>
 
             <IonCardContent>
-                <CountdownCard countdownCardProperties={{ countdownText: "Countdown to reminder which triggers on", countdownDate: new Date(2024, 2, 1) }}></CountdownCard>
+                <CountdownCard countdownCardProperties={{ countdownText: "Countdown to reminder which triggers on", countdownDate: parse(reminderProperties.reminderDate, "dd/MM/yyyy, HH:mm:ss", new Date()) }}></CountdownCard>
                 <b>Reminder Date: </b> {reminderProperties.reminderDate} <br></br>
                 <b>Created On: </b> {reminderProperties.createdOn} <br></br>
                 <b>Reminder Details: </b>{reminderProperties.reminderDetails} <br></br>
