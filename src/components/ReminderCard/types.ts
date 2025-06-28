@@ -6,3 +6,10 @@ export interface ReminderData {
     reminderDate: string,
     reminderDetails: string,
 }
+
+export interface EditReminderData {
+    reminderId: string,
+    reminderName: string,
+    reminderDate: string,
+    reminderDetails: string,
+}

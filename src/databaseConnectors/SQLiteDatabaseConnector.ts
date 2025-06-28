@@ -1,6 +1,7 @@
 import { CapacitorSQLite } from '@capacitor-community/sqlite';
 import { DatabaseConnectorInterface } from './DatabaseConnectorInterface';
 import { BackEndReminder, FrontEndReminder } from './types';
+import { EditReminderData } from '../components/ReminderCard/types';
 
 export class SQLiteDatabaseConnector implements DatabaseConnectorInterface {
 
@@ -12,10 +13,10 @@ export class SQLiteDatabaseConnector implements DatabaseConnectorInterface {
             readonly: false,
         };
 
-        console.log(`Creating db connection with ${databaseProperties}`)
+        console.log(`Creating db connection with ${JSON.stringify(databaseProperties)}`);
         await CapacitorSQLite.createConnection(databaseProperties);
 
-        console.log(`Opening db connection`)
+        console.log(`Opening db connection`);
         await CapacitorSQLite.open({
             database: databaseName,
             readonly: false,
@@ -104,6 +105,30 @@ export class SQLiteDatabaseConnector implements DatabaseConnectorInterface {
             console.log(`Reminder deleted successfully`);
         } else {
             console.error("Failed to delete reminder.");
+        }
+    }
+
+    async editReminder(databaseName: string, changedReminderProperties: EditReminderData): Promise<void> {
+        console.log(`Editing reminder with id ${changedReminderProperties.reminderId}`);
+        const remindersTableName = "reminders", editQuery = `
+            UPDATE ${remindersTableName} set reminder_name = ?, reminder_date = ?, reminder_details = ? WHERE id = ?;
+            `,
+            values = [
+                changedReminderProperties.reminderName,
+                changedReminderProperties.reminderDate,
+                changedReminderProperties.reminderDetails,
+                changedReminderProperties.reminderId];
+
+        const result = await CapacitorSQLite.run({
+            database: databaseName,
+            statement: editQuery,
+            values: values,
+        });
+
+        if (result.changes?.changes === 0) {
+            console.log("No edit has taken place.");
+        } else {
+            console.log(`Reminder with ID ${changedReminderProperties.reminderId} updated successfully.`);
         }
     }
 

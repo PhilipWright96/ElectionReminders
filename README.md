@@ -30,7 +30,9 @@ We have various helper commands in our package.json. For example...
 2. "npm run refresh-ionic" will rebuild the dist folder and ensure the android/ios folder is synced to the android environment. Useful if you have made a small change to the app and want direct feedback. 
 
 Tips: if something goes wrong with the android build, you should first simply try "./gradlew clean" on the android platform. Failing that, here you can simply delete the local android folder and rerun 
-"ionic cap add android". And to aid debugging, you can connect your phone to a computer, and go to the url
+"ionic cap add android". If you have problems like "Could not read workspace metadata" - consider deleting the "caches" folder in your .gradle folder. 
+
+And to aid debugging, you can connect your phone to a computer, and go to the url
 chrome://inspect/#devices to view your apps logs via the google dev console. Debugging via the google console and the 
 debugger keyword also works. 
 

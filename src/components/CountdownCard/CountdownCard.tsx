@@ -14,7 +14,6 @@ const CountdownCard: React.FC<CountdownCard> = ({ countdownCardProperties }) => 
         [hourValue, setHourValueToUpdate] = useState(0),
         [minuteValue, setMinuteValueToUpdate] = useState(0),
         [secondValue, setSecondValueToUpdate] = useState(0),
-        targetTime: number = countdownCardProperties.countdownDate.getTime(),
         numberOfMillisecondsInDay = 1000 * 60 * 60 * 24,
         timeToResetTimeValuesInMilliseconds = 1000,
         days = "Days",
@@ -22,25 +21,27 @@ const CountdownCard: React.FC<CountdownCard> = ({ countdownCardProperties }) => 
         minutes = "Minutes",
         seconds = "Seconds";
 
-    let date: Date = new Date(), now = date.getTime(),
+    let nowDate: Date = new Date(), now = nowDate.getTime(),
         differenceBetweenGoalTimeAndNow: number | null = null;
 
     useEffect(() => {
+        const targetTime: number = countdownCardProperties.countdownDate.getTime();
         const intervalId = setInterval(() => {
-            resetTimeValuesForCountdown()
+            resetTimeValuesForCountdown(targetTime)
         }, timeToResetTimeValuesInMilliseconds);
         return () => clearInterval(intervalId);
-    }, []); // The empty dependency array ensures that this effect runs only once on component mount
+    }, [countdownCardProperties.countdownDate]);
 
-    function resetTimeValuesForCountdown() {
-        date = new Date();
-        now = date.getTime();
+    function resetTimeValuesForCountdown(targetTime: number) {
+        nowDate = new Date();
+        now = nowDate.getTime();
         if (differenceBetweenGoalTimeAndNow) {
             setDayValueToUpdate(Math.floor(differenceBetweenGoalTimeAndNow));
         }
-        setHourValueToUpdate(23 - date.getHours());
-        setMinuteValueToUpdate(60 - date.getMinutes());
-        setSecondValueToUpdate(60 - date.getSeconds());
+        // TODO - get times working for countdown 
+        setHourValueToUpdate(23 - nowDate.getHours());
+        setMinuteValueToUpdate(60 - nowDate.getMinutes());
+        setSecondValueToUpdate(60 - nowDate.getSeconds());
 
         differenceBetweenGoalTimeAndNow = targetTime - now;
         differenceBetweenGoalTimeAndNow = differenceBetweenGoalTimeAndNow / numberOfMillisecondsInDay;

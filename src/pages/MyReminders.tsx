@@ -2,7 +2,7 @@ import { IonContent, IonHeader, IonItem, IonLabel, IonPage, IonTitle, IonToolbar
 import React, { useEffect, useState } from 'react';
 import { FilterFields } from '../components/CountryElections/types';
 import ReminderCard from '../components/ReminderCard/ReminderCard';
-import { ReminderData } from '../components/ReminderCard/types';
+import { EditReminderData, ReminderData } from '../components/ReminderCard/types';
 import { getRemindersFromPhoneDatabase } from '../databaseConnectors/databaseConnector';
 import { FrontEndReminder } from '../databaseConnectors/types';
 
@@ -24,6 +24,14 @@ const MyReminders: React.FC = () => {
         console.log(`Deleting reminder on frontend with id ${reminderId}`);
         setReminderDataResults(previousReminders =>
             previousReminders.filter(reminder => reminder.reminderId !== reminderId)
+        );
+    }, handleChangeReminder = (changedReminderProperties: EditReminderData) => {
+        setReminderDataResults(previousReminders =>
+            previousReminders.map(reminder =>
+                reminder.reminderId === changedReminderProperties.reminderId
+                    ? { ...reminder, ...changedReminderProperties }
+                    : reminder
+            )
         );
     };
 
@@ -119,7 +127,7 @@ const MyReminders: React.FC = () => {
             <IonContent className="ion-padding">
                 <IonList>
                     {reminderDataResults.map((reminder) => (
-                        <ReminderCard key={reminder.reminderName} reminderProperties={reminder} onDelete={handleDeleteReminder}
+                        <ReminderCard key={reminder.reminderName} reminderProperties={reminder} onDelete={handleDeleteReminder} onChange={handleChangeReminder}
                         />
                     ))}
                 </IonList>
