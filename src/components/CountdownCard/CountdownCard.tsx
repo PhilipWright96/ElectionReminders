@@ -38,7 +38,6 @@ const CountdownCard: React.FC<CountdownCard> = ({ countdownCardProperties }) => 
         if (differenceBetweenGoalTimeAndNow) {
             setDayValueToUpdate(Math.floor(differenceBetweenGoalTimeAndNow));
         }
-        const targetDate = new Date(targetTime);
         // TODO - get times working for countdown 
         setHourValueToUpdate(23 - nowDate.getHours());
         setMinuteValueToUpdate(60 - nowDate.getMinutes());
