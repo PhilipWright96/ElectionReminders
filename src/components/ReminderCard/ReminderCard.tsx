@@ -5,6 +5,7 @@ import { deleteReminderFromDatabase, editReminderInDatabase } from '../../databa
 import { useState } from 'react';
 import EditReminderModal from '../EditReminderModal/EditReminderModal';
 import { EditReminderData } from './types';
+import { parse } from 'date-fns';
 
 
 interface ReminderCard {
@@ -35,7 +36,7 @@ const ReminderCard: React.FC<ReminderCard> = ({ reminderProperties, onDelete, on
             setShowEditModal(true);
         },
         setNewReminderProperties = (newReminderProperties: EditReminderData) => {
-            console.log(`Editing reminder ${newReminderProperties.reminderId}: ${newReminderProperties.reminderName}`);
+            console.log(`Editing reminder ${newReminderProperties.reminderId}: ${newReminderProperties.reminderName}: ${newReminderProperties.reminderDate}`);
             editReminderInDatabase(newReminderProperties);
             onChange(newReminderProperties);
         }
