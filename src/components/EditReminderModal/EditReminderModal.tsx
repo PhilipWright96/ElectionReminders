@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { EditReminderData } from '../ReminderCard/types';
+import { parse } from 'date-fns'
+
 
 type EditReminderModalProps = {
     show: boolean;
@@ -21,11 +23,13 @@ const EditReminderModal: React.FC<EditReminderModalProps> = ({
         setLocalReminderProperties(reminderProperties);
     }, [reminderProperties]);
 
-    const toDatetimeLocal = (date: Date | string): string => {
-        const d = typeof date === 'string' ? new Date(date) : date;
-        const offset = d.getTimezoneOffset();
-        const localDate = new Date(d.getTime() - offset * 60000);
-        return localDate.toISOString().slice(0, 16); // YYYY-MM-DDTHH:mm
+    // The value the "datetime-local" form expects is in the form "YYYY-MM-DDTHH:MM"
+    // This isn't timezone/other date format friendly at all
+    const toDatetimeLocal = (date: string): string => {
+        const parsedDate = parse(date, "dd/MM/yyyy, HH:mm:ss", new Date());
+        const offset = parsedDate.getTimezoneOffset();
+        const localDate = new Date(parsedDate.getTime() - offset * 60000);
+        return localDate.toISOString().slice(0, 16);
     }
     return (
         <Modal show={show} onHide={onHide}>
