@@ -2,6 +2,7 @@
     {
         "electionName": "a",
         "electionId": "a8e30f6d-788c-4c5a-b941-8d2e7eb248ed",
+        "electionDetails": "This election is for the God Emperor of Mankind. Long may he reign over us weak mortals. The Astartes will come and save us all.",
         "electionDate": "2023",
         "electionSummary": "Summary for A",
         "isRepeating": true,
@@ -10,6 +11,7 @@
     {
         "electionName": "b",
         "electionId": "42753a79-7834-4529-849f-f10009abf0f0",
+        "electionDetails": "This election is for the God Emperor of Mankind. Long may he reign over us weak mortals. The Astartes will come and save us all.",
         "electionDate": "2024",
         "electionSummary": "Summary for B",
         "isRepeating": false,
@@ -18,6 +20,7 @@
     {
         "electionName": "c",
         "electionId": "4ccb06db-8a64-4664-b69f-1b47a49373b2",
+        "electionDetails": "This election is for the God Emperor of Mankind. Long may he reign over us weak mortals. The Astartes will come and save us all.",
         "electionDate": "2022",
         "electionSummary": "Summary for C",
         "isRepeating": true,
