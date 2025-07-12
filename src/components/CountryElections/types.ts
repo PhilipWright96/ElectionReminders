@@ -5,6 +5,8 @@ export interface FilterFields {
 
 export interface ElectionData {
     electionName: string,
+    electionId: string,
+    electionDetails: string,
     electionDate: string,
     electionSummary: string,
     isRepeating: boolean,
