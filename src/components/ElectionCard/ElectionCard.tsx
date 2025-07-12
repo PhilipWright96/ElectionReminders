@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './ElectionCard.css';
 import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle } from '@ionic/react';
 
@@ -5,6 +6,7 @@ interface ElectionCard {
     electionProperties: {
         electionId: string,
         electionName: string,
+        electionDetails: string,
         electionDate: string,
         electionSummary: string,
         isRepeating: boolean,
@@ -26,7 +28,17 @@ const ElectionCard: React.FC<ElectionCard> = ({ electionProperties }) => {
             </IonCardContent>
             <div className="row">
                 <div className="col">
-                    <IonButton fill="outline" size="small" color="dark" routerLink={`/electionDetails/${electionProperties.electionName}`}>More Details</IonButton>
+                    <IonButton fill="outline" size="small" color="dark">
+                        <Link
+                            to={{
+                                pathname: `/electionDetails/${electionProperties.electionName}`,
+                                state: { electionDetails: electionProperties.electionDetails },
+                            }}
+                            style={{ textDecoration: 'none', color: 'inherit' }}
+                        >
+                            More Details
+                        </Link>
+                    </IonButton>
                 </div>
                 <div className="col">
                     <IonButton fill="outline" size="small" color="dark" routerLink={`/setupReminder?electionName=${electionProperties.electionName}&electionDate=${electionProperties.electionDate}&electionId=${electionProperties.electionId}`}>Setup Reminder</IonButton>
