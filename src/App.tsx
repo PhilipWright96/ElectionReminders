@@ -27,25 +27,32 @@ import CountryElections from './components/CountryElections/CountryElections';
 import SetupReminderPage from './components/SetupReminderPage/SetupReminderPage';
 import ElectionDetailsPage from './components/ElectionDetailsPage/ElectionDetailsPage';
 import DevTestPage from './components/DevTestPage/DevTestPage';
+import { useEffect } from 'react';
+import { StatusBar } from '@capacitor/status-bar';
 
 setupIonicReact();
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route exact path="/home" component={Home} />
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
-        <Route exact path="/myReminders" component={MyReminders} />
-        <Route exact path="/countryElections/:countryName" component={CountryElections} />
-        <Route exact path="/setupReminder" component={SetupReminderPage} />
-        <Route exact path="/electionDetails/:electionName" component={ElectionDetailsPage} />
-        <Route exact path="/devTestPage" component={DevTestPage} />
-      </IonRouterOutlet>
-    </IonReactRouter>
-  </IonApp>
-);
+const App: React.FC = () => {
+  useEffect(() => {
+    StatusBar.setOverlaysWebView({ overlay: false });
+  }, []);
 
+  return (
+    <IonApp>
+      <IonReactRouter>
+        <IonRouterOutlet>
+          <Route exact path="/home" component={Home} />
+          <Route exact path="/">
+            <Redirect to="/home" />
+          </Route>
+          <Route exact path="/myReminders" component={MyReminders} />
+          <Route exact path="/countryElections/:countryName" component={CountryElections} />
+          <Route exact path="/setupReminder" component={SetupReminderPage} />
+          <Route exact path="/electionDetails/:electionName" component={ElectionDetailsPage} />
+          <Route exact path="/devTestPage" component={DevTestPage} />
+        </IonRouterOutlet>
+      </IonReactRouter>
+    </IonApp>
+  );
+};
 export default App;
