@@ -19,7 +19,7 @@ export async function getDataFromBackend() {
     console.log(rest);
 }
 
-export async function getElectionDataFromBackend(): Promise<ElectionData[]> {
+export async function getElectionDataFromBackend(countryName: string): Promise<ElectionData[]> {
     console.log("Retrieving election data");
     if (!enableBackendTesting) {
         console.log("Backend testing switched off - returning front end dummy data");
@@ -27,8 +27,7 @@ export async function getElectionDataFromBackend(): Promise<ElectionData[]> {
     }
     // Below code is just for testing. If you are calling the domain name, you shouldn't need the below hack. 
     // await HTTP.setServerTrustMode("nocheck");
-    const testCountryName = "Germany",
-        urlSearchParams = new URLSearchParams({ countryName: testCountryName }),
+    const urlSearchParams = new URLSearchParams({ countryName: countryName }),
         url = `${backendUrlWithoutPort}/electionsForCountry?${urlSearchParams.toString()}`,
         headers = {
             "Content-Type": "application/json",

@@ -25,13 +25,18 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
 
     useIonViewWillEnter(() => {
         const name = match.params.countryName
+        console.log(`Setting name ${name}`);
         setCountryInformation({ Name: name });
     })
 
-    async function fetchData(): Promise<void> {
+    async function fetchData(countryName: string | undefined): Promise<void> {
         try {
+            if (!countryName) {
+                console.error("Error - no country name given for election information");
+                return
+            }
             // Data comes from the backend as a string and we expect a JSON object. 
-            let backendElectionData = await getElectionDataFromBackend();
+            let backendElectionData = await getElectionDataFromBackend(countryName);
 
             if (typeof backendElectionData == "string") {
                 backendElectionData = JSON.parse(backendElectionData);
@@ -49,12 +54,13 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
 
     /*
     Use effect is a React hook triggered in various scenarios - initial render, dependency change, component
-    unmount. The empty array below shows that no dependencies are considered here and that we will only 
-    trigger this hook once on initial render
+    unmount. We will re-render when the country information name data is available. 
     */
     useEffect(() => {
-        fetchData();
-    }, []);
+        if (countryInformation?.Name) {
+            fetchData(countryInformation.Name);
+        }
+    }, [countryInformation]);
 
     if (loading) {
         return (
