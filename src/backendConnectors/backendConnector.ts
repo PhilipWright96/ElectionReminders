@@ -40,7 +40,7 @@ export async function getElectionDataFromBackend(): Promise<ElectionData[]> {
         }
         return res.data;
     }).catch((error) => {
-        console.error(`Error retrieving election results from backend ${error}`);
+        console.error(`Error retrieving election results from backend ${JSON.stringify(error)}`);
     });
     console.log('retrieved data');
     console.log(JSON.stringify(electionResultsFromBackend));
