@@ -37,6 +37,8 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
             }
             // Data comes from the backend as a string and we expect a JSON object. 
             let backendElectionData = await getElectionDataFromBackend(countryName);
+            console.log("Receiving data from backend");
+            console.log(JSON.stringify(backendElectionData));
 
             if (typeof backendElectionData == "string") {
                 backendElectionData = JSON.parse(backendElectionData);
