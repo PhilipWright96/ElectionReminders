@@ -7,7 +7,8 @@ export interface ElectionData {
     electionName: string,
     electionId: string,
     electionDetails: string,
-    electionDate: string,
+    electionPollsOpenDateTime: string,
+    electionPollsCloseDateTime: string,
     electionSummary: string,
     isRepeating: boolean,
     repeatingEvery: string

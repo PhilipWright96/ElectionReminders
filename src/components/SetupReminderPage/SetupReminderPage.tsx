@@ -13,11 +13,11 @@ const SetupReminderPage: React.FC<SetupReminderPageProperties> = () => {
     const queryParams = new URLSearchParams(location.search),
         electionName = queryParams.get('electionName'),
         electionId = queryParams.get('electionId'),
-        electionDateString = queryParams.get('electionDate');
+        electionPollsOpenDateString = queryParams.get('electionPollsOpenDate');
 
-    const electionDate = electionDateString != null ? new Date(electionDateString) : null;
+    const electionPollsOpenDate = electionPollsOpenDateString != null ? new Date(electionPollsOpenDateString) : null;
 
-    if (!electionDate) {
+    if (!electionPollsOpenDate) {
         console.error("Can't have a election without a date!")
         return;
     }
@@ -35,8 +35,8 @@ const SetupReminderPage: React.FC<SetupReminderPageProperties> = () => {
                 </IonToolbar>
             </IonHeader>
             <IonContent>
-                <CountdownCard countdownCardProperties={{ countdownText: "Countdown for election on", countdownDate: electionDate }}></CountdownCard>
-                <ReminderSetup reminderSetupProperties={{ electionName, electionId, electionDate }}></ReminderSetup>
+                <CountdownCard countdownCardProperties={{ countdownText: "Countdown for election on", countdownDate: electionPollsOpenDate }}></CountdownCard>
+                <ReminderSetup reminderSetupProperties={{ electionName, electionId, electionPollsOpenDate }}></ReminderSetup>
             </IonContent>
         </IonPage >
     );
