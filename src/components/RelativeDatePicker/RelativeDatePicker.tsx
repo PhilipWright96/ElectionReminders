@@ -5,10 +5,10 @@ import { SelectedReminderDateTimeContext } from '../ReminderSetup/ReminderSetup'
 import { RelativeDateData } from './types';
 
 interface RelativeDatePicker {
-    electionDate: Date
+    electionDatePollsOpen: Date
 }
 
-const RelativeDatePicker: React.FC<RelativeDatePicker> = ({ electionDate }) => {
+const RelativeDatePicker: React.FC<RelativeDatePicker> = ({ electionDatePollsOpen }) => {
     const { setSelectedReminderDateTime } = useContext(SelectedReminderDateTimeContext),
         [relativeDateData, setRelativeDateData] = useState({
             minutesBefore: null,
@@ -26,7 +26,7 @@ const RelativeDatePicker: React.FC<RelativeDatePicker> = ({ electionDate }) => {
         };
 
     useEffect(() => {
-        const reminderDateTime = calculateReminderDateTime(electionDate, relativeDateData);
+        const reminderDateTime = calculateReminderDateTime(electionDatePollsOpen, relativeDateData);
         setSelectedReminderDateTime(reminderDateTime);
     }, [relativeDateData]); // Runs when relativeDateData changes        
 
@@ -36,32 +36,32 @@ const RelativeDatePicker: React.FC<RelativeDatePicker> = ({ electionDate }) => {
                 <div className="row">
                     <div className="col">
                         <IonItem>
-                            <IonInput label="Minutes before Election" type="number" placeholder="0" value={relativeDateData.minutesBefore}
+                            <IonInput label="Minutes before Election Polls Open" type="number" placeholder="0" value={relativeDateData.minutesBefore}
                                 onIonInput={(e) => handleInputChange("minutesBefore", e.detail.value!)}
                             ></IonInput>
                         </IonItem>
                         <IonItem>
-                            <IonInput label="Hours before Election" type="number" placeholder="0" value={relativeDateData.hoursBefore}
+                            <IonInput label="Hours before Election Polls Open" type="number" placeholder="0" value={relativeDateData.hoursBefore}
                                 onIonInput={(e) => handleInputChange("hoursBefore", e.detail.value!)}
                             ></IonInput>
                         </IonItem>
                         <IonItem>
-                            <IonInput label="Days before Election" type="number" placeholder="0" value={relativeDateData.daysBefore}
+                            <IonInput label="Days before Election Polls Open" type="number" placeholder="0" value={relativeDateData.daysBefore}
                                 onIonInput={(e) => handleInputChange("daysBefore", e.detail.value!)}
                             ></IonInput>
                         </IonItem>
                         <IonItem>
-                            <IonInput label="Weeks before Election" type="number" placeholder="0" value={relativeDateData.weeksBefore}
+                            <IonInput label="Weeks before Election Polls Open" type="number" placeholder="0" value={relativeDateData.weeksBefore}
                                 onIonInput={(e) => handleInputChange("weeksBefore", e.detail.value!)}
                             ></IonInput>
                         </IonItem>
                         <IonItem>
-                            <IonInput label="Months before Election" type="number" placeholder="0" value={relativeDateData.monthsBefore}
+                            <IonInput label="Months before Election Polls Open" type="number" placeholder="0" value={relativeDateData.monthsBefore}
                                 onIonInput={(e) => handleInputChange("monthsBefore", e.detail.value!)}
                             ></IonInput>
                         </IonItem>
                         <IonItem>
-                            <IonInput label="Years before Election" type="number" placeholder="0" value={relativeDateData.yearsBefore}
+                            <IonInput label="Years before Election Polls Open" type="number" placeholder="0" value={relativeDateData.yearsBefore}
                                 onIonInput={(e) => handleInputChange("yearsBefore", e.detail.value!)}
                             ></IonInput>
                         </IonItem>
@@ -72,8 +72,8 @@ const RelativeDatePicker: React.FC<RelativeDatePicker> = ({ electionDate }) => {
     );
 };
 
-function calculateReminderDateTime(electionDate: Date, dateAdjustments: RelativeDateData) {
-    const newReminderDateTime = new Date(electionDate);
+function calculateReminderDateTime(electionDatePollsOpen: Date, dateAdjustments: RelativeDateData) {
+    const newReminderDateTime = new Date(electionDatePollsOpen);
 
     if (dateAdjustments.minutesBefore) newReminderDateTime.setMinutes(newReminderDateTime.getMinutes() - dateAdjustments.minutesBefore);
     if (dateAdjustments.hoursBefore) newReminderDateTime.setHours(newReminderDateTime.getHours() - dateAdjustments.hoursBefore);

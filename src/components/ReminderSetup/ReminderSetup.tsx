@@ -12,7 +12,7 @@ interface ReminderSetup {
     reminderSetupProperties: {
         electionName: string | null,
         electionId: string | null,
-        electionDate: Date,
+        electionPollsOpenDate: Date,
     }
 }
 export const SelectedReminderDateTimeContext = createContext<{
@@ -64,7 +64,7 @@ const ReminderSetup: React.FC<ReminderSetup> = ({ reminderSetupProperties }) => 
                 </IonItem>
 
                 <IonCardContent>
-                    {dateTypeTerm === dateSelectionTypes.RELATIVE_DATE && <RelativeDatePicker electionDate={reminderSetupProperties.electionDate}></RelativeDatePicker>}
+                    {dateTypeTerm === dateSelectionTypes.RELATIVE_DATE && <RelativeDatePicker electionDatePollsOpen={reminderSetupProperties.electionPollsOpenDate}></RelativeDatePicker>}
                     {dateTypeTerm === dateSelectionTypes.ABSOLUTE_DATE && <AbsoluteDatePicker></AbsoluteDatePicker>}
                     <div className="row">
                         <div className="text-start">
