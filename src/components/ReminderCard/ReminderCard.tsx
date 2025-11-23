@@ -54,9 +54,6 @@ const ReminderCard: React.FC<ReminderCard> = ({ reminderProperties, onDelete, on
             </IonCardContent>
             <div className="row">
                 <div className="col">
-                    <IonButton fill="outline" size="small" color="dark">Set as Favourite</IonButton>
-                </div>
-                <div className="col">
                     <IonButton fill="outline" size="small" color="dark">Election Details</IonButton>
                 </div>
                 <div className="col">
