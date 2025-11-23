@@ -29,6 +29,7 @@ import ElectionDetailsPage from './components/ElectionDetailsPage/ElectionDetail
 import DevTestPage from './components/DevTestPage/DevTestPage';
 import { useEffect } from 'react';
 import { StatusBar } from '@capacitor/status-bar';
+import HowToPage from './components/HowToPage/HowToPage';
 
 setupIonicReact();
 
@@ -50,6 +51,7 @@ const App: React.FC = () => {
           <Route exact path="/setupReminder" component={SetupReminderPage} />
           <Route exact path="/electionDetails/:electionName" component={ElectionDetailsPage} />
           <Route exact path="/devTestPage" component={DevTestPage} />
+          <Route exact path="/howto" component={HowToPage} />
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>

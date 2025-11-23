@@ -1,6 +1,5 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonButton, IonApp } from '@ionic/react';
 import IntroductionTextCard from '../components/IntroductionTextCard/IntroductionTextCard';
-import FavouritesCard from '../components/FavouritesCard/FavouritesCard';
 import './Home.css';
 import CountrySearchBar from '../components/CountrySearchBar/CountrySearchBar';
 
@@ -28,9 +27,6 @@ const Home: React.FC = () => {
               <div className="row">
                 <CountrySearchBar></CountrySearchBar>
               </div>
-            </div>
-            <div className='row text-center'>
-              <FavouritesCard />
             </div>
           </div>
         </IonContent>
