@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import './ElectionCard.css';
 import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle } from '@ionic/react';
+import { useTranslation } from 'react-i18next';
 
 interface ElectionCard {
     electionProperties: {
@@ -16,6 +17,11 @@ interface ElectionCard {
 }
 
 const ElectionCard: React.FC<ElectionCard> = ({ electionProperties }) => {
+    const { t } = useTranslation(),
+        electionPollsOpenText = t("Election_Polls_Open"),
+        electionPollsCloseText = t("Election_Polls_Close"),
+        electionSummaryText = t("Election_Summary"),
+        moreDetailsText = t("More_Details");
     return (
         <IonCard>
             <IonCardHeader>
@@ -23,9 +29,9 @@ const ElectionCard: React.FC<ElectionCard> = ({ electionProperties }) => {
             </IonCardHeader>
 
             <IonCardContent>
-                <b>Election Polls Open: </b> {electionProperties.electionPollsOpenDateTime} <br></br>
-                <b>Election Polls Close: </b> {electionProperties.electionPollsCloseDateTime} <br></br>
-                <b>Election Summary: </b> {electionProperties.electionSummary} <br></br>
+                <b>{electionPollsOpenText}: </b> {electionProperties.electionPollsOpenDateTime} <br></br>
+                <b>{electionPollsCloseText}: </b> {electionProperties.electionPollsCloseDateTime} <br></br>
+                <b>{electionSummaryText}: </b> {electionProperties.electionSummary} <br></br>
             </IonCardContent>
             <div className="row">
                 <div className="col">
@@ -37,7 +43,7 @@ const ElectionCard: React.FC<ElectionCard> = ({ electionProperties }) => {
                             }}
                             style={{ textDecoration: 'none', color: 'inherit' }}
                         >
-                            More Details
+                            {moreDetailsText}
                         </Link>
                     </IonButton>
                 </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { EditReminderData } from '../ReminderCard/types';
 import { parse } from 'date-fns'
+import { useTranslation } from 'react-i18next';
 
 
 type EditReminderModalProps = {
@@ -17,7 +18,17 @@ const EditReminderModal: React.FC<EditReminderModalProps> = ({
     reminderProperties,
     onSave,
 }) => {
-    const [localReminderProperties, setLocalReminderProperties] = useState(reminderProperties);
+    const [localReminderProperties, setLocalReminderProperties] = useState(reminderProperties),
+        { t } = useTranslation(),
+        editReminderText = t("Edit_Reminder"),
+        editReminderNameText = t("Edit_Reminder_Name"),
+        reminderNameText = t("Reminder_Name"),
+        reminderDateText = t("Reminder_Date"),
+        editReminderDateText = t("Edit_Reminder_Date"),
+        reminderDetailsText = t("Reminder_Details"),
+        editReminderDetailsText = t("Edit_Reminder_Details"),
+        saveText = t("Save"),
+        closeText = t("Close");
 
     useEffect(() => {
         setLocalReminderProperties(reminderProperties);
@@ -26,21 +37,21 @@ const EditReminderModal: React.FC<EditReminderModalProps> = ({
     // The value the "datetime-local" form expects is in the form "YYYY-MM-DDTHH:MM"
     // This isn't timezone/other date format friendly at all
     const toDatetimeLocal = (date: string): string => {
-        const parsedDate = parse(date, "dd/MM/yyyy, HH:mm:ss", new Date());
-        const offset = parsedDate.getTimezoneOffset();
-        const localDate = new Date(parsedDate.getTime() - offset * 60000);
+        const parsedDate = parse(date, "dd/MM/yyyy, HH:mm:ss", new Date()),
+            offset = parsedDate.getTimezoneOffset(),
+            localDate = new Date(parsedDate.getTime() - offset * 60000);
         return localDate.toISOString().slice(0, 16);
     }
     return (
         <Modal show={show} onHide={onHide}>
             <Modal.Header closeButton>
-                <Modal.Title>Edit Reminder</Modal.Title>
+                <Modal.Title>{editReminderText}</Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
                 <Form>
                     <Form.Group className="mb-3" controlId="reminderName">
-                        <Form.Label>Reminder Name</Form.Label>
+                        <Form.Label>{reminderNameText}</Form.Label>
                         <Form.Control
                             type="text"
                             name="reminderName"
@@ -51,12 +62,12 @@ const EditReminderModal: React.FC<EditReminderModalProps> = ({
                                     [e.target.name]: e.target.value,
                                 }))
                             }
-                            placeholder="Edit Reminder Name"
+                            placeholder={editReminderNameText}
                         />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="reminderDate">
-                        <Form.Label>Reminder Date</Form.Label>
+                        <Form.Label>{reminderDateText}</Form.Label>
                         <Form.Control
                             type="datetime-local"
                             name="reminderDate"
@@ -67,12 +78,12 @@ const EditReminderModal: React.FC<EditReminderModalProps> = ({
                                     [e.target.name]: new Date(e.target.value).toLocaleString(),
                                 }))
                             }
-                            placeholder="Edit Reminder Date"
+                            placeholder={editReminderDateText}
                         />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="reminderDetails">
-                        <Form.Label>Reminder Details</Form.Label>
+                        <Form.Label>{reminderDetailsText}</Form.Label>
                         <Form.Control
                             type="text"
                             name="reminderDetails"
@@ -83,7 +94,7 @@ const EditReminderModal: React.FC<EditReminderModalProps> = ({
                                     [e.target.name]: e.target.value,
                                 }))
                             }
-                            placeholder="Edit Reminder Details"
+                            placeholder={editReminderDetailsText}
                         />
                     </Form.Group>
                 </Form>
@@ -97,11 +108,11 @@ const EditReminderModal: React.FC<EditReminderModalProps> = ({
                         onHide();
                     }}
                 >
-                    Save
+                    {saveText}
                 </Button>
 
                 <Button variant="secondary" onClick={onHide}>
-                    Close
+                    {closeText}
                 </Button>
             </Modal.Footer>
         </Modal>
