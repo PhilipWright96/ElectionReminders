@@ -1,0 +1,23 @@
+{
+    "IntroText": "Willkommen bei Election Reminders - der App, die man daran erinnert, wie und wann man seine demokratische Rechte verwenden kann. Erstes Mal bei dieser App? Sieh unsere",
+    "IntroText2": "Seite für Hilfe",
+    "Date": "Datum",
+    "Loading": "Lädt",
+    "Elections": "Wahlen",
+    "Enter_country_name_here": "Ländernamen hier eintragen",
+    "Edit_Reminder": "Erinnerung editieren",
+    "Reminder_Name": "Erinnerungsnamen",
+    "Reminder_Date": "Erinnerungsdatum",
+    "Reminder_Details": "Erinnerungsdetails",
+    "Edit_Reminder_Name": "Erinnerungsnamen editieren",
+    "Edit_Reminder_Date": "Erinnerungsdatum editieren",
+    "Edit_Reminder_Details": "Erinnerungsdetails editieren",
+    "Save": "Speichern",
+    "Close": "Schließen",
+    "Filter_By": "Filtern nach",
+    "Election_Polls_Open": "Wahllokale öffnen",
+    "Election_Polls_Close": "Wahllokale schließen",
+    "Election_Summary": "Wahlzusammungfassung",
+    "Details_For_Election": "Details für Wahl",
+    "More_Details": "Mehr Details"
+}
