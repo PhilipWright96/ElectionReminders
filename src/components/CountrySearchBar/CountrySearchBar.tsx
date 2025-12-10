@@ -4,13 +4,15 @@ import React, { useState, useEffect } from 'react';
 import { useDummyApi, SearchResult } from '../../hooks/useDummyApi';
 import { checkboxOutline } from "ionicons/icons"
 import { countryMatchesSearchTerm } from './utils';
+import { useTranslation } from 'react-i18next';
 interface ContainerProps { }
 
 const CountrySearchBar: React.FC<ContainerProps> = () => {
 
     const initialData: SearchResult[] = [],
         debounceTimeInMilliseconds = 300,
-        searchBarPlaceholder = "Enter country name here",
+        { t } = useTranslation(),
+        searchBarPlaceholder = t("Enter_country_name_here"),
         [searchTerm, setSearchTerm] = useState(""),
         [results, setResults] = useState(initialData);
 

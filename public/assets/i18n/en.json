@@ -1,0 +1,23 @@
+{
+    "IntroText": "Welcome to Election Reminders - the app to help you remember how and when to use your democratic rights. First time using this app? See our",
+    "IntroText2": "page for help.",
+    "Name": "Name",
+    "Loading": "Loading",
+    "Elections": "Elections",
+    "Enter_country_name_here": "Entry country name here",
+    "Edit_Reminder": "Edit Reminder",
+    "Reminder_Name": "Reminder Name",
+    "Reminder_Date": "Reminder Date",
+    "Reminder_Details": "Reminder Details",
+    "Edit_Reminder_Name": "Edit Reminder Name",
+    "Edit_Reminder_Date": "Edit Reminder Date",
+    "Edit_Reminder_Details": "Edit Reminder Details",
+    "Save": "Save",
+    "Close": "Close",
+    "Filter_By": "Filter By",
+    "Election_Polls_Open": "Election Polls Open",
+    "Election_Polls_Close": "Election Polls Close",
+    "Election_Summary": "Election Summary",
+    "Details_For_Election": "Details For Election",
+    "More_Details": "More Details"
+}

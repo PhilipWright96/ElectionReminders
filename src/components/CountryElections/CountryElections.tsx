@@ -5,6 +5,7 @@ import { CountryInformation } from '../../hooks/useDummyApi';
 import ElectionCard from '../ElectionCard/ElectionCard';
 import { getElectionDataFromBackend } from '../../backendConnectors/backendConnector';
 import { ElectionData, FilterFields } from './types';
+import { useTranslation } from 'react-i18next';
 
 interface CountryElectionPageProperties extends RouteComponentProps<{ countryName: string }> { }
 
@@ -21,7 +22,9 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
         filterFields: FilterFields = {
             NAME: "name",
             DATE: "date"
-        }
+        },
+        { t } = useTranslation(),
+        filterByText = t("Filter_By");
 
     useIonViewWillEnter(() => {
         const name = match.params.countryName
@@ -67,7 +70,7 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
     if (loading) {
         return (
             <IonPage>
-                Loading...
+                <p>{t("Loading")} </p>
             </IonPage>
         )
     }
@@ -87,18 +90,18 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
                         <IonBackButton defaultHref="/home" />
                     </IonButtons>
                     <div className='row text-center'>
-                        <IonTitle>{countryInformation?.Name} Elections</IonTitle>
+                        <IonTitle>{countryInformation?.Name} <p>{t("Elections")} </p></IonTitle>
                     </div>
                 </IonToolbar>
             </IonHeader>
             <IonItem>
-                <IonLabel>Filter By</IonLabel>
+                <IonLabel>{filterByText}</IonLabel>
                 <IonSelect
                     value={filterTypeTerm}
                     onIonChange={(e) => setFilterTypeTerm(e.detail.value!)}
                 >
-                    <IonSelectOption value={filterFields.NAME}>Name</IonSelectOption>
-                    <IonSelectOption value={filterFields.DATE}>Date</IonSelectOption>
+                    <IonSelectOption value={filterFields.NAME}><p>{t("Name")} </p></IonSelectOption>
+                    <IonSelectOption value={filterFields.DATE}><p>{t("Date")} </p></IonSelectOption>
                 </IonSelect>
             </IonItem>
             <IonSearchbar
