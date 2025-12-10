@@ -31,23 +31,27 @@ const CountrySearchBar: React.FC<ContainerProps> = () => {
 
     return (
         <>
-            <IonSearchbar
-                value={searchTerm}
-                onIonChange={(e) => setSearchTerm(e.detail.value!)}
-                showClearButton="always"
-                animated={true}
-                placeholder={searchBarPlaceholder}
-                debounce={debounceTimeInMilliseconds}
-            ></IonSearchbar >
+            <div className="country-search-container">
+                <IonSearchbar
+                    value={searchTerm}
+                    onIonChange={(e) => setSearchTerm(e.detail.value!)}
+                    showClearButton="always"
+                    animated={true}
+                    placeholder={searchBarPlaceholder}
+                    debounce={debounceTimeInMilliseconds}
+                ></IonSearchbar >
 
-            <IonList>
-                {results.map((result: SearchResult) => (
-                    <IonItem key={result.Name} routerLink={`/countryElections/${result.Name}`}>
-                        <IonLabel> {result.Name}</IonLabel>
-                        <IonIcon slot="end" icon={checkboxOutline} />
-                    </IonItem>
-                ))}
-            </IonList >
+                {results.length > 0 && (
+                    <IonList>
+                        {results.map((result) => (
+                            <IonItem key={result.Name} routerLink={`/countryElections/${result.Name}`}>
+                                <IonLabel>{result.Name}</IonLabel>
+                                <IonIcon slot="end" icon={checkboxOutline} />
+                            </IonItem>
+                        ))}
+                    </IonList>
+                )}
+            </div>
         </>
     );
 };
