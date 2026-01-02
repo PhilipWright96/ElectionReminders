@@ -8,7 +8,7 @@ export type FrontEndReminder = {
 };
 
 export type BackEndReminder = {
-    id: number;
+    id: string;
     reminder_name: string;
     election_id: string;
     reminder_details: string;
