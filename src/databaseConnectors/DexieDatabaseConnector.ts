@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+// Databasename is a unused variable but required in the signature. We can adapt the signature when we know we don't want SQL
 import { DatabaseConnectorInterface } from './DatabaseConnectorInterface';
 import { BackEndReminder, FrontEndReminder } from './types';
 import { EditReminderData } from '../components/ReminderCard/types';
@@ -16,24 +18,20 @@ export class DexieDatabaseConnector extends Dexie implements DatabaseConnectorIn
         });
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async openDatabase(databaseName: string): Promise<void> {
         console.log("Dexie doesn't need to open the database explicitly!");
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async createOrUpdateReminderTable(databaseName: string): Promise<void> {
         console.log("Dexie doesn't need to open or update tables")
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async readReminderTable(databaseName: string): Promise<BackEndReminder[]> {
         console.log(`Reading reminders from ${databaseName}`);
 
         return await this.reminders.toArray();
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async addReminder(databaseName: string, selectedReminderDateTime: Date, electionId: string, reminderName: string | undefined): Promise<void> {
         console.log(`Adding reminder with time${selectedReminderDateTime} for election ${electionId}`);
         if (!reminderName) {
@@ -50,7 +48,6 @@ export class DexieDatabaseConnector extends Dexie implements DatabaseConnectorIn
         });
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async deleteReminder(databaseName: string, reminderId: string): Promise<void> {
         await this.reminders
             .where('reminder_name')
@@ -58,7 +55,6 @@ export class DexieDatabaseConnector extends Dexie implements DatabaseConnectorIn
             .delete();
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async editReminder(databaseName: string, changedReminderProperties: EditReminderData): Promise<void> {
         console.log(`Editing reminder with id ${changedReminderProperties.reminderId}`);
 
@@ -72,7 +68,6 @@ export class DexieDatabaseConnector extends Dexie implements DatabaseConnectorIn
             });
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async closeDatabase(databaseName: string): Promise<void> {
         console.log(`Dexie doesn't need to close databases`);
     }
