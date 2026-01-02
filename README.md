@@ -17,7 +17,7 @@ You can also make changes and what you see on localhost will be automatically up
 # How to use capacitor with this project: 
 1. If you want to create a build - just run "ionic build" which will create a dist folder.
 2. From there you can run commands like "ionic cap add android" and "ionic cap add ios" to create the native folders for these platforms. 
-(Warning with android build - If you build android, you will have to go into the android folder and set the gradle version (com.android.tools.build:gradle:8.6.0 in android\build.gradle) to 8.6.0. Thats the version that android studio supports.)
+(Warning with android build - If you build android, you will have to go into the android folder and set the gradle version (com.android.tools.build:gradle:8.7.2 in android\build.gradle) to 8.6.0. Thats the version that android studio supports.)
 If you run into the invalid source release: 21 error message, you will have to go into the android folders and change all
 instances of JavaVersion.VERSION_21 to JavaVersion.VERSION_17
  
@@ -32,16 +32,17 @@ We have various helper commands in our package.json. For example...
 Tips: if something goes wrong with the android build, you should first simply try "./gradlew clean" on the android platform. Failing that, here you can simply delete the local android folder and rerun 
 "ionic cap add android". If you have problems like "Could not read workspace metadata" - consider deleting the "caches" folder in your .gradle folder. 
 
+If you are having problems with android plugins, you can also try "npx cap sync android" which copies across web assets and the dependencies to android studio. 
+
 And to aid debugging, you can connect your phone to a computer, and go to the url
 chrome://inspect/#devices to view your apps logs via the google dev console. Debugging via the google console and the 
 debugger keyword also works. 
 
-# SQLite Database and Phone Testing
-Our app will automatically create a SQLite database in the users phone and write/read data from this database. 
+# SQLite and Dexie Databases and Phone Testing
+Previously our app created a SQLite database in the users phone and wrote/read data from this database. We have recently refactored the app to use a Dexie database. 
 This is fine if you are testing with a phone. If not, we have a system boolean "enablePhoneTesting". You can set it to false, 
 and the program will not pull down data from a phone database, but will rather pull down test data. 
-Want to view the contents of the database? In Android Studio, you can go to "Device Explorer" and find the database in 
-/data/data/com.election.reminders/databases. You can then view the database however you want (I use DB Browser for SQLite)
+Want to view the contents of the old SQL database if you are using it? In Android Studio, you can go to "Device Explorer" and find the database in /data/data/com.election.reminders/databases. You can then view the database however you want (I use DB Browser for SQLite). Want to view the contents of the Dexie database? Go to chrome://inspect/#devices while the app is running and under "Application" view the IndexedDB tab. 
 
 # Project Structure
 Most of what exists was automatically generated as a template ionic/react project. As a short summary

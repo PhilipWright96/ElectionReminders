@@ -4,16 +4,21 @@ import { enablePhoneTesting } from "../assets/config.json";
 import dummyReminderData from "../dummyData/dummyReminderData.json";
 import { BackEndReminder, FrontEndReminder } from './types';
 import { EditReminderData } from '../components/ReminderCard/types';
+import { DexieDatabaseConnector } from './DexieDatabaseConnector';
 
 const databaseName = "testDatabase1234s.db";
 
 export async function createReminderInDatabase(selectedReminderDateTime: Date, electionId: string, reminderName: string | undefined | null): Promise<void> {
     console.log("Creating reminder!");
     try {
-        const databaseConnector: DatabaseConnectorInterface = new SQLiteDatabaseConnector();
+        const databaseConnector: DatabaseConnectorInterface = new DexieDatabaseConnector();
+        console.log("Opening db");
         await databaseConnector.openDatabase(databaseName);
+        console.log("Creating or updating table");
         await databaseConnector.createOrUpdateReminderTable(databaseName);
+        console.log("Adding reminder");
         await databaseConnector.addReminder(databaseName, selectedReminderDateTime, electionId, reminderName);
+        console.log("Closing db");
         await databaseConnector.closeDatabase(databaseName);
     }
     catch (error) {
@@ -54,7 +59,7 @@ export async function getRemindersFromPhoneDatabase(): Promise<FrontEndReminder[
         return dummyReminderData;
     }
     try {
-        const databaseConnector: DatabaseConnectorInterface = new SQLiteDatabaseConnector();
+        const databaseConnector: DatabaseConnectorInterface = new DexieDatabaseConnector();
         await databaseConnector.openDatabase(databaseName);
         const remindersFromDatabase: BackEndReminder[] = await databaseConnector.readReminderTable(databaseName);
         await databaseConnector.closeDatabase(databaseName);

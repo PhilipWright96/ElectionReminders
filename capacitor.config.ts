@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.election.reminders',
-  appName: 'electionReminders',
+  appName: 'Election Reminders',
   webDir: 'dist',
   server: {
     androidScheme: 'https'

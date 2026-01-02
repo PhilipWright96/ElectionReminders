@@ -90,7 +90,7 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
                         <IonBackButton defaultHref="/home" />
                     </IonButtons>
                     <div className='row text-center'>
-                        <IonTitle>{countryInformation?.Name} <p>{t("Elections")} </p></IonTitle>
+                        <IonTitle>{countryInformation?.Name} {t("Elections")}</IonTitle>
                     </div>
                 </IonToolbar>
             </IonHeader>
