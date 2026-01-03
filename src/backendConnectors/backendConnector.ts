@@ -1,4 +1,4 @@
-import { ElectionData } from "../components/CountryElections/types";
+import { ElectionBackendData, ElectionData } from "../components/CountryElections/types";
 import { HTTP } from '@awesome-cordova-plugins/http';
 import dummyElectionData from "../dummyData/dummyElectionData.json";
 import { enableBackendTesting } from "../assets/config.json";
@@ -23,7 +23,7 @@ export async function getElectionDataFromBackend(countryName: string): Promise<E
     console.log("Retrieving election data");
     if (!enableBackendTesting) {
         console.log("Backend testing switched off - returning front end dummy data");
-        return dummyElectionData;
+        return mapBackendDataToFrontEndData(dummyElectionData);
     }
     // Below code is just for testing. If you are calling the domain name, you shouldn't need the below hack. 
     // await HTTP.setServerTrustMode("nocheck");
@@ -60,4 +60,13 @@ export async function postDataToBackend() {
         })
     });
     console.log(rest);
+}
+
+function mapBackendDataToFrontEndData(backendData: ElectionBackendData[]): ElectionData[] {
+    const frontendResults = backendData.map((backendDataEntry) => ({
+        ...backendDataEntry,
+        electionPollsOpenDateTime: new Date(backendDataEntry.electionPollsOpenDateTime),
+        electionPollsCloseDateTime: new Date(backendDataEntry.electionPollsCloseDateTime)
+    }));
+    return frontendResults
 }
