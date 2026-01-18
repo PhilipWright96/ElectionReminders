@@ -46,8 +46,11 @@ const CountryElections: React.FC<CountryElectionPageProperties> = ({ match }) =>
             if (typeof backendElectionData == "string") {
                 backendElectionData = JSON.parse(backendElectionData);
             }
-            setDummyElectionDataResults(backendElectionData);
-            setInitialElectionDataResults(backendElectionData);
+
+            if (backendElectionData) {
+                setDummyElectionDataResults(backendElectionData);
+                setInitialElectionDataResults(backendElectionData);
+            }
             // Not sure what kind of error can come out here so we will just stringify and show it
         } catch (err: unknown) {
             setError(String(err));
