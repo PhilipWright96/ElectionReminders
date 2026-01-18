@@ -1,5 +1,5 @@
-import { ElectionData } from "../components/CountryElections/types";
-import { HTTP } from '@awesome-cordova-plugins/http';
+import { ElectionBackendData, ElectionData } from "../components/CountryElections/types";
+import { HTTP, HTTPResponse } from '@awesome-cordova-plugins/http';
 import dummyElectionData from "../dummyData/dummyElectionData.json";
 import { enableBackendTesting } from "../assets/config.json";
 
@@ -19,11 +19,11 @@ export async function getDataFromBackend() {
     console.log(rest);
 }
 
-export async function getElectionDataFromBackend(countryName: string): Promise<ElectionData[]> {
+export async function getElectionDataFromBackend(countryName: string): Promise<ElectionData[] | void> {
     console.log("Retrieving election data");
     if (!enableBackendTesting) {
         console.log("Backend testing switched off - returning front end dummy data");
-        return dummyElectionData;
+        return mapBackendDataToFrontEndData(dummyElectionData);
     }
     // Below code is just for testing. If you are calling the domain name, you shouldn't need the below hack. 
     // await HTTP.setServerTrustMode("nocheck");
@@ -31,20 +31,20 @@ export async function getElectionDataFromBackend(countryName: string): Promise<E
         url = `${backendUrlWithoutPort}/electionsForCountry?${urlSearchParams.toString()}`,
         headers = {
             "Content-Type": "application/json",
-        };
+        },
+        resultsFromBackend: HTTPResponse = await HTTP.get(url, {}, headers);
 
-    const electionResultsFromBackend = HTTP.get(url, {}, headers).then((res) => {
-        if (res.error) {
-            throw new Error(`Error retrieving data: ${res.status} ${res.error}`);
-        }
-        return res.data;
-    }).catch((error) => {
-        console.error(`Error retrieving election results from backend ${JSON.stringify(error)}`);
-    });
-    console.log('retrieved data');
-    console.log(JSON.stringify(electionResultsFromBackend));
+    if (resultsFromBackend.error) {
+        throw new Error(`Error retrieving data: ${resultsFromBackend.status} ${resultsFromBackend.error}`);
+    }
 
-    return await electionResultsFromBackend;
+    if (!resultsFromBackend.data) {
+        throw new Error("No data returned from backend");
+    }
+
+    const mappedBackendData: ElectionData[] = mapBackendDataToFrontEndData(resultsFromBackend.data);
+
+    return mappedBackendData;
 }
 
 
@@ -60,4 +60,21 @@ export async function postDataToBackend() {
         })
     });
     console.log(rest);
+}
+
+function mapBackendDataToFrontEndData(backendData: ElectionBackendData[]): ElectionData[] {
+    const backendDataToMap: ElectionBackendData[] = typeof backendData === "string"
+        ? JSON.parse(backendData)
+        : backendData;
+
+    console.log(`attempting to map results`);
+    console.log(backendDataToMap);
+    const frontendResults = backendDataToMap.map((backendDataEntry) => ({
+        ...backendDataEntry,
+        electionPollsOpenDateTime: new Date(backendDataEntry.electionPollsOpenDateTime),
+        electionPollsCloseDateTime: new Date(backendDataEntry.electionPollsCloseDateTime)
+    }));
+    console.log("front end results are ");
+    console.log(JSON.stringify(frontendResults));
+    return frontendResults
 }
