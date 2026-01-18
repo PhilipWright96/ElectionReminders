@@ -29,8 +29,8 @@ const ElectionCard: React.FC<ElectionCard> = ({ electionProperties }) => {
             </IonCardHeader>
 
             <IonCardContent>
-                <b>{electionPollsOpenText}: </b> {electionProperties.electionPollsOpenDateTime} <br></br>
-                <b>{electionPollsCloseText}: </b> {electionProperties.electionPollsCloseDateTime} <br></br>
+                <b>{electionPollsOpenText}: </b> {electionProperties.electionPollsOpenDateTime.toLocaleString()} <br></br>
+                <b>{electionPollsCloseText}: </b> {electionProperties.electionPollsCloseDateTime.toLocaleString()} <br></br>
                 <b>{electionSummaryText}: </b> {electionProperties.electionSummary} <br></br>
             </IonCardContent>
             <div className="row">
