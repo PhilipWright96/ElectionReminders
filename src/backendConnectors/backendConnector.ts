@@ -1,4 +1,5 @@
 import { ElectionBackendData, ElectionData } from "../components/CountryElections/types";
+import { ElectionSuggestion } from "../components/EnterElectionSuggestion/types";
 import { HTTP, HTTPResponse } from '@awesome-cordova-plugins/http';
 import dummyElectionData from "../dummyData/dummyElectionData.json";
 import { enableBackendTesting } from "../assets/config.json";
@@ -45,6 +46,26 @@ export async function getElectionDataFromBackend(countryName: string): Promise<E
     const mappedBackendData: ElectionData[] = mapBackendDataToFrontEndData(resultsFromBackend.data);
 
     return mappedBackendData;
+}
+
+export async function sendElectionSuggestion(electionSuggestion: ElectionSuggestion): Promise<void> {
+    console.log("Retrieving election data");
+    if (!enableBackendTesting) {
+        console.log("Backend testing switched off - making no real call");
+        return;
+    }
+
+    // Below code is just for testing. If you are calling the domain name, you shouldn't need the below hack. 
+    // await HTTP.setServerTrustMode("nocheck");
+    // const urlSearchParams = new URLSearchParams({ countryName: countryName }),
+    //     url = `${backendUrlWithoutPort}/electionsForCountry?${urlSearchParams.toString()}`,
+    //     headers = {
+    //         "Content-Type": "application/json",
+    //     },
+    //     resultsFromBackend: HTTPResponse = await HTTP.get(url, {}, headers);
+
+    console.log("Sending election suggestion");
+    console.log(JSON.stringify(electionSuggestion));
 }
 
 

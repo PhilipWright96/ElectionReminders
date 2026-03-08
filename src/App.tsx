@@ -28,7 +28,7 @@ import SetupReminderPage from './components/SetupReminderPage/SetupReminderPage'
 import ElectionDetailsPage from './components/ElectionDetailsPage/ElectionDetailsPage';
 import DevTestPage from './components/DevTestPage/DevTestPage';
 import Menu from './components/Menu/Menu';
-import EnterElection from './components/EnterElection/EnterElection';
+import EnterElectionSuggestion from './components/EnterElectionSuggestion/EnterElectionSuggestion';
 
 import { useEffect } from 'react';
 import { StatusBar } from '@capacitor/status-bar';
@@ -59,7 +59,7 @@ const App: React.FC = () => {
             <Route exact path="/devTestPage" component={DevTestPage} />
             <Route exact path="/howto" component={HowToPage} />
             <Route exact path="/menu" component={Menu} />
-            <Route exact path="/enterElection" component={EnterElection} />
+            <Route exact path="/enterElection" component={EnterElectionSuggestion} />
           </IonRouterOutlet>
         </IonSplitPane>
       </IonReactRouter>
