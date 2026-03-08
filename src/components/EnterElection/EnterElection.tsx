@@ -1,10 +1,14 @@
-import { setDate } from 'date-fns';
 import './EnterElection.css';
-import { IonCard, IonCardHeader, IonCardTitle, IonCol, IonContent, IonDatetime, IonGrid, IonHeader, IonInput, IonItem, IonLabel, IonPage, IonRow, IonSelect, IonSelectOption, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButton, IonCard, IonCardHeader, IonCardTitle, IonCol, IonContent, IonDatetime, IonGrid, IonHeader, IonInput, IonItem, IonLabel, IonModal, IonPage, IonRow, IonSelect, IonSelectOption, IonTitle, IonToolbar } from '@ionic/react';
+import { useState } from 'react';
 
 interface ContainerProps { }
 
 const EnterElection: React.FC<ContainerProps> = () => {
+
+    const [showSetElectionStartDateTime, setShowSetElectionStartDateTime] = useState(false),
+        [showSetElectionEndDateTime, setShowSetElectionEndDateTime] = useState(false);
+
     return (
         <IonContent fullscreen>
             <IonCard>
@@ -43,17 +47,39 @@ const EnterElection: React.FC<ContainerProps> = () => {
                 </div>
 
                 <IonItem>
-                    <IonLabel position="stacked">Election Polls Open Date and Time</IonLabel>
-                    <IonDatetime
-                        onIonChange={(e) => console.log(e.detail.value as string)}
-                    />
+                    <IonButton onClick={() => setShowSetElectionStartDateTime(!showSetElectionStartDateTime)}>
+                        Set Election Polls Open Date and Time
+                    </IonButton>
+
+                    {showSetElectionStartDateTime && (
+                        <IonDatetime
+                            presentation="date-time"
+                            onIonChange={(e) => {
+                                console.log(e.detail.value);
+                            }}
+                        />
+                    )}
+
                 </IonItem>
                 <IonItem>
-                    <IonLabel position="stacked">Election Polls Close Date and Time</IonLabel>
-                    <IonDatetime
-                        onIonChange={(e) => console.log(e.detail.value as string)}
-                    />
+                    <IonButton onClick={() => setShowSetElectionEndDateTime(!showSetElectionEndDateTime)}>
+                        Set Election Polls Close Date and Time
+                    </IonButton>
+                    {showSetElectionEndDateTime && (
+                        <IonDatetime
+                            presentation="date-time"
+                            onIonChange={(e) => {
+                                console.log(e.detail.value);
+                            }}
+                        />
+                    )}
                 </IonItem>
+                <IonItem>
+                    <IonInput placeholder="Election Details" onIonChange={(e) => console.log(e?.detail?.value)}></IonInput>
+                </IonItem>
+                <IonButton expand="block" type="submit">
+                    Submit Election
+                </IonButton>
             </IonCard >
         </IonContent>
     )
