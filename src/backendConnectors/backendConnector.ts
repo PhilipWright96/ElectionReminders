@@ -49,23 +49,25 @@ export async function getElectionDataFromBackend(countryName: string): Promise<E
 }
 
 export async function sendElectionSuggestion(electionSuggestion: ElectionSuggestion): Promise<void> {
-    console.log("Retrieving election data");
+    console.log("Sending election suggestion");
+    console.log(JSON.stringify(electionSuggestion));
+
     if (!enableBackendTesting) {
         console.log("Backend testing switched off - making no real call");
         return;
     }
 
-    // Below code is just for testing. If you are calling the domain name, you shouldn't need the below hack. 
-    // await HTTP.setServerTrustMode("nocheck");
-    // const urlSearchParams = new URLSearchParams({ countryName: countryName }),
-    //     url = `${backendUrlWithoutPort}/electionsForCountry?${urlSearchParams.toString()}`,
-    //     headers = {
-    //         "Content-Type": "application/json",
-    //     },
-    //     resultsFromBackend: HTTPResponse = await HTTP.get(url, {}, headers);
-
-    console.log("Sending election suggestion");
-    console.log(JSON.stringify(electionSuggestion));
+    const
+        url = `${backendUrlWithoutPort}/electionSuggestions`,
+        response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify([electionSuggestion])
+        });
+    console.log("Response is ");
+    console.log(JSON.stringify(response));
 }
 
 
