@@ -27,7 +27,7 @@ const EnterElectionSuggestion: React.FC<ContainerProps> = () => {
                     </div>
                 </IonCardHeader>
                 <IonItem>
-                    <IonInput placeholder="Election Name" onIonChange={(e) => setElectionName(e?.detail?.value)}></IonInput>
+                    <IonInput placeholder="Election Name" onIonInput={(e) => setElectionName(e?.detail?.value)}></IonInput>
                 </IonItem>
 
                 <div style={{ display: 'flex', gap: '10px' }}>
@@ -86,10 +86,11 @@ const EnterElectionSuggestion: React.FC<ContainerProps> = () => {
                     )}
                 </IonItem>
                 <IonItem>
-                    <IonInput placeholder="Election Details" onIonChange={(e) => setElectionDetails(e?.detail?.value)}></IonInput>
+                    <IonInput placeholder="Election Details" onIonInput={(e) => {
+                        setElectionDetails(e?.detail?.value)
+                    }}></IonInput>
                 </IonItem>
                 <IonButton expand="block" type="submit" onClick={() => {
-                    console.log("hi!");
                     if (!electionName) {
                         console.error("Election suggestion must have name");
                         return;
@@ -110,8 +111,8 @@ const EnterElectionSuggestion: React.FC<ContainerProps> = () => {
                         electionDetails,
                         electionType,
                         electionArea,
-                        electionStartDate: selectedElectionStartDateTime,
-                        electionEndDate: selectedElectionEndDateTime
+                        electionPollsOpenDateTime: selectedElectionStartDateTime,
+                        electionPollsCloseDateTime: selectedElectionEndDateTime
                     }
                     sendElectionSuggestion(electionSuggestion);
 
