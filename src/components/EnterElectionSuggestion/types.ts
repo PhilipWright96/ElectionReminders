@@ -3,6 +3,6 @@ export interface ElectionSuggestion {
     electionType: string,
     electionArea: string,
     electionDetails: string | null | undefined,
-    electionStartDate: Date,
-    electionEndDate: Date,
+    electionPollsOpenDateTime: Date,
+    electionPollsCloseDateTime: Date,
 }
