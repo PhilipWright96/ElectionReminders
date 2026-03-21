@@ -1,5 +1,5 @@
 import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
+import { IonApp, IonRouterOutlet, IonSplitPane, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
 
@@ -27,6 +27,9 @@ import CountryElections from './components/CountryElections/CountryElections';
 import SetupReminderPage from './components/SetupReminderPage/SetupReminderPage';
 import ElectionDetailsPage from './components/ElectionDetailsPage/ElectionDetailsPage';
 import DevTestPage from './components/DevTestPage/DevTestPage';
+import Menu from './components/Menu/Menu';
+import EnterElectionSuggestion from './components/EnterElectionSuggestion/EnterElectionSuggestion';
+
 import { useEffect } from 'react';
 import { StatusBar } from '@capacitor/status-bar';
 import HowToPage from './components/HowToPage/HowToPage';
@@ -41,20 +44,26 @@ const App: React.FC = () => {
   return (
     <IonApp>
       <IonReactRouter>
-        <IonRouterOutlet>
-          <Route exact path="/home" component={Home} />
-          <Route exact path="/">
-            <Redirect to="/home" />
-          </Route>
-          <Route exact path="/myReminders" component={MyReminders} />
-          <Route exact path="/countryElections/:countryName" component={CountryElections} />
-          <Route exact path="/setupReminder" component={SetupReminderPage} />
-          <Route exact path="/electionDetails/:electionName" component={ElectionDetailsPage} />
-          <Route exact path="/devTestPage" component={DevTestPage} />
-          <Route exact path="/howto" component={HowToPage} />
-        </IonRouterOutlet>
+        <IonSplitPane contentId="main">
+
+          <Menu />
+          <IonRouterOutlet id="main">
+            <Route exact path="/home" component={Home} />
+            <Route exact path="/">
+              <Redirect to="/home" />
+            </Route>
+            <Route exact path="/myReminders" component={MyReminders} />
+            <Route exact path="/countryElections/:countryName" component={CountryElections} />
+            <Route exact path="/setupReminder" component={SetupReminderPage} />
+            <Route exact path="/electionDetails/:electionName" component={ElectionDetailsPage} />
+            <Route exact path="/devTestPage" component={DevTestPage} />
+            <Route exact path="/howto" component={HowToPage} />
+            <Route exact path="/menu" component={Menu} />
+            <Route exact path="/enterElection" component={EnterElectionSuggestion} />
+          </IonRouterOutlet>
+        </IonSplitPane>
       </IonReactRouter>
-    </IonApp>
+    </IonApp >
   );
 };
 export default App;
