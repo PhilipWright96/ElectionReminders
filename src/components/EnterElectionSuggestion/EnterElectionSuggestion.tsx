@@ -1,5 +1,5 @@
 import './EnterElectionSuggestion.css';
-import { IonButton, IonCard, IonCardHeader, IonCardTitle, IonContent, IonDatetime, IonInput, IonItem, IonSelect, IonSelectOption } from '@ionic/react';
+import { IonAlert, IonButton, IonCard, IonCardHeader, IonCardTitle, IonContent, IonDatetime, IonInput, IonItem, IonSelect, IonSelectOption } from '@ionic/react';
 import { useState } from 'react';
 import { sendElectionSuggestion } from '../../backendConnectors/backendConnector';
 
@@ -8,6 +8,7 @@ interface ContainerProps { }
 const EnterElectionSuggestion: React.FC<ContainerProps> = () => {
 
     const [showSetElectionStartDateTime, setShowSetElectionStartDateTime] = useState(false),
+        [createSuggestionConfirmationOpen, setCreateSuggestionConfirmationOpen] = useState(false),
         [showSetElectionEndDateTime, setShowSetElectionEndDateTime] = useState(false),
         [electionName, setElectionName] = useState<string | undefined | null>(""),
         [selectedElectionStartDateTime, setSelectedElectionStartDateTime] = useState<Date | null>(null),
@@ -115,10 +116,17 @@ const EnterElectionSuggestion: React.FC<ContainerProps> = () => {
                         electionPollsCloseDateTime: selectedElectionEndDateTime
                     }
                     sendElectionSuggestion(electionSuggestion);
-
+                    setCreateSuggestionConfirmationOpen(true);
                 }}>
                     Submit Election
                 </IonButton>
+                <IonAlert
+                    isOpen={createSuggestionConfirmationOpen}
+                    header={"Suggestion created!"}
+                    message={"Suggestion will be checked by the admin!"}
+                    buttons={['Close']}
+                    onDidDismiss={() => setCreateSuggestionConfirmationOpen(false)}
+                ></IonAlert>
             </IonCard >
         </IonContent>
     )
