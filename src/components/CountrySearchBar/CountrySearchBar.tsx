@@ -1,35 +1,63 @@
 import './CountrySearchBar.css';
 import { IonSearchbar, IonList, IonItem, IonLabel, IonIcon, IonSelect, IonSelectOption } from '@ionic/react';
 import React, { useState, useEffect } from 'react';
-import { useDummyApi, SearchResult } from '../../hooks/useDummyApi';
 import { checkboxOutline } from "ionicons/icons"
-import { countryMatchesSearchTerm, retrieveDataFromBackend } from './utils';
+import { searchItemMatchesSearchTerm, retrieveDataFromBackend } from './utils';
 import { useTranslation } from 'react-i18next';
 import { ElectionData } from '../CountryElections/types';
 interface ContainerProps { }
 
 const CountrySearchBar: React.FC<ContainerProps> = () => {
 
+    type FilterType = keyof typeof filterTypeToDataField;
+
     const initialData: ElectionData[] = [],
         debounceTimeInMilliseconds = 300,
         { t } = useTranslation(),
         //searchBarPlaceholder = t("Enter_country_name_here"),
-        [filterType, setFilterType] = useState("country"),
-        searchBarPlaceholder = filterType != "all" ? `Enter ${filterType} name here` : `Enter name here`,
+        [filterType, setFilterType] = useState<FilterType>("country"),
+        searchBarPlaceholder = `Enter ${filterType} name here`,
         [searchTerm, setSearchTerm] = useState(""),
-        [results, setResults] = useState(initialData);
+        [results, setResults] = useState(initialData),
+        filterTypeToDataField = {
+            country: "countryName",
+            region: "regionName",
+            city: "cityName",
+            organization: "organizationName"
+        } as const;
 
-    useEffect(() => {
+    async function setSearchData(searchTerm: string, filterType: FilterType): Promise<void> {
         if (searchTerm === "") {
             setResults([]);
             return;
         }
-        const results: ElectionData[] = useDummyApi(),
-            dataMatchingUserSearchTerm =
-                results.filter(({ countryName }) =>
-                    countryMatchesSearchTerm(searchTerm, countryName)
+
+        const backendElectionData = await retrieveDataFromBackend(searchTerm, filterType),
+            fieldToFilterOn = filterTypeToDataField[filterType];
+
+        console.log(`field to filter on is ${fieldToFilterOn}`)
+
+        if (backendElectionData) {
+            const dataMatchingUserSearchTerm =
+                // Map then filter to avoid duplicates
+                Array.from(
+                    new Map(
+                        backendElectionData
+                            .filter(item => item[fieldToFilterOn] != null)
+                            .filter(item =>
+                                searchItemMatchesSearchTerm(searchTerm, item[fieldToFilterOn])
+                            )
+                            .map(item => [item[fieldToFilterOn], item])
+                    ).values()
                 );
-        setResults(dataMatchingUserSearchTerm);
+            console.log("Returning results");
+            console.log(dataMatchingUserSearchTerm);
+            setResults(dataMatchingUserSearchTerm);
+        }
+    }
+
+    useEffect(() => {
+        setSearchData(searchTerm, filterType)
     }, [searchTerm]);
 
     return (
@@ -44,7 +72,6 @@ const CountrySearchBar: React.FC<ContainerProps> = () => {
                     <IonSelectOption value="region">Region</IonSelectOption>
                     <IonSelectOption value="city">City</IonSelectOption>
                     <IonSelectOption value="organization">Organization</IonSelectOption>
-                    <IonSelectOption value="all">All</IonSelectOption>
                 </IonSelect>
             </IonItem >
 
@@ -61,8 +88,8 @@ const CountrySearchBar: React.FC<ContainerProps> = () => {
                 {results.length > 0 && (
                     <IonList>
                         {results.map((result) => (
-                            <IonItem key={result.countryName} routerLink={`/countryElections/${result.countryName}`}>
-                                <IonLabel>{result.countryName}</IonLabel>
+                            <IonItem key={result[filterTypeToDataField[filterType]]} routerLink={`/countryElections/${result.countryName}`}>
+                                <IonLabel>{result[filterTypeToDataField[filterType]]}</IonLabel>
                                 <IonIcon slot="end" icon={checkboxOutline} />
                             </IonItem>
                         ))}

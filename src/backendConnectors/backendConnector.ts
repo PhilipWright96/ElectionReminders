@@ -76,14 +76,6 @@ export async function getElectionResultsBasedOnOrganization(searchTerm: String):
     }
 }
 
-export async function getElectionResults(searchTerm: String): Promise<ElectionData[] | void> {
-    if (!enableBackendTesting) {
-        console.log("Backend testing switched off - returning front end dummy data");
-        return mapBackendDataToFrontEndData(dummyElectionData);
-    }
-}
-
-
 export async function sendElectionSuggestion(electionSuggestion: ElectionSuggestion): Promise<void> {
     console.log("Sending election suggestion");
     console.log(JSON.stringify(electionSuggestion));
