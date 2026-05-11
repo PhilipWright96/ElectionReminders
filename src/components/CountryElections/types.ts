@@ -15,6 +15,9 @@ export interface ElectionBackendData {
 export interface ElectionData {
     electionName: string,
     countryName: string,
+    regionName: string,
+    cityName: string,
+    organizationName: string,
     electionId: string,
     electionDetails: string,
     electionPollsOpenDateTime: Date,
