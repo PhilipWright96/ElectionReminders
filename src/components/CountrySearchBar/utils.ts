@@ -19,8 +19,6 @@ export function retrieveDataFromBackend(searchTerm: string, filterType: string):
             return getElectionResultsBasedOnCity(searchTerm);
         case "organization":
             return getElectionResultsBasedOnOrganization(searchTerm);
-        case "all":
-            return getElectionResults(searchTerm);
         default:
             console.log("Error - unsupported value");
             return Promise.reject(new Error("Unsupported filter type"));
